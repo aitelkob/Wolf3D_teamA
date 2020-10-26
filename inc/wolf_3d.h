@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/10/24 03:54:48 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/10/26 18:00:50 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct			s_sdl
 typedef struct			s_player
 {
 	t_point				pos;
+	t_point				initial_pos;
 	t_point				dir;
 	t_point				plane;
 	int					**world_map;
@@ -161,4 +162,7 @@ void					process_input(t_wolf_3d *w, int	**world_map);
 void					mouse_limitation(t_wolf_3d *w);
 
 int         **get_map(int **map, int fd, char    **av);
+
+void	process_input(t_wolf_3d *w, int	**world_map);
+void init_perso(t_wolf_3d *w);
 #endif

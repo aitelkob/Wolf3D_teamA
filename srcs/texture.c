@@ -6,17 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:47:25 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/10/24 04:00:14 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/10/25 16:35:22 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/wolf_3d.h"
-
-void load_texture()
-{
-    Uint32 buffer[WIDTH][HEIGHT];
-    int i;
-    t_wolf_3d *w;
-
-    w->texture[0] = 
-}

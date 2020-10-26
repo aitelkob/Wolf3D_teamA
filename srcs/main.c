@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/10/24 03:42:36 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/10/26 19:06:34 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	Creating a texture image the draw the map on
 */
 
-void	calculate_plane_dir_x(t_wolf_3d *w, double rotation_speed)
+void calculate_plane_dir_x(t_wolf_3d *w, double rotation_speed)
 {
 	float cos_calc;
 	float sin_calc;
@@ -29,37 +29,31 @@ void	calculate_plane_dir_x(t_wolf_3d *w, double rotation_speed)
 	w->player.dir.x = w->player.dir.x * cos_calc - w->player.dir.y * sin_calc;
 	w->player.dir.y = w->oldDirX * sin_calc + w->player.dir.y * cos_calc;
 	w->oldplaneX = w->player.plane.x;
-	w->player.plane.x = w->player.plane.x * cos_calc\
-		- w->player.plane.y * sin_calc;
-	w->player.plane.y = w->oldplaneX * sin_calc\
-		+ w->player.plane.y * cos_calc;
+	w->player.plane.x = w->player.plane.x * cos_calc - w->player.plane.y * sin_calc;
+	w->player.plane.y = w->oldplaneX * sin_calc + w->player.plane.y * cos_calc;
 }
 
-void	step_taken(t_wolf_3d *w)
+void step_taken(t_wolf_3d *w)
 {
 	if (w->ray.raydir.x < 0)
 	{
 		w->ray.step.x = -1;
-		w->ray.sidedist.x = (w->player.pos.x - w->ray.map.x)\
-			* w->ray.deltadist.x;
+		w->ray.sidedist.x = (w->player.pos.x - w->ray.map.x) * w->ray.deltadist.x;
 	}
 	else
 	{
 		w->ray.step.x = 1;
-		w->ray.sidedist.x = (w->ray.map.x + 1.0 - w->player.pos.x)\
-			* w->ray.deltadist.x;
+		w->ray.sidedist.x = (w->ray.map.x + 1.0 - w->player.pos.x) * w->ray.deltadist.x;
 	}
 	if (w->ray.raydir.y < 0)
 	{
 		w->ray.step.y = -1;
-		w->ray.sidedist.y = (w->player.pos.y - w->ray.map.y)\
-			* w->ray.deltadist.y;
+		w->ray.sidedist.y = (w->player.pos.y - w->ray.map.y) * w->ray.deltadist.y;
 	}
 	else
 	{
 		w->ray.step.y = 1;
-		w->ray.sidedist.y = (w->ray.map.y + 1.0 - w->player.pos.y)\
-			* w->ray.deltadist.y;
+		w->ray.sidedist.y = (w->ray.map.y + 1.0 - w->player.pos.y) * w->ray.deltadist.y;
 	}
 }
 
@@ -68,7 +62,7 @@ void	step_taken(t_wolf_3d *w)
 **	Check if ray has hit a wall
 */
 
-void	dda_algorithm(t_wolf_3d *w)
+void dda_algorithm(t_wolf_3d *w)
 {
 	while (w->ray.hit == 0)
 	{
@@ -88,11 +82,13 @@ void	dda_algorithm(t_wolf_3d *w)
 			w->ray.hit = 1;
 	}
 	if (w->ray.side == 0)
-		w->ray.perpWallDist = (w->ray.map.x - w->player.pos.x +\
-			(1 - w->ray.step.x) / 2) / w->ray.raydir.x;
+		w->ray.perpWallDist = (w->ray.map.x - w->player.pos.x +
+							   (1 - w->ray.step.x) / 2) /
+							  w->ray.raydir.x;
 	else
-		w->ray.perpWallDist = (w->ray.map.y - w->player.pos.y +\
-			(1 - w->ray.step.y) / 2) / w->ray.raydir.y;
+		w->ray.perpWallDist = (w->ray.map.y - w->player.pos.y +
+							   (1 - w->ray.step.y) / 2) /
+							  w->ray.raydir.y;
 }
 
 /*
@@ -101,9 +97,9 @@ void	dda_algorithm(t_wolf_3d *w)
 **	Draw a vertical line from drawStart to drawEnd
 */
 
-void	fill_data_tab(t_wolf_3d *w, int x)
+void fill_data_tab(t_wolf_3d *w, int x)
 {
-	int		i;
+	int i;
 
 	i = 0;
 	while (i < w->ray.draw.start)
@@ -135,17 +131,15 @@ void	fill_data_tab(t_wolf_3d *w, int x)
 **	Calculate highest pixel to fill in current stripe
 */
 
-void	detect_start_end(t_wolf_3d *w)
+void detect_start_end(t_wolf_3d *w)
 {
 	w->ray.lineHeight = (int)(HEIGHT / w->ray.perpWallDist) * 0.5;
 	if (w->ray.perpWallDist <= 0)
 		w->ray.lineHeight = WIDTH;
-	w->ray.draw.start = (int)((-w->ray.lineHeight / 2)\
-		+ (HEIGHT / 2)) + w->event.up_mouve;
+	w->ray.draw.start = (int)((-w->ray.lineHeight / 2) + (HEIGHT / 2)) + w->event.up_mouve;
 	if (w->ray.draw.start < 0)
 		w->ray.draw.start = 0;
-	w->ray.draw.end = (int)((w->ray.lineHeight / 2)\
-		+ (HEIGHT / 2)) + w->event.down_mouve;
+	w->ray.draw.end = (int)((w->ray.lineHeight / 2) + (HEIGHT / 2)) + w->event.down_mouve;
 	if (w->ray.draw.end >= HEIGHT)
 		w->ray.draw.end = HEIGHT - 1;
 }
@@ -160,11 +154,11 @@ void	detect_start_end(t_wolf_3d *w)
 **	Calculate distance projected on camera direction
 */
 
-void	draw_map_3d(t_wolf_3d *w)
+void draw_map_3d(t_wolf_3d *w)
 {
-	int		x;
-	double	tmp1;
-	double	tmp2;
+	int x;
+	double tmp1;
+	double tmp2;
 
 	x = 0;
 	while (x < WIDTH)
@@ -187,26 +181,32 @@ void	draw_map_3d(t_wolf_3d *w)
 	}
 }
 
-void	load_img(t_wolf_3d *w, const char *file)
+void load_img(t_wolf_3d *w, const char *file)
 {
 	w->sdl.cur = IMG_Load(file);
 	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer, w->sdl.cur);
 	if (!w->sdl.cur_tex)
-		return ;
+		return;
 }
 
-void	fps_calculation(t_fps *fps)
+void fps_calculation(t_fps *fps)
 {
-	while (!SDL_TICKS_PASSED(SDL_GetTicks()\
-		, (fps->last_frame_time + fps->frame_target)));
+	while (!SDL_TICKS_PASSED(SDL_GetTicks(), (fps->last_frame_time + fps->frame_target)))
+		;
 	fps->delta_time = (SDL_GetTicks() - fps->last_frame_time) / 1000.0f;
 	fps->movespeed = 30 * fps->delta_time;
 	fps->rotspeed = 2 * fps->delta_time;
 }
 
-void	draw_on_win(t_wolf_3d *w, const char *file)
+/*
+//
+// trap the mouse inside the window
+//
+*/
+
+void draw_on_win(t_wolf_3d *w, const char *file)
 {
-	SDL_Rect	dst;
+	SDL_Rect dst;
 
 	dst.w = 100;
 	dst.h = 100;
@@ -217,8 +217,8 @@ void	draw_on_win(t_wolf_3d *w, const char *file)
 	load_img(w, file);
 	while (w->game_running == 0)
 	{
-		//SDL_ShowCursor(SDL_DISABLE);
-		SDL_CaptureMouse(SDL_ENABLE);
+		SDL_ShowCursor(0);
+		// SDL_SetRelativeMouseMode(SDL_TRUE); // trap the mouse inside the window
 		fps_calculation(&(w->fps));
 		w->fps.last_frame_time = SDL_GetTicks();
 		draw_map_3d(w);
@@ -242,10 +242,12 @@ void	draw_on_win(t_wolf_3d *w, const char *file)
 **	the 2d raycaster version of camera plane y
 */
 
-void	init_perso(t_wolf_3d *w)
+void init_perso(t_wolf_3d *w)
 {
 	w->player.pos.x = 19.5;
 	w->player.pos.y = 19.5;
+	w->player.initial_pos.x = 19.5;
+	w->player.initial_pos.y = 19.5;
 	w->player.dir.x = -1;
 	w->player.dir.y = 0;
 	w->player.plane.x = 0;
@@ -254,10 +256,10 @@ void	init_perso(t_wolf_3d *w)
 	w->fps.frame_target = 1000 / w->fps.fps;
 }
 
-int		main(int ac, char **av)
+int main(int ac, char **av)
 {
-	t_wolf_3d	*w;
-	int			fd;
+	t_wolf_3d *w;
+	int fd;
 
 	if (ac > 1)
 	{
@@ -267,8 +269,8 @@ int		main(int ac, char **av)
 		init_perso(w);
 		w->game_running = sdl_init_win(w);
 		w->data = malloc(sizeof(int) * (WIDTH * HEIGHT));
-		if (w->player.world_map[(int)w->player.pos.x]\
-			[(int)w->player.pos.y] == 0)
+		if (w->player.world_map[(int)w->player.pos.x]
+							   [(int)w->player.pos.y] == 0)
 			draw_on_win(w, "./img/Png.png");
 		SDL_FreeSurface(w->sdl.cur);
 		SDL_DestroyRenderer(w->sdl.renderer);
