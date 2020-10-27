@@ -6,17 +6,43 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:22:33 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/03/12 15:39:39 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/10/27 13:34:16 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/wolf_3d.h"
 
-void		show_error(char *str)
+void		show_error1()
 {
+    ft_putstr("\033[1;31m");
+	ft_putstr(" : ヽ(｀⌒´メ)ノ There is no such map folder ヽ(｀⌒´メ)ノ");
+    ft_putstr("\033[0m");
+    ft_putchar('\n');
+	exit(1);
+}
+
+void		show_error2(char *str)
+{
+    ft_putstr("\033[1;31m                    ERROR                    \033[0m\n");
+    ft_putstr("                  ");
 	ft_putstr(str);
-	ft_putstr(" : ヽ(｀⌒´メ)ノ There is no such map ヽ(｀⌒´メ)ノ");
-	ft_putchar('\n');
+    ft_putstr("\n\033[1;31m");
+	ft_putstr("ヽ(｀⌒´メ)ノ  You can't fool me  ヽ(｀⌒´メ)ノ\n");
+	ft_putstr("ヽ(｀⌒´メ)ノ   No  map is here   ヽ(｀⌒´メ)ノ\n");
+	ft_putstr("ヽ(｀⌒´メ)ノ    File is empty    ヽ(｀⌒´メ)ノ");
+    ft_putstr("\033[0m");
+    ft_putchar('\n');
+	exit(1);
+}
+
+void		show_error3()
+{
+    ft_putstr("\033[1;36m");
+	ft_putstr("ヽ(｀⌒´メ)ノ Choose a Map from the maps folder ヽ(｀⌒´メ)ノ\n");
+	ft_putstr("ヽ(｀⌒´メ)ノ   Try again using this sentence   ヽ(｀⌒´メ)ノ\n");
+	ft_putstr("ヽ(｀⌒´メ)ノ   ./Wolf maps/[name-of-the-map]   ヽ(｀⌒´メ)ノ");
+    ft_putstr("\033[0m");
+    ft_putchar('\n');
 	exit(1);
 }
 
@@ -115,7 +141,7 @@ int         **get_map(int **map, int fd, char    **av)
 
     m = line_numb(av[1]);
     if (m < 1)
-        show_error(av[1]);
+        show_error2(av[1]);
     if (!(map = (int**)malloc(sizeof(int*) * (m + 1))))
 		return (NULL);
 
