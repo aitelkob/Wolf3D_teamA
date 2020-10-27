@@ -6,13 +6,13 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 10:27:01 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/10/16 12:06:12 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/10/27 11:17:40 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/wolf_3d.h"
 
-void  draw_cube(t_wolf_3d *w, int x_begin, int y_begin, int color)
+/*void  draw_cube(t_wolf_3d *w, int x_begin, int y_begin, int color)
 {
 	int i;
 	int j;
@@ -71,4 +71,4 @@ void  draw_map(t_wolf_3d *w)
 		}
 		i += CUBESIZE;
 	}
-}
+}*/
