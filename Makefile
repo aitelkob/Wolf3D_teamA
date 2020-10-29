@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/10/14 18:26:03 by ayagoumi         ###   ########.fr        #
+#    Updated: 2020/10/28 04:11:26 by yait-el-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SDLF = -I SDL/SDL2.framework/Headers
 
 INC = inc/wolf_3d.h  libft/libft.h 
 
-SRC = srcs/main.c srcs/stock_map.c srcs/events.c srcs/outils.c srcs/sdl_init.c srcs/mini_map.c
+SRC = srcs/main.c srcs/stock_map.c srcs/events.c srcs/outils.c srcs/Raycasting_algo.c srcs/sdl_init.c srcs/mini_map.c
 
 FRAM = -lmlx -framework OpenGL -framework AppKit -framework OpenCL  -framework SDL2 -F ./SDL/ -framework SDL2_mixer -F ./SDL  -framework SDL2_image -F ./SDL -framework SDL2_ttf -F ./SDL -rpath @loader_path/SDL MLX/libmlx.a -lz 
 

@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/10/26 18:00:50 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/10/28 04:03:12 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,14 @@ typedef struct			s_wolf_3d
 	double				oldDirX;
 	double				oldplaneX;
 }						t_wolf_3d;
+/*
+ * *Raycasting 
+*/
+void calculate_plane_dir_x(t_wolf_3d *w, double rotation_speed);
+void step_taken(t_wolf_3d *w);
+void dda_algorithm(t_wolf_3d *w);
+void fill_data_tab(t_wolf_3d *w, int x);
+void detect_start_end(t_wolf_3d *w);
 /*
 	**	Outils
 */
