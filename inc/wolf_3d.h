@@ -6,7 +6,11 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/10/28 04:03:12 by yait-el-         ###   ########.fr       */
+=======
+/*   Updated: 2020/10/27 17:38:27 by ayagoumi         ###   ########.fr       */
+>>>>>>> f2e7d2aa29d7b3dd92feb091dd556bfb418a9fbe
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +28,8 @@
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
 # define WIDTH 600
 # define HEIGHT 600
-# define WIDTHMAP 75
-# define HEIGTHMAP 75
-# define CUBESIZE 5
-# define SMALLPERSO 5
 # define mapWidth 24
 # define mapHeight 24
-# define texWidth 24
-# define texHeight 24
 // # define FPS 60
 # define TRUE 1
 # define FALSE 0
@@ -93,7 +91,6 @@ typedef struct			s_sdl
 typedef struct			s_player
 {
 	t_point				pos;
-	t_point				initial_pos;
 	t_point				dir;
 	t_point				plane;
 	int					**world_map;
@@ -137,6 +134,7 @@ typedef struct			s_wolf_3d
 	double				oldDirX;
 	double				oldplaneX;
 }						t_wolf_3d;
+
 /*
  * *Raycasting 
 */
@@ -150,10 +148,10 @@ void detect_start_end(t_wolf_3d *w);
 */
 void					clear_data_tab(int    *tab);
 
-int			sdl_init_texture(t_wolf_3d	*w);
-int         sdl_init_render(t_wolf_3d   *w);
-int			sdl_init_win(t_wolf_3d	*w);
-void		sdl_text_init(t_wolf_3d *w);
+int						sdl_init_texture(t_wolf_3d	*w);
+int         			sdl_init_render(t_wolf_3d   *w);
+int						sdl_init_win(t_wolf_3d	*w);
+void					sdl_text_init(t_wolf_3d *w);
 
 /*
 	**	Main
@@ -169,8 +167,12 @@ void					key_down_input(t_wolf_3d *w, const Uint8 *keystates, int	**world_map);
 void					process_input(t_wolf_3d *w, int	**world_map);
 void					mouse_limitation(t_wolf_3d *w);
 
-int         **get_map(int **map, int fd, char    **av);
+int         			**get_map(int **map, int fd, char    **av);
 
-void	process_input(t_wolf_3d *w, int	**world_map);
-void init_perso(t_wolf_3d *w);
+void					process_input(t_wolf_3d *w, int	**world_map);
+void					init_perso(t_wolf_3d *w);
+
+void					show_error1();
+void					how_error2(char *str);
+void					show_error3();
 #endif

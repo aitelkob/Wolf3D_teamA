@@ -6,7 +6,11 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/10/28 04:19:07 by yait-el-         ###   ########.fr       */
+=======
+/*   Updated: 2020/10/27 17:18:29 by ayagoumi         ###   ########.fr       */
+>>>>>>> f2e7d2aa29d7b3dd92feb091dd556bfb418a9fbe
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +51,26 @@ void load_img(t_wolf_3d *w, const char *file)
 		return;
 }
 
+/*
+**	Time it took to draw this frame
+**	Frame per second
+** Speed of movement and rotation
+**	Square per second
+**	Radient per second
+*/
+
 void fps_calculation(t_fps *fps)
 {
 	while (!SDL_TICKS_PASSED(SDL_GetTicks(), (fps->last_frame_time + fps->frame_target)))
 		;
 	fps->delta_time = (SDL_GetTicks() - fps->last_frame_time) / 1000.0f;
+	printf("FPS : %f\n", 1 / fps->delta_time);
 	fps->movespeed = 30 * fps->delta_time;
 	fps->rotspeed = 2 * fps->delta_time;
 }
 
 /*
-//
-// trap the mouse inside the window
-//
+**	Start the Mouse postion in the middle of the window
 */
 
 void draw_on_win(t_wolf_3d *w, const char *file)
@@ -104,8 +115,6 @@ void init_perso(t_wolf_3d *w)
 {
 	w->player.pos.x = 19.5;
 	w->player.pos.y = 19.5;
-	w->player.initial_pos.x = 19.5;
-	w->player.initial_pos.y = 19.5;
 	w->player.dir.x = -1;
 	w->player.dir.y = 0;
 	w->player.plane.x = 0;
@@ -119,11 +128,14 @@ int main(int ac, char **av)
 	t_wolf_3d *w;
 	int fd;
 
-	if (ac > 1)
+	if (ac == 2)
 	{
 		w = malloc(sizeof(t_wolf_3d));
 		fd = open(av[1], O_RDONLY);
-		w->player.world_map = get_map(w->player.world_map, fd, av);
+		if (fd >= 3)
+			w->player.world_map = get_map(w->player.world_map, fd, av);
+		else
+			show_error1();
 		init_perso(w);
 		w->game_running = sdl_init_win(w);
 		w->data = malloc(sizeof(int) * (WIDTH * HEIGHT));
@@ -135,5 +147,7 @@ int main(int ac, char **av)
 		SDL_DestroyWindow(w->sdl.win);
 		SDL_Quit();
 	}
+	else if (ac == 1)
+		show_error3();
 	return (0);
 }
