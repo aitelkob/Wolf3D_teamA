@@ -1,0 +1,58 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
+#    Updated: 2020/11/13 11:42:24 by yait-el-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+
+NAME = Wolf
+
+CC = gcc
+
+CFLAGS = -Wall -Werror -Wextra
+
+LIB = MLX/libmlx.a libft/libft.a 
+
+SDLF = -I SDL/SDL2.framework/Headers   
+
+INC = inc/wolf_3d.h  libft/libft.h 
+
+SRC = srcs/main.c srcs/stock_map.c srcs/texture.c srcs/events.c srcs/wolf_miniMap.c srcs/init_wolf.c srcs/game_engine.c srcs/outils.c srcs/sdl_init.c srcs/mini_map.c
+
+FRAM = -lmlx -framework OpenGL -framework AppKit -framework OpenCL  -framework SDL2 -F ./SDL/ -framework SDL2_mixer -F ./SDL  -framework SDL2_image -F ./SDL -framework SDL2_ttf -F ./SDL -rpath @loader_path/SDL MLX/libmlx.a -lz 
+
+OBJ = $(SRC:.c=.o) 
+
+F_OBJ = ./OBJ
+
+all: $(NAME) 
+$(NAME):$(OBJ)$(INC)
+		@echo "\033[2;36m"
+	    @Make -C ./mlx  2> /dev/null || true
+		@make -C ./libft  2> /dev/null || true
+		@$(CC) $(CFLAGS) $(OBJ) $(LIB) $(FRAM)  $(SDLF) -o $(NAME)
+		@echo "Wolf_3d: executable file is ready"
+		@echo "\033[0m"
+clean:
+		@echo "\033[2;32m"
+		@Make clean -C ./mlx  2> /dev/null || true
+		@Make clean -C ./libft  2> /dev/null || true
+		@rm -rf $(OBJ)   2> /dev/null || true
+		@echo "Wolf_3d: all resources deleted"
+		@echo "\033[0m"
+fclean: clean 
+		@echo "\033[2;34m"
+		@rm -f $(NAME)  2> /dev/null || true
+		@Make fclean -C ./libft  2> /dev/null || true
+		@Make fclean -C ./mlx  2> /dev/null || true
+		@echo "Wolf_3d: all resources deleted"
+		@echo "\033[0m"
+		
+re: fclean all
