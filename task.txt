@@ -6,7 +6,8 @@ SDL_Events
 
 file -->srcs/game_engine.c
 
-check calcul in fill_data_tab() i need w->ray.draw.start,w->ray.draw.end value te draw texture 7ite kina chi7aja me5awera fe calcul checkit plz 
+check calcul in fill_data_tab() i need w->ray.draw.start,w->ray.draw.end value to  draw texture  chi7aja me5awera fe calcul check it out 
+
 
 not now !!!!
 file --->
