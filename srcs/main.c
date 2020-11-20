@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/19 05:53:04 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/20 02:03:17 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		rander(t_wolf_3d *w)
 
 	draw_map_3d(w);
 	texture_img(w);
+	image_clear(w);
 	//mini_map(w);
 	//player_inMini(w);
 	SDL_RenderCopy(w->sdl.renderer, w->sdl.cur_tex, NULL, &w->dst);

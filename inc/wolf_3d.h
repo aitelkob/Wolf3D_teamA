@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/19 03:07:39 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/20 02:01:22 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # include "../SDL/SDL2.framework/Headers/SDL.h"
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 800
+# define HEIGHT 800
 # define TEXT_W 64
 # define TEXT_H 64
 # define mapWidth 24
@@ -97,7 +97,7 @@ typedef struct			s_sdl
 	SDL_Surface         *ceiling_texture;
 	SDL_Surface         *roof_texture;
 	SDL_Surface         *floor_texture;
-	 int		*wall_data_wood;
+	unsigned int		*wall_data_wood;
 	SDL_Surface			*txt_fps;
 	SDL_Rect			map;
 	SDL_Rect 			player;
@@ -192,6 +192,7 @@ void					detect_start_end(t_wolf_3d *w);
 void					dda_algorithm(t_wolf_3d *w);
 int         			**get_map(int **map, int fd, char    **av);
 void        mini_map(t_wolf_3d *w);
+void        image_clear(t_wolf_3d *wolf);
 void		player_inMini(t_wolf_3d *w);
 void        loadTexture(t_wolf_3d *wolf);
 void        texture_img(t_wolf_3d *wolf);

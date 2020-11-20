@@ -3,14 +3,18 @@
 RayCasting
 SDL_Events
 
-vi srcs/wolf_miniMap.c d5ole 9ade PLayer in mini map 
 
+file -->srcs/game_engine.c
 
-test.tx
+check calcul in fill_data_tab() i need w->ray.draw.start,w->ray.draw.end value te draw texture 7ite kina chi7aja me5awera fe calcul checkit plz 
 
+not now !!!!
+file --->
+srcs/wolf_miniMap.c
+ d5ole 9ade PLayer in mini map 
 
 
 ////////////////////youssef
-Makefile
-Texture
-Mini Map
+Makefile ---> not yet
+Texture  ---> on progress
+Mini Map --> done

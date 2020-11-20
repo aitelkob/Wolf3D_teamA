@@ -6,7 +6,7 @@
 /*   By: yait-el- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/17 23:15:42 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/20 03:20:30 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,37 +96,33 @@ void dda_algorithm(t_wolf_3d *w)
  **  Draw a vertical line from drawStart to drawEnd
  */
 
-/*void		wall_texture(t_wolf_3d *wolf)
+void		wall_texture(t_wolf_3d *wolf,int x,int start,int end)
 {
 	int i;
 
-	calculations are new however, and replace the 
-	 color chooser of the untextured raycaster.
-	 wolf->texture_index = wolf->player.world_map[wolf->ray.map.x][wolf->ray.map.y] - 1
-	 
+	   //calculate value of wallX represents the exact value where the wall was hit 
 	if (wolf->ray.side == 0)
 		wolf->wallx = wolf->player.pos.x + wolf->ray.perpWallDist * wolf->ray.raydir.x;
 	else
 		wolf->wallx = wolf->player.pos.y + wolf->ray.perpWallDist * wolf->ray.raydir.y;
 	wolf->wallx -= floor(wolf->wallx);
+	//x coordinate on the texture
 	wolf->texx = (int)(wolf->wallx * (double)TEXT_W);
 	if (wolf->ray.side == 0 && wolf->ray.raydir.x >0)
 		wolf->texx = TEXT_W - wolf->texx -1;
 	if (wolf->ray.side == 1 && wolf->ray.raydir.y < 0)
 		wolf->texx = TEXT_W - wolf->texx -1;
 	i = wolf->ray.draw.start;
-
-	while (i < wolf->ray.draw.end)
+	while (start <= end)
 	{
-		wolf->texy = ((i - player->up_dw) * 2 - H +\
-				wolf->ray.lineHeight) * (wolf->player.tex_aply->h / 2) / wolf->ray.lineHeight;
-		if (i < H && i >= 0)
-			wolf->data[i * W + x] = player->tex_aply->bitmap[texy * player->tex_aply->w + wolf->texx];
-
-				i++;
-
+		// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+		wolf->texy = ((start - wolf->event.down_mouve) * 2 - HEIGHT +\
+				wolf->ray.lineHeight) * (wolf->sdl.wall_wood->h / 2) / wolf->ray.lineHeight;
+		if (start < HEIGHT && start >= 0)
+			wolf->data[start * WIDTH + x] = wolf->sdl.wall_data_wood[wolf->texy * wolf->sdl.wall_wood->h + wolf->texx];
+		start++;
 	}
-}*/
+}
 
 void fill_data_tab(t_wolf_3d *w, int x)
 {
@@ -144,7 +140,8 @@ void fill_data_tab(t_wolf_3d *w, int x)
 		w->data[x + (i * WIDTH)] = 0x654321;
 		i++;
 	}
-	while (w->ray.draw.start <= w->ray.draw.end)
+	 //wall_texture(w,x);
+	/*while (w->ray.draw.start <= w->ray.draw.end)
 	{
 		w->ray.color = 0;
 		if (w->ray.side == 1)
@@ -153,7 +150,8 @@ void fill_data_tab(t_wolf_3d *w, int x)
 			w->ray.color = 0x808080;
 		w->data[x + (w->ray.draw.start * WIDTH)] = w->ray.color;
 		w->ray.draw.start++;
-	}
+	}*/
+	wall_texture(w,x,w->ray.draw.start,w->ray.draw.end);
 }
 
 /*
