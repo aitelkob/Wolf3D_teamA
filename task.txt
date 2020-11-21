@@ -7,15 +7,15 @@ SDL_Events
 file -->srcs/game_engine.c
 
 check calcul in fill_data_tab() i need w->ray.draw.start,w->ray.draw.end value to  draw texture  chi7aja me5awera fe calcul check it out 
-
+=> this is fixed i think, check the init_wolf file and you'll find the mistake you've made
 
 not now !!!!
 file --->
 srcs/wolf_miniMap.c
- d5ole 9ade PLayer in mini map 
+ d5ole 9ade PLayer in mini map =>mini map is still not fixed yet, but it works, still need to do some repairs on it.
 
 
 ////////////////////youssef
-Makefile ---> not yet
-Texture  ---> on progress
+Makefile ---> not yet => please stat on this one first
+Texture  ---> on progress => if you finish this let me kno as soon as possible
 Mini Map --> done
