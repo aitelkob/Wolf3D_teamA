@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_wolf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yait-el- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/06 22:45:22 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/20 13:09:01 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
  *check for the fisrt  0 spot
  *
  */
-void		player_start(t_wolf_3d *w)
+ 
+void player_start(t_wolf_3d *w)
 {
-	int i,j;
+	int i, j;
 
 	i = 0;
 	while (i < MAP_NUM_COLS)
@@ -28,8 +29,8 @@ void		player_start(t_wolf_3d *w)
 		{
 			if (w->player.world_map[i][j] == 0)
 			{
-				w->player.pos.x = i;
-				w->player.pos.y = j;
+				w->player.pos.x = i + 0.5;
+				w->player.pos.y = j + 0.5;
 				return;
 			}
 			j++;
@@ -45,33 +46,37 @@ void		player_start(t_wolf_3d *w)
 **  the 2d raycaster version of camera plane x
 **  the 2d raycaster version of camera plane y
 */
- void init_perso(t_wolf_3d *w)
- {
-	 player_start(w);
-	 load_img(w, PNG);
-	 SDL_ShowCursor(0);
-     w->player.dir.x = -1;
-     w->player.dir.y = 0;
-	 w->player.with = 20;
-	 w->player.height = 20;
-     w->player.plane.x = 0;
-     w->player.plane.y = 0.57;
-     w->fps.fps = 60;
-     w->fps.frame_target = 1000 / w->fps.fps;
-	 w->dst.w = 100;
-	 w->fps.last_frame_time = 0;
-	 w->dst.h = 100;
-	 SDL_WarpMouseInWindow(w->sdl.win, (WIDTH / 2), (HEIGHT / 2));
-	 w->dst.x = (WIDTH / 2) - (w->dst.w / 2);
-     w->dst.y = (HEIGHT / 2) - (w->dst.h / 2);
-	 w->data = malloc(sizeof(int) * (WIDTH * HEIGHT));
- }
-void load_img(t_wolf_3d *w, const char *file)
+
+void init_perso(t_wolf_3d *w)
 {
-    w->sdl.cur = IMG_Load(file);
-    w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer,
-			w->sdl.cur);
-    if (!w->sdl.cur_tex)
-        return;
+	player_start(w);
+	load_img(w, PNG);
+	// nsiti hadi dakchi 3lash makhdmch lik texture
+	texture_img(w);
+	
+	SDL_ShowCursor(0);
+	w->player.dir.x = -1;
+	w->player.dir.y = 0;
+	w->player.with = 20;
+	w->player.height = 20;
+	w->player.plane.x = 0;
+	w->player.plane.y = 0.57;
+	w->fps.fps = 60;
+	w->fps.frame_target = 1000 / w->fps.fps;
+	w->dst.w = 100;
+	w->fps.last_frame_time = 0;
+	w->dst.h = 100;
+	SDL_WarpMouseInWindow(w->sdl.win, (WIDTH / 2), (HEIGHT / 2));
+	w->dst.x = (WIDTH / 2) - (w->dst.w / 2);
+	w->dst.y = (HEIGHT / 2) - (w->dst.h / 2);
+	w->data = malloc(sizeof(int) * (WIDTH * HEIGHT));
 }
 
+void load_img(t_wolf_3d *w, const char *file)
+{
+	w->sdl.cur = IMG_Load(file);
+	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer,
+												  w->sdl.cur);
+	if (!w->sdl.cur_tex)
+		return;
+}

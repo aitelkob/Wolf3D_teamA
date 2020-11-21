@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_engine.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yait-el- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/20 03:20:30 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/20 10:57:08 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ void dda_algorithm(t_wolf_3d *w)
 	}
 	if (w->ray.side == 0)
 		w->ray.perpWallDist = (w->ray.map.x - w->player.pos.x +
-				(1 - w->ray.step.x) / 2) /
-			w->ray.raydir.x;
+							   (1 - w->ray.step.x) / 2) /
+							  w->ray.raydir.x;
 	else
 		w->ray.perpWallDist = (w->ray.map.y - w->player.pos.y +
-				(1 - w->ray.step.y) / 2) /
-			w->ray.raydir.y;
+							   (1 - w->ray.step.y) / 2) /
+							  w->ray.raydir.y;
 }
 
 /*
@@ -96,28 +96,29 @@ void dda_algorithm(t_wolf_3d *w)
  **  Draw a vertical line from drawStart to drawEnd
  */
 
-void		wall_texture(t_wolf_3d *wolf,int x,int start,int end)
+void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 {
 	int i;
 
-	   //calculate value of wallX represents the exact value where the wall was hit 
-	if (wolf->ray.side == 0)
+	//calculate value of wallX represents the exact value where the wall was hit
+	if (wolf->ray.side == 1)
 		wolf->wallx = wolf->player.pos.x + wolf->ray.perpWallDist * wolf->ray.raydir.x;
 	else
 		wolf->wallx = wolf->player.pos.y + wolf->ray.perpWallDist * wolf->ray.raydir.y;
 	wolf->wallx -= floor(wolf->wallx);
 	//x coordinate on the texture
 	wolf->texx = (int)(wolf->wallx * (double)TEXT_W);
-	if (wolf->ray.side == 0 && wolf->ray.raydir.x >0)
-		wolf->texx = TEXT_W - wolf->texx -1;
+	if (wolf->ray.side == 0 && wolf->ray.raydir.x > 0)
+		wolf->texx = TEXT_W - wolf->texx - 1;
 	if (wolf->ray.side == 1 && wolf->ray.raydir.y < 0)
-		wolf->texx = TEXT_W - wolf->texx -1;
+		wolf->texx = TEXT_W - wolf->texx - 1;
 	i = wolf->ray.draw.start;
-	while (start <= end)
+	while (start < end)
 	{
 		// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-		wolf->texy = ((start - wolf->event.down_mouve) * 2 - HEIGHT +\
-				wolf->ray.lineHeight) * (wolf->sdl.wall_wood->h / 2) / wolf->ray.lineHeight;
+		wolf->texy = ((start - wolf->event.down_mouve) * 2 - HEIGHT +
+					  wolf->ray.lineHeight) *
+					 (wolf->sdl.wall_wood->h / 2) / wolf->ray.lineHeight;
 		if (start < HEIGHT && start >= 0)
 			wolf->data[start * WIDTH + x] = wolf->sdl.wall_data_wood[wolf->texy * wolf->sdl.wall_wood->h + wolf->texx];
 		start++;
@@ -140,7 +141,7 @@ void fill_data_tab(t_wolf_3d *w, int x)
 		w->data[x + (i * WIDTH)] = 0x654321;
 		i++;
 	}
-	 //wall_texture(w,x);
+	//wall_texture(w,x);
 	/*while (w->ray.draw.start <= w->ray.draw.end)
 	{
 		w->ray.color = 0;
@@ -151,7 +152,7 @@ void fill_data_tab(t_wolf_3d *w, int x)
 		w->data[x + (w->ray.draw.start * WIDTH)] = w->ray.color;
 		w->ray.draw.start++;
 	}*/
-	wall_texture(w,x,w->ray.draw.start,w->ray.draw.end);
+	wall_texture(w, x, w->ray.draw.start, w->ray.draw.end);
 }
 
 /*
@@ -172,6 +173,7 @@ void detect_start_end(t_wolf_3d *w)
 	if (w->ray.draw.end >= HEIGHT)
 		w->ray.draw.end = HEIGHT - 1;
 }
+
 /*
  **  calculate ray position and direction
  **  length of ray from one x or y-side to next x or y-side
@@ -208,4 +210,3 @@ void draw_map_3d(t_wolf_3d *w)
 		x++;
 	}
 }
-

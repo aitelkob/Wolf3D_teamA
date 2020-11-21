@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/20 02:03:17 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/21 12:00:52 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		rander(t_wolf_3d *w)
 	SDL_RenderClear(w->sdl.renderer);
 
 	draw_map_3d(w);
+	drawMap(w);
 	texture_img(w);
 	image_clear(w);
 	//mini_map(w);

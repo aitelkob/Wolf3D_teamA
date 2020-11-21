@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/20 02:01:22 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/21 14:26:30 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # include "../SDL/SDL2.framework/Headers/SDL.h"
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
 
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 900
+# define HEIGHT 900
 # define TEXT_W 64
 # define TEXT_H 64
 # define mapWidth 24
@@ -46,7 +46,7 @@
 # define  MAP_NUM_ROWS  24
 # define  MAP_NUM_COLS  24
 # define  TILE_SIZE  64
-# define  MAP_SACLER  0.4
+# define  MAP_SACLER  0.2
 
 typedef struct			s_point
 {
@@ -201,4 +201,9 @@ void					init_perso(t_wolf_3d *w);
 void					show_error1();
 void					how_error2(char *str);
 void					show_error3();
+
+
+#define CUBESIZE 10
+void		drawCube(t_wolf_3d *w, int x_begin, int y_begin, double scaler, int color);
+void		drawMap(t_wolf_3d *w);
 #endif
