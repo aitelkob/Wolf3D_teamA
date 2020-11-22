@@ -16,6 +16,6 @@ srcs/wolf_miniMap.c
 
 
 ////////////////////youssef
-Makefile ---> not yet => please stat on this one first
+Makefile ---> on progress => 5edemt 3liha 21 5aseni rire debugg and it will set leyouma 22 salawe li sway3
 Texture  ---> on progress => if you finish this let me kno as soon as possible
 Mini Map --> done
