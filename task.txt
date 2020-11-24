@@ -14,6 +14,7 @@ file --->
 srcs/wolf_miniMap.c
  d5ole 9ade PLayer in mini map =>mini map is still not fixed yet, but it works, still need to do some repairs on it.
 
+forgot something --> freeing the map when an error in parcing
 
 ////////////////////youssef
 Makefile ---> done => i will push it nov/24 11pm
