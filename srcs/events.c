@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:28:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/05 05:28:52 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:40:15 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ void track_mouse(t_wolf_3d *w, Uint32 *mousestates)
 	*mousestates = SDL_GetMouseState(&w->event.newmouse.x, &w->event.newmouse.y);
 }
 
+/*
+** mouse mouvement left
+** mouse mouvement rigth
+** mouse mouvement up
+** mouse mouvement down
+*/
+
 void mouse_motion_input(t_wolf_3d *w, Uint32 *mousestates)
 {
 	track_mouse(w, mousestates);
@@ -68,31 +75,31 @@ void key_down_input(t_wolf_3d *w, const Uint8 *keystates, int **world_map)
 {
 	if (keystates[SDL_SCANCODE_A])
 	{
-		if (world_map[(int)(w->player.pos.x - (w->player.dir.y * 0.2))][(int)w->player.pos.y] == 0)
-			w->player.pos.x -= (w->player.dir.y * 0.02);
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.x * 0.2))] == 0)
-			w->player.pos.y += (w->player.dir.x * 0.02);
+		if (world_map[(int)(w->player.pos.x - (w->player.dir.y * 0.25))][(int)w->player.pos.y] == 0)
+			w->player.pos.x -= (w->player.dir.y * 0.03);
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.x * 0.25))] == 0)
+			w->player.pos.y += (w->player.dir.x * 0.03);
 	}
 	if (keystates[SDL_SCANCODE_D])
 	{
-		if (world_map[(int)(w->player.pos.x + (w->player.dir.y * 0.2))][(int)w->player.pos.y] == 0)
-			w->player.pos.x += (w->player.dir.y * 0.02);
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - (w->player.dir.x * 0.2))] == 0)
-			w->player.pos.y -= (w->player.dir.x * 0.02);
+		if (world_map[(int)(w->player.pos.x + (w->player.dir.y * 0.25))][(int)w->player.pos.y] == 0)
+			w->player.pos.x += (w->player.dir.y * 0.03);
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - (w->player.dir.x * 0.25))] == 0)
+			w->player.pos.y -= (w->player.dir.x * 0.03);
 	}
 	if (keystates[SDL_SCANCODE_W])
 	{
-		if (world_map[(int)(w->player.pos.x + (w->player.dir.x * 0.2))][(int)w->player.pos.y] == 0)
-			w->player.pos.x += w->player.dir.x * 0.02;
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.y * 0.2))] == 0)
-			w->player.pos.y += w->player.dir.y * 0.02;
+		if (world_map[(int)(w->player.pos.x + (w->player.dir.x * 0.25))][(int)w->player.pos.y] == 0)
+			w->player.pos.x += w->player.dir.x * 0.03;
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.y * 0.25))] == 0)
+			w->player.pos.y += w->player.dir.y * 0.03;
 	}
 	if (keystates[SDL_SCANCODE_S])
 	{
-		if (world_map[(int)(w->player.pos.x - w->player.dir.x * 0.2)][(int)w->player.pos.y] == 0)
-			w->player.pos.x -= w->player.dir.x * 0.02;
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - w->player.dir.y * 0.2)] == 0)
-			w->player.pos.y -= w->player.dir.y * 0.02;
+		if (world_map[(int)(w->player.pos.x - w->player.dir.x * 0.25)][(int)w->player.pos.y] == 0)
+			w->player.pos.x -= w->player.dir.x * 0.03;
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - w->player.dir.y * 0.25)] == 0)
+			w->player.pos.y -= w->player.dir.y * 0.03;
 	}
 	if (keystates[SDL_SCANCODE_R])
 	{
@@ -108,11 +115,6 @@ void key_down_input(t_wolf_3d *w, const Uint8 *keystates, int **world_map)
 */
 void arrow_move_input(t_wolf_3d *w, const Uint8 *keystates)
 {
-	if (keystates[SDL_SCANCODE_SPACE])
-	{
-		w->player.plane.x = 0 + 1;
-		w->player.plane.y = 0.57 + 1;
-	}
 	if (keystates[SDL_SCANCODE_LEFT])
 		calculate_plane_dir_x(w, 20 * 3.14 * w->fps.rotspeed / 180.0);
 	if (keystates[SDL_SCANCODE_RIGHT])

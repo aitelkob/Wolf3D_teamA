@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:22:33 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/10/27 13:34:16 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/24 16:50:45 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void        correction(int **map, int n, int m)
         {
             if (map[i][j] == 0 && (i == 0 || j == 0))
             {
-                write (1, "EROOR1\n", 7);
+                ft_putstr ("EROOR: Wall not detected\n");
                 exit (1);
             }
             else if (map[i][j] == 0 && (i == n - 1 || j == m - 1))

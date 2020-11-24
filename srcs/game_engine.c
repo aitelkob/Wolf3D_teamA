@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/20 10:57:08 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/24 16:09:52 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void step_taken(t_wolf_3d *w)
 	}
 }
 /*
- **  Jump to next map square, OR in x-direction, OR in y-direction
- **  Check if ray has hit a wall
- */
+**  Jump to next map square, OR in x-direction, OR in y-direction
+**  Check if ray has hit a wall
+*/
 
 void dda_algorithm(t_wolf_3d *w)
 {
@@ -91,10 +91,10 @@ void dda_algorithm(t_wolf_3d *w)
 }
 
 /*
- **  Draw sky
- **  Draw flor
- **  Draw a vertical line from drawStart to drawEnd
- */
+**  Draw sky
+**  Draw flor
+**  Draw a vertical line from drawStart to drawEnd
+*/
 
 void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 {
@@ -118,9 +118,9 @@ void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 		// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
 		wolf->texy = ((start - wolf->event.down_mouve) * 2 - HEIGHT +
 					  wolf->ray.lineHeight) *
-					 (wolf->sdl.wall_wood->h / 2) / wolf->ray.lineHeight;
+					 (wolf->sdl.wall->h / 2) / wolf->ray.lineHeight;
 		if (start < HEIGHT && start >= 0)
-			wolf->data[start * WIDTH + x] = wolf->sdl.wall_data_wood[wolf->texy * wolf->sdl.wall_wood->h + wolf->texx];
+			wolf->data[start * WIDTH + x] = wolf->sdl.wall_data[wolf->texy * wolf->sdl.wall->h + wolf->texx];
 		start++;
 	}
 }
@@ -156,10 +156,10 @@ void fill_data_tab(t_wolf_3d *w, int x)
 }
 
 /*
- **  Calculate height of line to draw on screen
- **  calculate lowest pixel to fill in current stripe
- **  Calculate highest pixel to fill in current stripe
- */
+**  Calculate height of line to draw on screen
+**  calculate lowest pixel to fill in current stripe
+**  Calculate highest pixel to fill in current stripe
+*/
 
 void detect_start_end(t_wolf_3d *w)
 {
@@ -175,14 +175,14 @@ void detect_start_end(t_wolf_3d *w)
 }
 
 /*
- **  calculate ray position and direction
- **  length of ray from one x or y-side to next x or y-side
- **  was there a wall hit?
- **  coord of the square ( which box of the map we're in )
- **  calculate step and initial sideDist
- **  Perform DDA
- **  Calculate distance projected on camera direction
- */
+**  calculate ray position and direction
+**  length of ray from one x or y-side to next x or y-side
+**  was there a wall hit?
+**  coord of the square ( which box of the map we're in )
+**  calculate step and initial sideDist
+**  Perform DDA
+**  Calculate distance projected on camera direction
+*/
 
 void draw_map_3d(t_wolf_3d *w)
 {

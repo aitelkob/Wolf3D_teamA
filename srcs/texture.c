@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:47:25 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/20 10:56:26 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/23 12:17:11 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void		image_clear(t_wolf_3d *wolf)
 void        loadTexture(t_wolf_3d *w)
 {
 	w->sdl.cur = IMG_Load(PNG);
-	w->sdl.wall_wood = IMG_Load(WOOD);
-	w->sdl.wall_data_wood = (unsigned int*)w->sdl.wall_wood->pixels;
+	w->sdl.wall = IMG_Load(MOSSY);
+	w->sdl.wall_data = (unsigned int*)w->sdl.wall->pixels;
 	w->sdl.ceiling_texture = IMG_Load(REDBRICK);
 	w->sdl.roof_texture = IMG_Load(PURPLESTONE);
 	w->sdl.floor_texture = IMG_Load(COLORSTONE);

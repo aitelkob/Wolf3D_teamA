@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/20 13:09:01 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:28:51 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void player_start(t_wolf_3d *w)
 		{
 			if (w->player.world_map[i][j] == 0)
 			{
-				w->player.pos.x = i + 0.5;
-				w->player.pos.y = j + 0.5;
+				w->player.pos.x = i + 0.35;
+				w->player.pos.y = j + 0.35;
 				return;
 			}
 			j++;
@@ -61,7 +61,7 @@ void init_perso(t_wolf_3d *w)
 	w->player.height = 20;
 	w->player.plane.x = 0;
 	w->player.plane.y = 0.57;
-	w->fps.fps = 60;
+	w->fps.fps = 30;
 	w->fps.frame_target = 1000 / w->fps.fps;
 	w->dst.w = 100;
 	w->fps.last_frame_time = 0;

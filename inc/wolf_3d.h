@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/21 14:26:30 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/23 13:50:49 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define TEXT_H 64
 # define mapWidth 24
 # define mapHeight 24
-# define PNG "/img/Png.png"
+# define PNG "/img/2.png"
 // # define FPS 60
 # define TRUE 1
 # define FALSE 0
@@ -46,7 +46,7 @@
 # define  MAP_NUM_ROWS  24
 # define  MAP_NUM_COLS  24
 # define  TILE_SIZE  64
-# define  MAP_SACLER  0.2
+# define  MAP_SACLER  0.15
 
 typedef struct			s_point
 {
@@ -93,11 +93,11 @@ typedef struct			s_sdl
 	SDL_Event			event;
 	SDL_Surface			*cur;
 	SDL_Texture			*cur_tex;
-	SDL_Surface			*wall_wood;
+	SDL_Surface			*wall;
 	SDL_Surface         *ceiling_texture;
 	SDL_Surface         *roof_texture;
 	SDL_Surface         *floor_texture;
-	unsigned int		*wall_data_wood;
+	unsigned int		*wall_data;
 	SDL_Surface			*txt_fps;
 	SDL_Rect			map;
 	SDL_Rect 			player;
@@ -206,4 +206,5 @@ void					show_error3();
 #define CUBESIZE 10
 void		drawCube(t_wolf_3d *w, int x_begin, int y_begin, double scaler, int color);
 void		drawMap(t_wolf_3d *w);
+void		mini_player(t_wolf_3d *w);
 #endif
