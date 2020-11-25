@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 02:20:51 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/24 18:01:20 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/25 20:12:53 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 /*
 **	hadi ba9i fiha tkhawr bzaaaf 
+**	lmochkil howa anana kancheckiw khir awal pixel mn lplyer rect 
+**	mais le dernier point dyal hadak lcube makanchekiwhch
+**	ana mrdni hadchi  wach momkin tchouf lproblem fin kain?
 */
 
 void player_inMini(t_wolf_3d *w)
@@ -21,15 +24,15 @@ void player_inMini(t_wolf_3d *w)
 	double x;
 	double y;
 
-	x = (w->player.pos.y - (w->player.pos.x * 0.03));
-	y = (w->player.pos.x - (w->player.pos.y * 0.03));
+	x = w->player.pos.y;
+	y = w->player.pos.x;
 	SDL_SetRenderDrawColor(w->sdl.renderer, 255, 0, 0, 255);
 
 	w->sdl.player = (SDL_Rect){
 		x * MAP_SACLER * TILE_SIZE,
 		y * MAP_SACLER * TILE_SIZE,
-		w->player.with * MAP_SACLER,
-		w->player.height * MAP_SACLER};
+		20 * MAP_SACLER,
+		20 * MAP_SACLER};
 	SDL_RenderFillRect(w->sdl.renderer, &w->sdl.player);
 }
 
@@ -49,8 +52,8 @@ void mini_map(t_wolf_3d *w)
 			// SDL_SetRenderDrawBlendMode(w->sdl.renderer,SDL_BLENDMODE_BLEND);
 			SDL_SetRenderDrawColor(w->sdl.renderer, color_map, color_map, color_map, 255);
 			w->sdl.map = (SDL_Rect){
-				j * TILE_SIZE * MAP_SACLER,
-				i * TILE_SIZE * MAP_SACLER,
+				(int)(j * TILE_SIZE * MAP_SACLER),
+				(int)(i * TILE_SIZE * MAP_SACLER),
 				TILE_SIZE * MAP_SACLER,
 				TILE_SIZE * MAP_SACLER};
 			SDL_RenderFillRect(w->sdl.renderer, &w->sdl.map);
@@ -73,7 +76,7 @@ void mini_player(t_wolf_3d *w)
 		{
 			if (i == (int)w->player.pos.x && j == (int)w->player.pos.y)
 			{
-				printf("x = %f, y = %f\n", w->player.pos.x, w->player.pos.y);
+				// printf("x = %f, y = %f\n", w->player.pos.x, w->player.pos.y);
 				player_inMini(w);
 			}
 			j++;

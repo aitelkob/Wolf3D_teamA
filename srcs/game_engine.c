@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/24 16:09:52 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/25 17:43:23 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,17 +141,6 @@ void fill_data_tab(t_wolf_3d *w, int x)
 		w->data[x + (i * WIDTH)] = 0x654321;
 		i++;
 	}
-	//wall_texture(w,x);
-	/*while (w->ray.draw.start <= w->ray.draw.end)
-	{
-		w->ray.color = 0;
-		if (w->ray.side == 1)
-			w->ray.color = 0xffffff;
-		else
-			w->ray.color = 0x808080;
-		w->data[x + (w->ray.draw.start * WIDTH)] = w->ray.color;
-		w->ray.draw.start++;
-	}*/
 	wall_texture(w, x, w->ray.draw.start, w->ray.draw.end);
 }
 

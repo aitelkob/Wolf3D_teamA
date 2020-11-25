@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/23 13:50:49 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/25 20:11:55 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define  MAP_NUM_ROWS  24
 # define  MAP_NUM_COLS  24
 # define  TILE_SIZE  64
-# define  MAP_SACLER  0.15
+# define  MAP_SACLER  0.4
 
 typedef struct			s_point
 {

@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/24 18:30:42 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/25 18:09:49 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void update(t_wolf_3d *w)
 		;
 	w->fps.delta_time = (SDL_GetTicks() - w->fps.last_frame_time) / 1000.0f;
 	w->fps.last_frame_time = SDL_GetTicks();
-	w->fps.movespeed = 1 * w->fps.delta_time;
+	w->fps.movespeed = 3 * w->fps.delta_time;
 	w->fps.rotspeed = 2 * w->fps.delta_time;
 }
 
@@ -69,7 +69,7 @@ void game_engine(t_wolf_3d *w)
 }
 
 /*
-** Load the map from the file and check if the player in 0 spot
+** Load the map from the file
 */
 
 void Load_map(t_wolf_3d *w, char **av)

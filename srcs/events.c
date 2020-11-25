@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:28:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/24 18:40:15 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/25 19:53:00 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ void track_mouse(t_wolf_3d *w, Uint32 *mousestates)
 }
 
 /*
-** mouse mouvement left
-** mouse mouvement rigth
-** mouse mouvement up
-** mouse mouvement down
+**	mouse mouvement left
+**	mouse mouvement rigth
+**	mouse mouvement up
+**	mouse mouvement down
+**	update the mouvement and stops it
 */
 
 void mouse_motion_input(t_wolf_3d *w, Uint32 *mousestates)
@@ -73,33 +74,43 @@ void mouse_motion_input(t_wolf_3d *w, Uint32 *mousestates)
 
 void key_down_input(t_wolf_3d *w, const Uint8 *keystates, int **world_map)
 {
+	int x_minus;
+	int x_plus;
+	int y_plus;
+	int y_minus;
+
+	x_minus = (w->player.pos.x - (w->player.dir.y * w->fps.movespeed));
+	x_plus = (w->player.pos.x + (w->player.dir.y * w->fps.movespeed));
+	y_minus = (w->player.pos.y - (w->player.dir.x * w->fps.movespeed));
+	y_plus = (w->player.pos.y + (w->player.dir.x * w->fps.movespeed));
+
 	if (keystates[SDL_SCANCODE_A])
 	{
-		if (world_map[(int)(w->player.pos.x - (w->player.dir.y * 0.25))][(int)w->player.pos.y] == 0)
-			w->player.pos.x -= (w->player.dir.y * 0.03);
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.x * 0.25))] == 0)
-			w->player.pos.y += (w->player.dir.x * 0.03);
+		if (world_map[x_minus][(int)w->player.pos.y] == 0)
+			w->player.pos.x -= w->player.dir.y * w->fps.movespeed;
+		if (world_map[(int)w->player.pos.x][y_plus] == 0)
+			w->player.pos.y += w->player.dir.x * w->fps.movespeed;
 	}
 	if (keystates[SDL_SCANCODE_D])
 	{
-		if (world_map[(int)(w->player.pos.x + (w->player.dir.y * 0.25))][(int)w->player.pos.y] == 0)
-			w->player.pos.x += (w->player.dir.y * 0.03);
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - (w->player.dir.x * 0.25))] == 0)
-			w->player.pos.y -= (w->player.dir.x * 0.03);
+		if (world_map[x_plus][(int)w->player.pos.y] == 0)
+			w->player.pos.x += w->player.dir.y * w->fps.movespeed;
+		if (world_map[(int)w->player.pos.x][y_minus] == 0)
+			w->player.pos.y -= w->player.dir.x * w->fps.movespeed;
 	}
 	if (keystates[SDL_SCANCODE_W])
 	{
-		if (world_map[(int)(w->player.pos.x + (w->player.dir.x * 0.25))][(int)w->player.pos.y] == 0)
-			w->player.pos.x += w->player.dir.x * 0.03;
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.y * 0.25))] == 0)
-			w->player.pos.y += w->player.dir.y * 0.03;
+		if (world_map[(int)(w->player.pos.x + (w->player.dir.x * w->fps.movespeed))][(int)w->player.pos.y] == 0)
+			w->player.pos.x += w->player.dir.x * w->fps.movespeed;
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.y * w->fps.movespeed))] == 0)
+			w->player.pos.y += w->player.dir.y * w->fps.movespeed;
 	}
 	if (keystates[SDL_SCANCODE_S])
 	{
-		if (world_map[(int)(w->player.pos.x - w->player.dir.x * 0.25)][(int)w->player.pos.y] == 0)
-			w->player.pos.x -= w->player.dir.x * 0.03;
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - w->player.dir.y * 0.25)] == 0)
-			w->player.pos.y -= w->player.dir.y * 0.03;
+		if (world_map[(int)(w->player.pos.x - w->player.dir.x * w->fps.movespeed)][(int)w->player.pos.y] == 0)
+			w->player.pos.x -= w->player.dir.x * w->fps.movespeed;
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - w->player.dir.y * w->fps.movespeed)] == 0)
+			w->player.pos.y -= w->player.dir.y * w->fps.movespeed;
 	}
 	if (keystates[SDL_SCANCODE_R])
 	{
@@ -113,32 +124,13 @@ void key_down_input(t_wolf_3d *w, const Uint8 *keystates, int **world_map)
 **	the arrow keys are still fucked up
 **
 */
+
 void arrow_move_input(t_wolf_3d *w, const Uint8 *keystates)
 {
 	if (keystates[SDL_SCANCODE_LEFT])
-		calculate_plane_dir_x(w, 20 * 3.14 * w->fps.rotspeed / 180.0);
+		calculate_plane_dir_x(w, 20 * (3.14 * w->fps.rotspeed) / 180.0);
 	if (keystates[SDL_SCANCODE_RIGHT])
-		calculate_plane_dir_x(w, -20 * 3.14 * w->fps.rotspeed / 180.0);
-	// if (keystates[SDL_SCANCODE_UP])
-	// {
-	// 	if(w->event.oldmouse.y <= WIDTH)
-	// 	{
-	// 		w->event.up_mouve += 5 * 3.14 * w->fps.movespeed;
-	// 		w->event.down_mouve += 5 * 3.14 * w->fps.movespeed;
-	// 		w->event.oldmouse.y += 5 * 3.14 * w->fps.movespeed;
-	// 		w->event.newmouse.y += 5 * 3.14 * w->fps.movespeed;
-	// 	}
-	// }
-	// if (keystates[SDL_SCANCODE_DOWN])
-	// {
-	// 	if(w->event.oldmouse.y >= -(WIDTH / 2) && w->event.oldmouse.y > 0)
-	// 	{
-	// 		w->event.up_mouve += -5 * 3.14 * w->fps.movespeed;
-	// 		w->event.down_mouve += -5 * 3.14 * w->fps.movespeed;
-	// 		w->event.oldmouse.y += -5 * 3.14 * w->fps.movespeed;
-	// 		w->event.newmouse.y += -5 * 3.14 * w->fps.movespeed;
-	// 	}
-	// }
+		calculate_plane_dir_x(w, -20 * (3.14 * w->fps.rotspeed) / 180.0);
 }
 
 void process_input(t_wolf_3d *w, int **world_map)
@@ -156,5 +148,4 @@ void process_input(t_wolf_3d *w, int **world_map)
 	key_down_input(w, keystates, world_map);
 	mouse_motion_input(w, &w->mousestates);
 	clear_data_tab(w->data);
-	//draw_map_3d(w);
 }
