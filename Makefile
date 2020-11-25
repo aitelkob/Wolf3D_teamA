@@ -6,53 +6,117 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/11/20 12:08:18 by ayagoumi         ###   ########.fr        #
+#    Updated: 2020/11/25 23:59:17 by yait-el-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
+# Executable / Libraries.
 
-NAME = Wolf
+RM              = rm -rf
+SDL             = libsdl2.a
+TTF             = libsdl2_ttf.a
+IMG				= libSDL2_image.a
+FT              = libft.a
+LFTDIR			= libft
+NAME            = Wolf 
+###########################color code 
+BLACK        	:= $(shell tput -Txterm setaf 0)
+RED          	:= $(shell tput -Txterm setaf 1)
+GREEN        	:= $(shell tput -Txterm setaf 2)
+YELLOW       	:= $(shell tput -Txterm setaf 3)
+LIGHTPURPLE  	:= $(shell tput -Txterm setaf 4)
+PURPLE       	:= $(shell tput -Txterm setaf 5)
+BLUE         	:= $(shell tput -Txterm setaf 6)
+WHITE        	:= $(shell tput -Txterm setaf 7)
+RESET         	= \033[0m
+############################
+INCSDIR 		:= inc
+INCSDIR 		+= $(LFTDIR)
+############################
+SRCSDIR 		= srcs
+OBJSDIR 		= objs
+############################
+INCS 			:= inc/wolf_3d.h
+INCS 			+= libft/libft.h
+############################################
+SRC 			:= main.c
+SRC 			+= stock_map.c
+SRC 			+= texture.c
+SRC 			+= events.c
+SRC 			+= wolf_miniMap.c
+SRC 			+= init_wolf.c
+SRC 			+= game_engine.c
+SRC 			+= outils.c
+SRC 			+= sdl_init.c
+#############################################
+LSDLDIR     = $(HOME)/.brew/Cellar/sdl2/2.0.12_1/lib
+LTTFDIR     = $(HOME)/.brew/Cellar/sdl2_ttf/2.0.15/lib
+LIMGDIR 	= $(HOME)/.brew/Cellar/sdl2_image/2.0.5/lib
+INCSDIR     += $(HOME)/.brew/Cellar/sdl2/2.0.12_1/include/SDL2
+INCSDIR     += $(HOME)/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2
+INCSDIR		+= $(HOME)/.brew/Cellar/sdl2_image/2.0.5/include/SDL2
+########################################3Linked libraries at compile time.
+LIBS            := -framework SDL2 -F ./SDL/ 
+LIBS            += -framework SDL2_image -F ./SDL/
+LIBS            += -framework SDL2_ttf -F ./SDL
+LIBS			+= -rpath @loader_path/SDL
+LIBS            += -L$(LFTDIR) -lft
+LIBS            += -lm
+LIBS			+= -lz
+LTTF             = $(LTTFDIR)/$(TTF)
+LFT              = $(LFTDIR)/$(FT)
+LSDL             = $(LSDLDIR)/$(SDL)
+LTTF             = $(LTTFDIR)/$(TTF)
+LIMG			 = $(LIMGDIR)/$(IMG)
+D_SRCS           = $(addsuffix /, $(SRCSDIR))
+D_OBJS           = $(addsuffix /, $(OBJSDIR))
+C_OBJS           = $(addprefix $(D_OBJS),  $(SRC:.c=.o))
+C_INCS           = $(foreach include, $(INCSDIR), -I$(include))
 
-CC = gcc
+CC              = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+# Compilation flags.
 
-LIB = MLX/libmlx.a libft/libft.a 
+CFLAGS          = $(C_INCS) -Wall -Wextra -Werror
+#----------------->>>>>>>>>>>>>>>>START<<<<<<<<<<<<<-------------------#
+$(D_OBJS)%.o: $(D_SRCS)%.c $(INCS)
+	@echo "$(YELLOW)**********>>>Compiling : $(RESET) $(LIGHTPURPLE)" $<
+	@$(CC) $(CFLAGS) -c $< -o $@ 
 
-SDLF = -I SDL/SDL2.framework/Headers   
 
-INC = inc/wolf_3d.h  libft/libft.h 
+all:$(OBJSDIR) $(C_OBJS) $(NAME)
 
-SRC = srcs/main.c srcs/stock_map.c srcs/texture.c srcs/events.c srcs/wolf_miniMap.c srcs/init_wolf.c srcs/game_engine.c srcs/outils.c srcs/sdl_init.c
 
-FRAM = -lmlx -framework OpenGL -framework AppKit -framework OpenCL  -framework SDL2 -F ./SDL/ -framework SDL2_mixer -F ./SDL  -framework SDL2_image -F ./SDL -framework SDL2_ttf -F ./SDL -rpath @loader_path/SDL MLX/libmlx.a -lz 
+$(NAME): $(LFT)  $(LSDL) $(LIMG) $(LTTF)  $(C_OBJS)
+	@echo "$(YELLOW)\n**********>>>Building : $(RESET)$(NAME) $(YELLOW)...\n$(RESET)"
+	@$(CC) $(CFLAGS) -o $(NAME) $(C_OBJS) $(LIBS)
+	@echo "$(GREEN)***   successfully compiled   ***\n$(RESET)"
 
-OBJ = $(SRC:.c=.o) 
+print-%  : ; @echo $* = $($*)
 
-F_OBJ = ./OBJ
+####  make libft
 
-all: $(NAME) 
-$(NAME):$(OBJ)$(INC)
-		@echo "\033[2;36m"
-	    @Make -C ./mlx  2> /dev/null || true
-		@make -C ./libft  2> /dev/null || true
-		@$(CC) $(CFLAGS) $(OBJ) $(LIB) $(FRAM)  $(SDLF) -o $(NAME)
-		@echo "Wolf_3d: executable file is ready"
-		@echo "\033[0m"
+$(LFT):
+	@make -sC $(LFTDIR)
+
+### creating files for object.o
+
+$(OBJSDIR):
+	@mkdir -p $(OBJSDIR)
+
+# Deleting all .o files.
+
 clean:
-		@echo "\033[2;32m"
-		@Make clean -C ./mlx  2> /dev/null || true
-		@Make clean -C ./libft  2> /dev/null || true
-		@rm -rf $(OBJ)   2> /dev/null || true
-		@echo "Wolf_3d: all resources deleted"
-		@echo "\033[0m"
-fclean: clean 
-		@echo "\033[2;34m"
-		@rm -f $(NAME)  2> /dev/null || true
-		@Make fclean -C ./libft  2> /dev/null || true
-		@Make fclean -C ./mlx  2> /dev/null || true
-		@echo "Wolf_3d: all resources deleted"
-		@echo "\033[0m"
-		
+	@make -sC $(LFTDIR) clean
+	@echo "$(GREEN)**********   Deleting all object from $(NAME) **********\n$(RESET)"
+	@$(RM) $(C_OBJS)
+
+fclean: clean
+	@make -sC $(LFTDIR) fclean
+	@echo "$(GREEN)**********   Deleting $(NAME) **********\n$(RESET)"
+	@$(RM) $(NAME)
+	@$(RM) $(OBJSDIR)
+
 re: fclean all
+.PHONY: all clean fclean re
