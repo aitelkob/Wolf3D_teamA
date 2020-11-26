@@ -10,7 +10,7 @@ Something is wrong with the key_down_input mouvement , need to re-do it in order
 forgot something --> freeing the map when an error in parcing
 
 ////////////////////youssef
-Makefile ---> done => i will push it nov/24 11pm
-Texture  ---> on progress => [Texture_Floor and Ceiling --> on progress] (try to make diffrent textures for diffrent walls)
+Makefile ---> done 
+Texture  ---> on progress => [Texture_Floor and Ceiling --> on progress] on progress= (try to make diffrent textures for diffrent walls)
 Mini Map --> (please check the mini map file and see if you can fix the error described ther)
 
