@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/11/25 23:59:17 by yait-el-         ###   ########.fr        #
+#    Updated: 2020/11/26 16:44:19 by ayagoumi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,6 @@ D_SRCS           = $(addsuffix /, $(SRCSDIR))
 D_OBJS           = $(addsuffix /, $(OBJSDIR))
 C_OBJS           = $(addprefix $(D_OBJS),  $(SRC:.c=.o))
 C_INCS           = $(foreach include, $(INCSDIR), -I$(include))
-
 CC              = gcc
 
 # Compilation flags.

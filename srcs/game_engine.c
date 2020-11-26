@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/26 03:56:29 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/26 16:48:04 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void fill_data_tab(t_wolf_3d *w, int x)
 	i = 0;
 	while (i < w->ray.draw.start)
 	{
-		w->data[x + (i * WIDTH)] = (0x99cfe0) - i;
+		w->data[x + (i * WIDTH)] = 0x99cfe0;
 		i++;
 	}
 	i = w->ray.draw.end;

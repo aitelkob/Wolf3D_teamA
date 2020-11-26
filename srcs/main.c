@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/26 02:53:03 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/26 19:09:06 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void update(t_wolf_3d *w)
 		;
 	w->fps.delta_time = (SDL_GetTicks() - w->fps.last_frame_time) / 1000.0f;
 	w->fps.last_frame_time = SDL_GetTicks();
-	w->fps.movespeed = 3 * w->fps.delta_time;
+	w->fps.movespeed = 2 * w->fps.delta_time;
 	w->fps.rotspeed = 2 * w->fps.delta_time;
 }
 

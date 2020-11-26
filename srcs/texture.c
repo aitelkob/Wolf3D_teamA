@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:47:25 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/26 03:54:16 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/26 20:24:45 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void		image_clear(t_wolf_3d *wolf)
 		x++;
 	}
 }
-
+/*
+**	chi mochkil f had lfunction
+*/
 void        loadTexture(t_wolf_3d *w)
 {
 	w->sdl.cur = IMG_Load(PNG);
@@ -39,18 +41,18 @@ void        loadTexture(t_wolf_3d *w)
 	w->sdl.wall3 = IMG_Load(REDBRICK);
 	w->sdl.wall4 = IMG_Load(GRAYSTONE);
 	w->sdl.wall1 = IMG_Load(GRAYSTONE);
-	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall->pixels;
+	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall4->pixels;
 	w->sdl.ceiling_texture = IMG_Load(REDBRICK);
 	w->sdl.roof_texture = IMG_Load(PURPLESTONE);
 	w->sdl.floor_texture = IMG_Load(COLORSTONE);
 
 	/////// load texture
 	
-	w->sdl.wall = IMG_Load(MOSSY);
-	w->sdl.wall2 = IMG_Load(GRAYSTONE);
-	w->sdl.wall3 = IMG_Load(REDBRICK);
-	w->sdl.wall4 = IMG_Load(WOOD);
-	w->sdl.wall5 = IMG_Load(MOSSY);
+	// w->sdl.wall = IMG_Load(MOSSY);
+	// w->sdl.wall2 = IMG_Load(GRAYSTONE);
+	// w->sdl.wall3 = IMG_Load(REDBRICK);
+	// w->sdl.wall4 = IMG_Load(WOOD);
+	// w->sdl.wall5 = IMG_Load(MOSSY);
 	w->sdl.wall_data = malloc(sizeof(unsigned int) * 5);
 	w->sdl.wall_h = malloc(sizeof(int) * 5);
 
@@ -62,8 +64,8 @@ void        loadTexture(t_wolf_3d *w)
 	w->sdl.wall_h[2] = w->sdl.wall3->h;
 	w->sdl.wall_data[3] = (unsigned int*)w->sdl.wall4->pixels;
 	w->sdl.wall_h[3] = w->sdl.wall4->h;
-	w->sdl.wall_data[4] = (unsigned int*)w->sdl.wall5->pixels;
-	w->sdl.wall_h[4] = w->sdl.wall5->h;
+	// w->sdl.wall_data[4] = (unsigned int*)w->sdl.wall5->pixels;
+	// w->sdl.wall_h[4] = w->sdl.wall5->h;
 	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer, w->sdl.cur);
 }
 

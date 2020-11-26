@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/25 16:31:43 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/26 19:07:53 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void player_start(t_wolf_3d *w)
 {
 	int i, j;
 
-	i = 0;
-	while (i < MAP_NUM_COLS)
+	i = MAP_NUM_COLS - 1;
+	while (i >= 0)
 	{
-		j = 0;
-		while (j < MAP_NUM_ROWS)
+		j = MAP_NUM_ROWS - 1;
+		while (j >= 0)
 		{
 			if (w->player.world_map[i][j] == 0)
 			{
@@ -33,9 +33,9 @@ void player_start(t_wolf_3d *w)
 				w->player.pos.y = j + 0.35;
 				return;
 			}
-			j++;
+			j--;
 		}
-		i++;
+		i--;
 	}
 }
 /*

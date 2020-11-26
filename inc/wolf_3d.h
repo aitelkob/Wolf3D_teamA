@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/26 03:54:07 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/26 20:07:03 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <pthread.h>
 # include <stdio.h>
 # define TEXT_CEILING "./img/021-brickgreybrownmould1.bmp"
-# define GRAYSTONE "./pics/greystone.png"
+# define GRAYSTONE "./pics/redbrick.png"
 # define PURPLESTONE "./pics/purplestone.png"
 # define REDBRICK "./pics/redbrick.png"
 # define WOOD "./pics/wood.png"
@@ -30,7 +30,6 @@
 # define BLUESTONE "./pics/bluestone.png"
 # include "../SDL/SDL2.framework/Headers/SDL.h"
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
-
 # define WIDTH 900
 # define HEIGHT 900
 # define TEXT_W 64
@@ -38,15 +37,12 @@
 # define mapWidth 24
 # define mapHeight 24
 # define PNG "/img/2.png"
-// # define FPS 60
 # define TRUE 1
 # define FALSE 0
-// # define FRAME_TARGET_TIME (1000 / FPS)
-
 # define  MAP_NUM_ROWS  24
 # define  MAP_NUM_COLS  24
 # define  TILE_SIZE  64
-# define  MAP_SACLER  0.4
+# define  MAP_SACLER  0.15
 
 typedef struct			s_point
 {
@@ -94,11 +90,11 @@ typedef struct			s_sdl
 	SDL_Surface			*cur;
 	SDL_Texture			*cur_tex;
 	SDL_Surface			*wall;
+	SDL_Surface         *wall1;
 	SDL_Surface         *wall2;
 	SDL_Surface         *wall3;
 	SDL_Surface         *wall4;
 	SDL_Surface         *wall5;
-	 SDL_Surface         *wall1;
 	int					*wall_h;
 	SDL_Surface         *ceiling_texture;
 	SDL_Surface         *roof_texture;
@@ -210,7 +206,6 @@ void					how_error2(char *str);
 void					show_error3();
 
 
-#define CUBESIZE 10
 void		drawCube(t_wolf_3d *w, int x_begin, int y_begin, double scaler, int color);
 void		drawMap(t_wolf_3d *w);
 void		mini_player(t_wolf_3d *w);
