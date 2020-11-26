@@ -6,25 +6,12 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:47:25 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/23 12:17:11 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/26 03:54:16 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/wolf_3d.h"
 
-/*SDL_Surface *loadMedia(char *path)
-{
-  SDL_Surface  *img;
-  SDL_Surface  *tmp;
-
-  tmp = IMG_Load(path);
-  if (tmp == NULL)
-    exit(1);
-  img = tmp;
-
-  SDL_FreeSurface(tmp);
-  return (img);
-}*/
 
 void		image_clear(t_wolf_3d *wolf)
 {
@@ -48,25 +35,35 @@ void        loadTexture(t_wolf_3d *w)
 {
 	w->sdl.cur = IMG_Load(PNG);
 	w->sdl.wall = IMG_Load(MOSSY);
-	w->sdl.wall_data = (unsigned int*)w->sdl.wall->pixels;
+	w->sdl.wall2 = IMG_Load(WOOD);
+	w->sdl.wall3 = IMG_Load(REDBRICK);
+	w->sdl.wall4 = IMG_Load(GRAYSTONE);
+	w->sdl.wall1 = IMG_Load(GRAYSTONE);
+	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall->pixels;
 	w->sdl.ceiling_texture = IMG_Load(REDBRICK);
 	w->sdl.roof_texture = IMG_Load(PURPLESTONE);
 	w->sdl.floor_texture = IMG_Load(COLORSTONE);
 
-	/*int i = 0;
-	unsigned int color_texture;
-	while (i < TEXT_W)
-	{
-		printf("i= %d < TEXT_W = %d \n",i,TEXT_W);
-		int y = 0;
-		while (y < TEXT_H)
-		{
-			color_texture = w->sdl.wall_data_wood[(TEXT_W * y ) + i];
-			w->data[(TEXT_W * y ) + i] = color_texture;
-			y++;
-		}
-		i++;
-	}*/
+	/////// load texture
+	
+	w->sdl.wall = IMG_Load(MOSSY);
+	w->sdl.wall2 = IMG_Load(GRAYSTONE);
+	w->sdl.wall3 = IMG_Load(REDBRICK);
+	w->sdl.wall4 = IMG_Load(WOOD);
+	w->sdl.wall5 = IMG_Load(MOSSY);
+	w->sdl.wall_data = malloc(sizeof(unsigned int) * 5);
+	w->sdl.wall_h = malloc(sizeof(int) * 5);
+
+	w->sdl.wall_data[0] = (unsigned int*)w->sdl.wall->pixels;
+	w->sdl.wall_h[0] = w->sdl.wall->h;
+	w->sdl.wall_data[1] = (unsigned int*)w->sdl.wall2->pixels;
+	w->sdl.wall_h[1] = w->sdl.wall2->h;
+	w->sdl.wall_data[2] = (unsigned int*)w->sdl.wall3->pixels;
+	w->sdl.wall_h[2] = w->sdl.wall3->h;
+	w->sdl.wall_data[3] = (unsigned int*)w->sdl.wall4->pixels;
+	w->sdl.wall_h[3] = w->sdl.wall4->h;
+	w->sdl.wall_data[4] = (unsigned int*)w->sdl.wall5->pixels;
+	w->sdl.wall_h[4] = w->sdl.wall5->h;
 	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer, w->sdl.cur);
 }
 

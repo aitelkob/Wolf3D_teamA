@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/25 20:11:55 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/26 03:54:07 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,17 @@ typedef struct			s_sdl
 	SDL_Surface			*cur;
 	SDL_Texture			*cur_tex;
 	SDL_Surface			*wall;
+	SDL_Surface         *wall2;
+	SDL_Surface         *wall3;
+	SDL_Surface         *wall4;
+	SDL_Surface         *wall5;
+	 SDL_Surface         *wall1;
+	int					*wall_h;
 	SDL_Surface         *ceiling_texture;
 	SDL_Surface         *roof_texture;
 	SDL_Surface         *floor_texture;
-	unsigned int		*wall_data;
+	unsigned int        **wall_data;
+	unsigned int        *wall_data_tmp;
 	SDL_Surface			*txt_fps;
 	SDL_Rect			map;
 	SDL_Rect 			player;

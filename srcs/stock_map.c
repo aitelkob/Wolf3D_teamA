@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:22:33 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/24 16:50:45 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/26 01:00:30 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ int         **get_map(int **map, int fd, char    **av)
     int m;
 
     m = line_numb(av[1]);
+	printf("%d",m);
     if (m < 1)
         show_error2(av[1]);
     if (!(map = (int**)malloc(sizeof(int*) * (m + 1))))

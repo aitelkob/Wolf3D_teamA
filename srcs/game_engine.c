@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/25 17:43:23 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/26 03:56:29 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,10 @@ void dda_algorithm(t_wolf_3d *w)
 void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 {
 	int i;
+	/*
+	 * multiple texture 
+	int wallnbr = wolf->player.world_map[wolf->ray.map.x][wolf->ray.map.y];
+	printf("lnbr %d \n",wallnbr);
 
 	//calculate value of wallX represents the exact value where the wall was hit
 	if (wolf->ray.side == 1)
@@ -118,11 +122,34 @@ void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 		// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
 		wolf->texy = ((start - wolf->event.down_mouve) * 2 - HEIGHT +
 					  wolf->ray.lineHeight) *
-					 (wolf->sdl.wall->h / 2) / wolf->ray.lineHeight;
+					 (wolf->sdl.wall_h[wallnbr] / 2) / wolf->ray.lineHeight;
 		if (start < HEIGHT && start >= 0)
-			wolf->data[start * WIDTH + x] = wolf->sdl.wall_data[wolf->texy * wolf->sdl.wall->h + wolf->texx];
+				wolf->data[start * WIDTH + x] = wolf->sdl.wall_data[wallnbr][wolf->texy * wolf->sdl.wall_h[wallnbr] + wolf->texx];
+		
+	}*/
+	if (wolf->ray.side == 1)
+		wolf->wallx = wolf->player.pos.x + wolf->ray.perpWallDist * wolf->ray.raydir.x;
+	else
+		wolf->wallx = wolf->player.pos.y + wolf->ray.perpWallDist * wolf->ray.raydir.y;
+	wolf->wallx -= floor(wolf->wallx);
+	//x coordinate on the texture
+	wolf->texx = (int)(wolf->wallx * (double)TEXT_W);
+	if (wolf->ray.side == 0 && wolf->ray.raydir.x > 0)
+		wolf->texx = TEXT_W - wolf->texx - 1;
+	if (wolf->ray.side == 1 && wolf->ray.raydir.y < 0)
+		wolf->texx = TEXT_W - wolf->texx - 1;
+	i = wolf->ray.draw.start;
+	while (start < end)
+	{
+		// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+		wolf->texy = ((start - wolf->event.down_mouve) * 2 - HEIGHT +
+					  wolf->ray.lineHeight) *
+					 (wolf->sdl.wall1->h / 2) / wolf->ray.lineHeight;
+		if (start < HEIGHT && start >= 0)
+			wolf->data[start * WIDTH + x] = wolf->sdl.wall_data_tmp[wolf->texy * wolf->sdl.wall1->h + wolf->texx];
 		start++;
 	}
+
 }
 
 void fill_data_tab(t_wolf_3d *w, int x)
@@ -132,7 +159,7 @@ void fill_data_tab(t_wolf_3d *w, int x)
 	i = 0;
 	while (i < w->ray.draw.start)
 	{
-		w->data[x + (i * WIDTH)] = 0x99cfe0;
+		w->data[x + (i * WIDTH)] = (0x99cfe0) - i;
 		i++;
 	}
 	i = w->ray.draw.end;
