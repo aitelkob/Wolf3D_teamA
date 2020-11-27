@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:47:25 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/27 11:18:26 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/27 13:45:03 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void        loadTexture(t_wolf_3d *w)
 	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall1->pixels;
 	w->sdl.ceiling_texture = IMG_Load(REDBRICK);
 	w->sdl.roof_texture = IMG_Load(PURPLESTONE);
-	w->sdl.floor_texture = IMG_Load(MOSSY);
+	w->sdl.floor_texture = IMG_Load(PURPLESTONE);
 	w->sdl.wall_data_floor = (unsigned int*)w->sdl.floor_texture->pixels;
 	// printf("this ceiling texture %d - wall4 = %d \n",w->sdl.ceiling_texture->w,w->sdl.wall4->w);
 	/////// load texture

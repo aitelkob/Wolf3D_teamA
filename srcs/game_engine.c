@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/27 13:40:28 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/27 13:50:07 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,17 +139,16 @@ void Texture_Floor(t_wolf_3d *w)
 	int y;
 	int x;
 
-
-	y = HEIGHT / 2 + w->event.down_mouve;
-	while (y < HEIGHT)
-	{
 		// rayDir for leftmost ray (x = 0) and rightmost ray (x = w)
 		w->ray.ray0.x = w->player.dir.x - w->player.plane.x;
 		w->ray.ray0.y = w->player.dir.y - w->player.plane.y;
 		w->ray.ray1.x = w->player.dir.x + w->player.plane.x;
 		w->ray.ray1.y = w->player.dir.y + w->player.plane.y;
+	y = HEIGHT / 2 + w->event.down_mouve;
+	while (y < HEIGHT)
+	{
 		// Current y position compared to the center of the screen (the horizon)
-		w->p = y - HEIGHT / 2;//- w->event.down_mouve;
+		w->p = (y - HEIGHT / 2) - w->event.down_mouve;
 		// Vertical position of the camera.
 		w->posZ = 0.5 * HEIGHT;
 		// Horizontal distance from the camera to the floor for the current row.
@@ -174,6 +173,7 @@ void Texture_Floor(t_wolf_3d *w)
 			w->texy2 = (int)(TEXT_H * (w->floorY - w->cellY)) & (TEXT_H - 1);
 			w->floorX += w->floorStepX;
 			w->floorY += w->floorStepY;
+			//floor
 			w->data[WIDTH * y + x] = (w->sdl.wall_data_floor[TEXT_W * w->texx2 + w->texy2] >> 1) & 8355711;
 			x++;
 		}
@@ -183,14 +183,14 @@ void Texture_Floor(t_wolf_3d *w)
 
 void fill_data_tab(t_wolf_3d *w, int x)
 {
-	int i;
+	// int i;
 
-	i = 0;
-	while (i < w->ray.draw.start)
-	{
-		w->data[x + (i * WIDTH)] = 0x99cfe0;
-		i++;
-	}
+	// i = 0;
+	// while (i < w->ray.draw.start)
+	// {
+	// 	w->data[x + (i * WIDTH)] = 0x99cfe0;
+	// 	i++;
+	// }
 	// i = w->ray.draw.end;
 	// while (i < HEIGHT)
 	// {
