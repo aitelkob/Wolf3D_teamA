@@ -8,9 +8,9 @@ file -->srcs/game_engine.c
 
 Something is wrong with the key_down_input mouvement , need to re-do it in order for the mini map to be fully functional
 forgot something --> freeing the map when an error in parcing
-bitch debugggg this ----> Texture_Floor plz
+
 ////////////////////youssef
 Makefile ---> done 
 Texture  ---> on progress => [Texture_Floor and Ceiling --> on progress] 
 diffrent textures --> not now !!!!
-
+i failed debugging the file you told me, i have made some modifications, but it still doesn't work.
