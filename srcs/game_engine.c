@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/27 13:24:30 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/27 13:40:28 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void dda_algorithm(t_wolf_3d *w)
 
 void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 {
-	int i;
+	// int i;
 
 	// * multiple texture
 	// int wallnbr = wolf->player.world_map[wolf->ray.map.x][wolf->ray.map.y];
@@ -114,7 +114,7 @@ void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 		wolf->texx = TEXT_W - wolf->texx - 1;
 	if (wolf->ray.side == 1 && wolf->ray.raydir.y < 0)
 		wolf->texx = TEXT_W - wolf->texx - 1;
-	i = wolf->ray.draw.start;
+	// i = wolf->ray.draw.start;
 	while (start < end)
 	{
 		// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
@@ -127,13 +127,20 @@ void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 	}
 }
 
+/*
+**	The problem is that you loop 2 times on x 
+**	the first is here and the second time is when the fill_data_tab Fucntion
+**	is called for the the draw_3d_map
+**	change this function to work like this, Texture_Floor(t_wolf_3d *w, int x)
+*/
+
 void Texture_Floor(t_wolf_3d *w)
 {
 	int y;
 	int x;
 
 
-	y = w->ray.draw.end;//HEIGHT / 2 + w->event.down_mouve;
+	y = HEIGHT / 2 + w->event.down_mouve;
 	while (y < HEIGHT)
 	{
 		// rayDir for leftmost ray (x = 0) and rightmost ray (x = w)
@@ -167,7 +174,7 @@ void Texture_Floor(t_wolf_3d *w)
 			w->texy2 = (int)(TEXT_H * (w->floorY - w->cellY)) & (TEXT_H - 1);
 			w->floorX += w->floorStepX;
 			w->floorY += w->floorStepY;
-			w->data[WIDTH * y + x] = (w->sdl.wall_data_floor[TEXT_W * w->texy2 + w->texx2] >> 1) & 8355711;
+			w->data[WIDTH * y + x] = (w->sdl.wall_data_floor[TEXT_W * w->texx2 + w->texy2] >> 1) & 8355711;
 			x++;
 		}
 		y++;
@@ -184,13 +191,12 @@ void fill_data_tab(t_wolf_3d *w, int x)
 		w->data[x + (i * WIDTH)] = 0x99cfe0;
 		i++;
 	}
-	i = w->ray.draw.end;
-	while (i < HEIGHT)
-	{
-		w->data[x + (i * WIDTH)] = 0x654321;
-		i++;
-	}
-	// Texture_Floor(w);
+	// i = w->ray.draw.end;
+	// while (i < HEIGHT)
+	// {
+	// 	w->data[x + (i * WIDTH)] = 0x654321;
+	// 	i++;
+	// }
 	wall_texture(w, x, w->ray.draw.start, w->ray.draw.end);
 }
 
@@ -230,6 +236,7 @@ void draw_map_3d(t_wolf_3d *w)
 	double tmp2;
 
 	x = 0;
+	Texture_Floor(w);
 	while (x < WIDTH)
 	{
 		w->ray.cameraX = 2 * x / (double)WIDTH - 1;
