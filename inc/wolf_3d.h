@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/26 20:07:03 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/27 03:47:45 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,12 @@ typedef struct			s_sdl
 	SDL_Surface         *ceiling_texture;
 	SDL_Surface         *roof_texture;
 	SDL_Surface         *floor_texture;
-	unsigned int        **wall_data;
+	unsigned int        *wall_data1;
+	unsigned int        *wall_data2;
+	unsigned int        *wall_data3;
+	unsigned int        *wall_data4;
 	unsigned int        *wall_data_tmp;
+	unsigned int		*wall_data_floor;
 	SDL_Surface			*txt_fps;
 	SDL_Rect			map;
 	SDL_Rect 			player;
@@ -135,6 +139,8 @@ typedef	struct			s_ray
 	t_point				raydir;
 	t_point				sidedist;
 	t_point				deltadist;
+	t_point				ray0;
+	t_point				ray1;
 	t_coord				step;
 	t_coord				map;
 	t_walls				draw;
@@ -156,11 +162,23 @@ typedef struct			s_wolf_3d
 	unsigned int        *wall_image;
 	int					texture_index;
 	double				wallx;
-	int					texx;
-	int					texy;
+	int					texx2;
+	int					texy2;
     int					*data;
 	double				oldDirX;
 	double				oldplaneX;
+	////////// flor texture
+	int					p;
+	double				posZ;
+	double				rowDistance;
+	double				floorStepX;
+	double				floorStepY;
+	double				floorX;
+	double				floorY;
+	int					cellX;
+	int					cellY;
+	int					texx;
+	int					texy;
 }						t_wolf_3d;
 /*
  *

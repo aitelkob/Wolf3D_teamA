@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/26 19:07:53 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/27 02:24:13 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void init_perso(t_wolf_3d *w)
 {
 	player_start(w);
 	load_img(w, PNG);
-	// nsiti hadi dakchi 3lash makhdmch lik texture
-	texture_img(w);
 	
 	// SDL_ShowCursor(0);
 	w->player.dir.x = -1;

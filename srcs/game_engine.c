@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/26 16:48:04 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/27 03:48:24 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,10 @@ void dda_algorithm(t_wolf_3d *w)
 void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 {
 	int i;
-	/*
-	 * multiple texture 
+	
+	// * multiple texture 
 	int wallnbr = wolf->player.world_map[wolf->ray.map.x][wolf->ray.map.y];
 	printf("lnbr %d \n",wallnbr);
-
-	//calculate value of wallX represents the exact value where the wall was hit
 	if (wolf->ray.side == 1)
 		wolf->wallx = wolf->player.pos.x + wolf->ray.perpWallDist * wolf->ray.raydir.x;
 	else
@@ -122,34 +120,60 @@ void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 		// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
 		wolf->texy = ((start - wolf->event.down_mouve) * 2 - HEIGHT +
 					  wolf->ray.lineHeight) *
-					 (wolf->sdl.wall_h[wallnbr] / 2) / wolf->ray.lineHeight;
+					 (TEXT_H / 2) / wolf->ray.lineHeight;
 		if (start < HEIGHT && start >= 0)
-				wolf->data[start * WIDTH + x] = wolf->sdl.wall_data[wallnbr][wolf->texy * wolf->sdl.wall_h[wallnbr] + wolf->texx];
-		
-	}*/
-	if (wolf->ray.side == 1)
-		wolf->wallx = wolf->player.pos.x + wolf->ray.perpWallDist * wolf->ray.raydir.x;
-	else
-		wolf->wallx = wolf->player.pos.y + wolf->ray.perpWallDist * wolf->ray.raydir.y;
-	wolf->wallx -= floor(wolf->wallx);
-	//x coordinate on the texture
-	wolf->texx = (int)(wolf->wallx * (double)TEXT_W);
-	if (wolf->ray.side == 0 && wolf->ray.raydir.x > 0)
-		wolf->texx = TEXT_W - wolf->texx - 1;
-	if (wolf->ray.side == 1 && wolf->ray.raydir.y < 0)
-		wolf->texx = TEXT_W - wolf->texx - 1;
-	i = wolf->ray.draw.start;
-	while (start < end)
-	{
-		// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-		wolf->texy = ((start - wolf->event.down_mouve) * 2 - HEIGHT +
-					  wolf->ray.lineHeight) *
-					 (wolf->sdl.wall1->h / 2) / wolf->ray.lineHeight;
-		if (start < HEIGHT && start >= 0)
-			wolf->data[start * WIDTH + x] = wolf->sdl.wall_data_tmp[wolf->texy * wolf->sdl.wall1->h + wolf->texx];
+			wolf->data[start * WIDTH + x] = wolf->sdl.wall_data_tmp[wolf->texy * TEXT_H + wolf->texx];
 		start++;
 	}
 
+}
+
+void		Texture_Floor(t_wolf_3d *w)
+{
+	int y;
+	int x;
+
+	// rayDir for leftmost ray (x = 0) and rightmost ray (x = w)
+	 w->ray.ray0.x = w->player.dir.x - w->player.plane.x;
+ 	 w->ray.ray0.y = w->player.dir.y - w->player.plane.y;
+ 	 w->ray.ray1.x = w->player.dir.x + w->player.plane.x;
+ 	 w->ray.ray1.y = w->player.dir.y + w->player.plane.y;
+
+	 y = HEIGHT / 2 + w->event.down_mouve;
+	while (y < HEIGHT)
+	{
+		// Current y position compared to the center of the screen (the horizon)
+		w->p = y- HEIGHT / 2 - w->event.down_mouve;
+		// Vertical position of the camera.
+		w->posZ = 0.5 * HEIGHT;
+		// Horizontal distance from the camera to the floor for the current row.
+      // 0.5 is the z position exactly in the middle between floor and ceiling.
+		w->rowDistance = w->posZ / w->p;
+		 // calculate the real world step vector we have to add for each x (parallel to camera plane)
+      // adding step by step avoids multiplications with a weight in the inner loop
+	  w->floorStepX = w->rowDistance * (w->ray.ray1.x - w->ray.ray0.x) / WIDTH;
+	  w->floorStepY = w->rowDistance * (w->ray.ray1.y - w->ray.ray0.y) / WIDTH;
+
+	  // real world coordinates of the leftmost column. This will be updated as we step to the right
+	  w->floorX = w->player.pos.x + w->rowDistance * w->ray.ray0.x;
+	  w->floorY = w->player.pos.y + w->rowDistance * w->ray.ray0.y;
+	  x = 0;
+	  while (x < WIDTH)
+	  {
+		  // the cell coord is simply got from the integer parts of floorX and floorY
+		  w->cellX = (int)(w->floorX);
+		  w->cellY = (int)(w->floorY);
+		  // get the texture coordinate from the fractional part
+		  w->texx2 = (int)(TEXT_W * (w->floorX - w->cellX)) & (TEXT_W - 1);
+		  w->texy2 = (int)(TEXT_H * (w->floorY - w->cellY)) & (TEXT_H - 1);
+		  w->floorX += w->floorStepX;
+		  w->floorY += w->floorStepY;
+		  w->data[y * WIDTH * x] = w->sdl.wall_data_floor[TEXT_W * w->texx2 +w->texy2];
+			  x++;
+	
+		}
+		  y++;
+	}
 }
 
 void fill_data_tab(t_wolf_3d *w, int x)
@@ -165,7 +189,7 @@ void fill_data_tab(t_wolf_3d *w, int x)
 	i = w->ray.draw.end;
 	while (i < HEIGHT)
 	{
-		w->data[x + (i * WIDTH)] = 0x654321;
+		w->data[x + (i * WIDTH)] = 0x654321 * 6;
 		i++;
 	}
 	wall_texture(w, x, w->ray.draw.start, w->ray.draw.end);

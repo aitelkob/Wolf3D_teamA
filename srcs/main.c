@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/26 19:09:06 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/27 02:22:31 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int main(int ac, char **av)
 	{
 		w = malloc(sizeof(t_wolf_3d));
 		Load_map(w, av);
+		texture_img(w);
 		w->game_running = sdl_init_win(w);
 		init_perso(w);
 		game_engine(w);
