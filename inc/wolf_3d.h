@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/27 03:47:45 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/27 11:18:19 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <pthread.h>
 # include <stdio.h>
 # define TEXT_CEILING "./img/021-brickgreybrownmould1.bmp"
-# define GRAYSTONE "./pics/redbrick.png"
+# define GRAYSTONE "./pics/greystone.png"
 # define PURPLESTONE "./pics/purplestone.png"
 # define REDBRICK "./pics/redbrick.png"
 # define WOOD "./pics/wood.png"

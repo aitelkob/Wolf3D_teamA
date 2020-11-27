@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:47:25 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/27 03:51:15 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/27 11:18:26 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ void        loadTexture(t_wolf_3d *w)
 	w->sdl.wall3 = IMG_Load(REDBRICK);
 	w->sdl.wall4 = IMG_Load(GRAYSTONE);
 	w->sdl.wall1 = IMG_Load(GRAYSTONE);
-	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall4->pixels;
+	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall1->pixels;
 	w->sdl.ceiling_texture = IMG_Load(REDBRICK);
 	w->sdl.roof_texture = IMG_Load(PURPLESTONE);
-	w->sdl.floor_texture = IMG_Load(COLORSTONE);
+	w->sdl.floor_texture = IMG_Load(MOSSY);
 	w->sdl.wall_data_floor = (unsigned int*)w->sdl.floor_texture->pixels;
-	printf("this ceiling texture %d - wall4 = %d \n",w->sdl.ceiling_texture->w,w->sdl.wall4->w);
+	// printf("this ceiling texture %d - wall4 = %d \n",w->sdl.ceiling_texture->w,w->sdl.wall4->w);
 	/////// load texture
 	
-	//w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer, w->sdl.cur);
+	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer, w->sdl.cur);
 }
 
 void		texture_img(t_wolf_3d *w)
