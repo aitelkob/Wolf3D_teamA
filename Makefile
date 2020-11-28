@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/11/26 16:44:19 by ayagoumi         ###   ########.fr        #
+#    Updated: 2020/11/28 04:14:11 by yait-el-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ INCSDIR		+= $(HOME)/.brew/Cellar/sdl2_image/2.0.5/include/SDL2
 ########################################3Linked libraries at compile time.
 LIBS            := -framework SDL2 -F ./SDL/ 
 LIBS            += -framework SDL2_image -F ./SDL/
-LIBS            += -framework SDL2_ttf -F ./SDL
+LIBS			+= -framework SDL2_ttf -F ./SDL/
 LIBS			+= -rpath @loader_path/SDL
 LIBS            += -L$(LFTDIR) -lft
 LIBS            += -lm
@@ -80,7 +80,7 @@ CC              = gcc
 CFLAGS          = $(C_INCS) -Wall -Wextra -Werror
 #----------------->>>>>>>>>>>>>>>>START<<<<<<<<<<<<<-------------------#
 $(D_OBJS)%.o: $(D_SRCS)%.c $(INCS)
-	@echo "$(YELLOW)**********>>>Compiling : $(RESET) $(LIGHTPURPLE)" $<
+	@echo "$(PURPLE)**********>>>Compiling : $(RESET) $(LIGHTPURPLE)" $<
 	@$(CC) $(CFLAGS) -c $< -o $@ 
 
 
@@ -88,7 +88,7 @@ all:$(OBJSDIR) $(C_OBJS) $(NAME)
 
 
 $(NAME): $(LFT)  $(LSDL) $(LIMG) $(LTTF)  $(C_OBJS)
-	@echo "$(YELLOW)\n**********>>>Building : $(RESET)$(NAME) $(YELLOW)...\n$(RESET)"
+	@echo "$(RED)\n**********>>>Building : $(RESET)$(NAME) $(YELLOW)...\n$(RESET)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(C_OBJS) $(LIBS)
 	@echo "$(GREEN)***   successfully compiled   ***\n$(RESET)"
 

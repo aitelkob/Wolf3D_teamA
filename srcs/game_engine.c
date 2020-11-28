@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/27 13:50:07 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/28 03:48:29 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,17 +174,67 @@ void Texture_Floor(t_wolf_3d *w)
 			w->floorX += w->floorStepX;
 			w->floorY += w->floorStepY;
 			//floor
-			w->data[WIDTH * y + x] = (w->sdl.wall_data_floor[TEXT_W * w->texx2 + w->texy2] >> 1) & 8355711;
+			if ((y ) >= 0 &&  (y) <  HEIGHT)
+			w->data[WIDTH * y + x] = w->sdl.wall_data_floor[TEXT_W * w->texx2 + w->texy2] ;
 			x++;
 		}
 		y++;
 	}
 }
+void Texture_cling(t_wolf_3d *w)
+{
+    int y;
+    int x;
+
+        // rayDir for leftmost ray (x = 0) and rightmost ray (x = w)
+        w->ray.ray0.x = w->player.dir.x - w->player.plane.x;
+        w->ray.ray0.y = w->player.dir.y - w->player.plane.y;
+        w->ray.ray1.x = w->player.dir.x + w->player.plane.x;
+        w->ray.ray1.y = w->player.dir.y + w->player.plane.y;
+    y = 0;
+    while (y < (HEIGHT / 2))
+    {
+        // Current y position compared to the center of the screen (the horizon)
+        w->p = -1 * ((y - HEIGHT / 2));
+        // Vertical position of the camera.
+        w->posZ = 0.5 * HEIGHT;
+        // Horizontal distance from the camera to the floor for the current row.
+        // 0.5 is the z position exactly in the middle between floor and ceiling.
+        w->rowDistance = w->posZ / w->p;
+        // calculate the real world step vector we have to add for each x (parallel to camera plane)
+        // adding step by step avoids multiplications with a weight in the inner loop
+        w->floorStepX = w->rowDistance * (w->ray.ray1.x - w->ray.ray0.x) / WIDTH;
+        w->floorStepY = w->rowDistance * (w->ray.ray1.y - w->ray.ray0.y) / WIDTH;
+
+        // real world coordinates of the leftmost column. This will be updated as we step to the right
+        w->floorX = w->player.pos.x + w->rowDistance * w->ray.ray0.x;
+        w->floorY = w->player.pos.y + w->rowDistance * w->ray.ray0.y;
+        x = 0;
+        while (x < WIDTH)
+        {
+            // the cell coord is simply got from the integer parts of floorX and floorY
+            w->cellX = (int)(w->floorX);
+            w->cellY = (int)(w->floorY);
+            // get the texture coordinate from the fractional part
+            w->texx2 = (int)(TEXT_W * (w->floorX - w->cellX)) % (TEXT_W - 1);
+            w->texy2 = (int)(TEXT_H * (w->floorY - w->cellY)) % (TEXT_H - 1);
+            w->floorX += w->floorStepX;
+            w->floorY += w->floorStepY;
+            //floor
+			if ( y <  HEIGHT)
+            w->data[WIDTH * y + x] = w->sdl.wall_data_floor[TEXT_W * w->texx2 + w->texy2] ;
+            x++;
+        }
+        y++;
+    }
+}
+
 
 void fill_data_tab(t_wolf_3d *w, int x)
 {
 	// int i;
-
+	(void)x;
+	(void)w;
 	// i = 0;
 	// while (i < w->ray.draw.start)
 	// {
@@ -236,6 +286,7 @@ void draw_map_3d(t_wolf_3d *w)
 	double tmp2;
 
 	x = 0;
+	Texture_cling(w);
 	Texture_Floor(w);
 	while (x < WIDTH)
 	{

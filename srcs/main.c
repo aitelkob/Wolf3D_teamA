@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/27 02:22:31 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/28 02:53:06 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void render(t_wolf_3d *w)
 	image_clear(w);
 	mini_map(w);
 	mini_player(w);
+	//font_fps(w);
 	SDL_RenderCopy(w->sdl.renderer, w->sdl.cur_tex, NULL, &w->dst);
 	SDL_RenderPresent(w->sdl.renderer);
 }

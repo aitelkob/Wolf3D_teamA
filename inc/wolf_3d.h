@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/27 11:18:19 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/28 02:43:05 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define COLORSTONE "./pics/colorstone.png"
 # define BLUESTONE "./pics/bluestone.png"
 # include "../SDL/SDL2.framework/Headers/SDL.h"
+# include "/Users/yait-el-/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2/SDL_ttf.h"
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
 # define WIDTH 900
 # define HEIGHT 900
@@ -87,8 +88,12 @@ typedef struct			s_sdl
 	SDL_Renderer		*renderer;
 	SDL_Texture			*texture;
 	SDL_Event			event;
+	TTF_Font			*sans;
 	SDL_Surface			*cur;
+	SDL_Texture			*message;
+	SDL_Rect			*rect_msg;
 	SDL_Texture			*cur_tex;
+	SDL_Surface			*Font;
 	SDL_Surface			*wall;
 	SDL_Surface         *wall1;
 	SDL_Surface         *wall2;
@@ -193,7 +198,7 @@ int						sdl_init_texture(t_wolf_3d	*w);
 int         			sdl_init_render(t_wolf_3d   *w);
 int						sdl_init_win(t_wolf_3d	*w);
 void					sdl_text_init(t_wolf_3d *w);
-
+void        font_fps(t_wolf_3d *w);
 /*
 	**	Main
 */
