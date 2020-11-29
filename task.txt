@@ -6,7 +6,7 @@ SDL_Events
 
 file -->srcs/game_engine.c
 
-Something is wrong with the key_down_input mouvement , need to re-do it in order for the mini map to be fully functional
+Multi Texture=> Didn't finish the multitexture thing.
 forgot something --> freeing the map when an error in parcing
 
 ////////////////////youssef
