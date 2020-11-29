@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:47:25 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/28 03:25:52 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/29 16:54:56 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void        loadTexture(t_wolf_3d *w)
 	w->sdl.wall3 = IMG_Load(REDBRICK);
 	w->sdl.wall4 = IMG_Load(GRAYSTONE);
 	w->sdl.wall1 = IMG_Load(GRAYSTONE);
-	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall1->pixels;
+	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall3->pixels;
 	w->sdl.ceiling_texture = IMG_Load(REDBRICK);
 	w->sdl.roof_texture = IMG_Load(PURPLESTONE);
 	w->sdl.floor_texture = IMG_Load(PURPLESTONE);
@@ -50,25 +50,26 @@ void        loadTexture(t_wolf_3d *w)
 	
 	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer, w->sdl.cur);
 }
-void		font_fps(t_wolf_3d *w)
-{
-	printf("hena \n");
-	SDL_Color White;
-	White.r = 0;
-	White.g = 0;
-	White.b = 0;
-	White.a = 0;
-	printf("sala 1");
-	w->sdl.Font = TTF_RenderText_Solid(w->sdl.sans,"text text",White);
-	w->sdl.message = SDL_CreateTextureFromSurface(w->sdl.renderer,w->sdl.Font);
-	w->sdl.rect_msg->x = WIDTH - 20;
-	w->sdl.rect_msg->y = 20;
-	w->sdl.rect_msg->h = 100;
-	w->sdl.rect_msg->w = 100;
-	printf("hena sala");
-	//SDL_RenderCopy(w->sdl.renderer,w->sdl.message,NULL,w->sdl.rect_msg);
+// void		font_fps(t_wolf_3d *w)
+// {
+// 	printf("hena \n");
+// 	SDL_Color White;
+// 	White.r = 0;
+// 	White.g = 0;
+// 	White.b = 0;
+// 	White.a = 0;
+// 	printf("sala 1");
+// 	w->sdl.Font = TTF_RenderText_Solid(w->sdl.sans,"text text",White);
+// 	w->sdl.message = SDL_CreateTextureFromSurface(w->sdl.renderer,w->sdl.Font);
+// 	w->sdl.rect_msg->x = WIDTH - 20;
+// 	w->sdl.rect_msg->y = 20;
+// 	w->sdl.rect_msg->h = 100;
+// 	w->sdl.rect_msg->w = 100;
+// 	printf("hena sala");
+// 	//SDL_RenderCopy(w->sdl.renderer,w->sdl.message,NULL,w->sdl.rect_msg);
 
-}
+// }
+
 void		texture_img(t_wolf_3d *w)
 {
 	loadTexture(w);

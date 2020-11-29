@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/28 02:43:05 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/29 16:55:00 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <stdio.h>
-# define TEXT_CEILING "./img/021-brickgreybrownmould1.bmp"
+# define BROWNMOULD "./img/brownmould1.bmp"
 # define GRAYSTONE "./pics/greystone.png"
 # define PURPLESTONE "./pics/purplestone.png"
 # define REDBRICK "./pics/redbrick.png"
@@ -29,7 +29,7 @@
 # define COLORSTONE "./pics/colorstone.png"
 # define BLUESTONE "./pics/bluestone.png"
 # include "../SDL/SDL2.framework/Headers/SDL.h"
-# include "/Users/yait-el-/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2/SDL_ttf.h"
+// # include "/Users/ayagoumi/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2/SDL_ttf.h"
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
 # define WIDTH 900
 # define HEIGHT 900
@@ -88,7 +88,7 @@ typedef struct			s_sdl
 	SDL_Renderer		*renderer;
 	SDL_Texture			*texture;
 	SDL_Event			event;
-	TTF_Font			*sans;
+	// TTF_Font			*sans;
 	SDL_Surface			*cur;
 	SDL_Texture			*message;
 	SDL_Rect			*rect_msg;

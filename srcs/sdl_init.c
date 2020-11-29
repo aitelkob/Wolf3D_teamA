@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 15:02:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/28 02:53:37 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/11/28 17:15:40 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			sdl_init_win(t_wolf_3d	*w)
 			);
 	if (!w->sdl.win)
 		return (1);
-	w->sdl.sans = TTF_OpenFont("arial.ttf", 25);
+	// w->sdl.sans = TTF_OpenFont("arial.ttf", 25);
 	sdl_init_texture(w);
 	return (0);
 }
