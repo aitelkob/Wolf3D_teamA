@@ -11,6 +11,6 @@ forgot something --> freeing the map when an error in parcing
 
 ////////////////////youssef
 Makefile ---> done 
-Texture  ---> on progress => [Texture_Floor and Ceiling --> on progress] 
-diffrent textures --> not now !!!!
+Texture  ---> on progress => [Texture_Floor and Ceiling --> on progress] ----> the floor and ceiling drive me crazy
+diffrent textures --> on progress i will end this tomorrrow inchallah
 i failed debugging the file you told me, i have made some modifications, but it still doesn't work.
