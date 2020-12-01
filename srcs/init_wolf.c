@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/29 16:23:31 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/30 23:19:05 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void load_img(t_wolf_3d *w, const char *file)
 	w->sdl.cur = IMG_Load(file);
 	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer,
 												  w->sdl.cur);
+	texture_img(w);
 	if (!w->sdl.cur_tex)
 		return;
 }

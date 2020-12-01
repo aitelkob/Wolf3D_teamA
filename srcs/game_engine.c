@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/29 16:55:10 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/01 23:30:53 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,20 @@ void dda_algorithm(t_wolf_3d *w)
 			w->ray.sidedist.x += w->ray.deltadist.x;
 			w->ray.map.x += w->ray.step.x;
 			w->ray.side = 0;
+			if (w->ray.raydir.x > 0)
+				w->wallnbr = 1;
+			else
+				w->wallnbr = 2;
 		}
 		else
 		{
 			w->ray.sidedist.y += w->ray.deltadist.y;
 			w->ray.map.y += w->ray.step.y;
 			w->ray.side = 1;
+			if (w->ray.raydir.y > 0)
+				w->wallnbr = 3;
+			else
+				w->wallnbr = 4; 
 		}
 		if (w->player.world_map[w->ray.map.x][w->ray.map.y] > 0)
 			w->ray.hit = 1;
@@ -101,7 +109,9 @@ void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 	// int i;
 
 	// * multiple texture
-	// int wallnbr = wolf->player.world_map[wolf->ray.map.x][wolf->ray.map.y];
+	 //wolf->wallnbr = wolf->player.world_map[wolf->ray.map.x][wolf->ray.map.y];
+	 if (wolf->wallnbr <= 1 || wolf->wallnbr >= 5)
+		 wolf->wallnbr = 1;
 	// printf("lnbr %d \n",wallnbr);
 	if (wolf->ray.side == 1)
 		wolf->wallx = wolf->player.pos.x + wolf->ray.perpWallDist * wolf->ray.raydir.x;
@@ -122,7 +132,7 @@ void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 					  wolf->ray.lineHeight) *
 					 (TEXT_H / 2) / wolf->ray.lineHeight;
 		if (start < HEIGHT && start >= 0)
-			wolf->data[start * WIDTH + x] = wolf->sdl.wall_data_tmp[wolf->texy * TEXT_H + wolf->texx];
+			wolf->data[start * WIDTH + x] =  wolf->sdl.new_text[wolf->wallnbr][wolf->texy * TEXT_H + wolf->texx];
 		start++;
 	}
 }
@@ -175,7 +185,7 @@ void Texture_Floor(t_wolf_3d *w)
 			w->floorY += w->floorStepY;
 			//floor
 			if ((y) >= 0 && (y) < HEIGHT)
-				w->data[WIDTH * y + x] = w->sdl.wall_data_floor[TEXT_W * w->texx2 + w->texy2];
+				w->data[WIDTH * y + x] = w->sdl.new_text[0][TEXT_W * w->texx2 + w->texy2];
 			x++;
 		}
 		y++;

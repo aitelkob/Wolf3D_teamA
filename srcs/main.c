@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/29 16:24:41 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/11/30 23:27:36 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,14 @@ void update(t_wolf_3d *w)
 		;
 	w->fps.delta_time = (SDL_GetTicks() - w->fps.last_frame_time) / 1000.0f;
 	w->fps.last_frame_time = SDL_GetTicks();
-	w->fps.movespeed = 5 * w->fps.delta_time;
+	w->fps.movespeed = 3 * w->fps.delta_time;
 	w->fps.rotspeed = 2 * w->fps.delta_time;
+}
+
+void		imga_copy(t_wolf_3d *w)
+{
+	 SDL_UpdateTexture(w->sdl.texture, NULL, w->data, WIDTH * sizeof(int));
+	 SDL_RenderCopy(w->sdl.renderer, w->sdl.texture, NULL, NULL);
 }
 
 void render(t_wolf_3d *w)
@@ -44,12 +50,10 @@ void render(t_wolf_3d *w)
 	SDL_RenderClear(w->sdl.renderer);
 
 	draw_map_3d(w);
-	texture_img(w);
+	imga_copy(w);
 	image_clear(w);
 	mini_map(w);
 	mini_player(w);
-	//font_fps(w);
-	SDL_RenderCopy(w->sdl.renderer, w->sdl.cur_tex, NULL, &w->dst);
 	SDL_RenderPresent(w->sdl.renderer);
 }
 
@@ -59,7 +63,6 @@ void render(t_wolf_3d *w)
 
 void game_engine(t_wolf_3d *w)
 {
-	//load_img(w, PNG);
 	////    game loop //////
 	while (w->game_running == 0)
 	{
@@ -92,7 +95,6 @@ int main(int ac, char **av)
 	{
 		w = malloc(sizeof(t_wolf_3d));
 		Load_map(w, av);
-		texture_img(w);
 		w->game_running = sdl_init_win(w);
 		init_perso(w);
 		game_engine(w);

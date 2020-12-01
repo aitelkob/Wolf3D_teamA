@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/29 16:55:00 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/01 23:28:17 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # define COLORSTONE "./pics/colorstone.png"
 # define BLUESTONE "./pics/bluestone.png"
 # include "../SDL/SDL2.framework/Headers/SDL.h"
-// # include "/Users/ayagoumi/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2/SDL_ttf.h"
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
 # define WIDTH 900
 # define HEIGHT 900
@@ -100,6 +99,7 @@ typedef struct			s_sdl
 	SDL_Surface         *wall3;
 	SDL_Surface         *wall4;
 	SDL_Surface         *wall5;
+	unsigned int		**new_text;
 	int					*wall_h;
 	SDL_Surface         *ceiling_texture;
 	SDL_Surface         *roof_texture;
@@ -164,6 +164,7 @@ typedef struct			s_wolf_3d
 	SDL_Texture 		*texturei;
  	SDL_Surface			*wall_texture;
 	SDL_Rect			dst;
+	int					wallnbr;
 	unsigned int        *wall_image;
 	int					texture_index;
 	double				wallx;

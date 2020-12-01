@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:47:25 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/29 16:54:56 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/01 23:33:52 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,41 +38,27 @@ void        loadTexture(t_wolf_3d *w)
 	w->sdl.wall = IMG_Load(MOSSY);
 	w->sdl.wall2 = IMG_Load(WOOD);
 	w->sdl.wall3 = IMG_Load(REDBRICK);
-	w->sdl.wall4 = IMG_Load(GRAYSTONE);
+	w->sdl.wall4 = IMG_Load(MOSSY);
 	w->sdl.wall1 = IMG_Load(GRAYSTONE);
-	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall3->pixels;
+	 w->sdl.wall5 = IMG_Load(BLUESTONE);
 	w->sdl.ceiling_texture = IMG_Load(REDBRICK);
-	w->sdl.roof_texture = IMG_Load(PURPLESTONE);
-	w->sdl.floor_texture = IMG_Load(PURPLESTONE);
-	w->sdl.wall_data_floor = (unsigned int*)w->sdl.wall2->pixels;
-	// printf("this ceiling texture %d - wall4 = %d \n",w->sdl.ceiling_texture->w,w->sdl.wall4->w);
-	/////// load texture
+ 	w->sdl.roof_texture = IMG_Load(PURPLESTONE);
+	w->sdl.new_text = malloc(sizeof(unsigned int*) * 6);
+	w->sdl.new_text[0] = (unsigned int*)w->sdl.roof_texture->pixels;
+	w->sdl.new_text[1] = (unsigned int*)w->sdl.wall1->pixels;
+	w->sdl.new_text[2] = (unsigned int*)w->sdl.wall3->pixels;
+	w->sdl.new_text[3] = (unsigned int*)w->sdl.wall4->pixels;
+	w->sdl.new_text[4] = (unsigned int*)w->sdl.wall5->pixels;
+	w->sdl.new_text[5] = (unsigned int*)w->sdl.wall->pixels;
 	
-	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer, w->sdl.cur);
+	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall3->pixels;
+	
+	w->sdl.wall_data_floor = (unsigned int*)w->sdl.wall2->pixels;
 }
-// void		font_fps(t_wolf_3d *w)
-// {
-// 	printf("hena \n");
-// 	SDL_Color White;
-// 	White.r = 0;
-// 	White.g = 0;
-// 	White.b = 0;
-// 	White.a = 0;
-// 	printf("sala 1");
-// 	w->sdl.Font = TTF_RenderText_Solid(w->sdl.sans,"text text",White);
-// 	w->sdl.message = SDL_CreateTextureFromSurface(w->sdl.renderer,w->sdl.Font);
-// 	w->sdl.rect_msg->x = WIDTH - 20;
-// 	w->sdl.rect_msg->y = 20;
-// 	w->sdl.rect_msg->h = 100;
-// 	w->sdl.rect_msg->w = 100;
-// 	printf("hena sala");
-// 	//SDL_RenderCopy(w->sdl.renderer,w->sdl.message,NULL,w->sdl.rect_msg);
-
-// }
 
 void		texture_img(t_wolf_3d *w)
 {
 	loadTexture(w);
-	SDL_UpdateTexture(w->sdl.texture, NULL, w->data, WIDTH * sizeof(int));
-	SDL_RenderCopy(w->sdl.renderer, w->sdl.texture, NULL, NULL);
+	//SDL_UpdateTexture(w->sdl.texture, NULL, w->data, WIDTH * sizeof(int));
+	//SDL_RenderCopy(w->sdl.renderer, w->sdl.texture, NULL, NULL);
 }
