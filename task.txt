@@ -1,15 +1,9 @@
 //////////////////ayoub
-
-RayCasting
-SDL_Events
-
-
 file -->srcs/game_engine.c
-
+Texture  ---> on progress =>  the floor and ceiling drive me crazy debug if you like sinon do something else
 Multi Texture=> Didn't finish the multitexture thing.
 forgot something --> freeing the map when an error in parcing
 
 ////////////////////youssef
-Makefile ---> done 
-Texture  ---> on progress => [Texture_Floor and Ceiling --> on progress] ----> the floor and ceiling drive me crazy debug if you like sinon do something else
-diffrent textures --> on progress i will end this tomorrrow inchallah
+Makefile ---> done
+diffrent textures --> done
