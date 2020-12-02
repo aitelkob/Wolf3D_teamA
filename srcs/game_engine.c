@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/01 23:30:53 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/02 17:57:10 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,7 +268,7 @@ void fill_data_tab(t_wolf_3d *w, int x)
 
 void detect_start_end(t_wolf_3d *w)
 {
-	w->ray.lineHeight = (int)(HEIGHT / w->ray.perpWallDist) * 0.5;
+	w->ray.lineHeight = (int)(HEIGHT / w->ray.perpWallDist);
 	if (w->ray.perpWallDist <= 0)
 		w->ray.lineHeight = WIDTH;
 	w->ray.draw.start = (int)((-w->ray.lineHeight / 2) + (HEIGHT / 2)) + w->event.up_mouve;

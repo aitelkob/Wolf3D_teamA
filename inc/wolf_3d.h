@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/01 23:28:17 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/02 18:25:31 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <stdio.h>
-# define BROWNMOULD "./img/brownmould1.bmp"
+# define BROWNMOULD "./pics/brownmould1.bmp"
 # define GRAYSTONE "./pics/greystone.png"
 # define PURPLESTONE "./pics/purplestone.png"
 # define REDBRICK "./pics/redbrick.png"
