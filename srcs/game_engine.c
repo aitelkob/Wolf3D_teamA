@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/02 17:57:10 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/03 16:35:42 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,26 +240,6 @@ void Texture_cling(t_wolf_3d *w)
 	}
 }
 
-void fill_data_tab(t_wolf_3d *w, int x)
-{
-	// int i;
-	(void)x;
-	w->fps.fps = 30;
-	// i = 0;
-	// while (i < w->ray.draw.start)
-	// {
-	// 	w->data[x + (i * WIDTH)] = 0x99cfe0;
-	// 	i++;
-	// }
-	// i = w->ray.draw.end;
-	// while (i < HEIGHT)
-	// {
-	// 	w->data[x + (i * WIDTH)] = 0x654321;
-	// 	i++;
-	// }
-	// wall_texture(w, x, w->ray.draw.start, w->ray.draw.end);
-}
-
 /*
 **  Calculate height of line to draw on screen
 **  calculate lowest pixel to fill in current stripe
@@ -314,7 +294,6 @@ void draw_map_3d(t_wolf_3d *w)
 		dda_algorithm(w);
 		detect_start_end(w);
 		wall_texture(w, x, w->ray.draw.start, w->ray.draw.end);
-		//fill_data_tab(w, x);
 		x++;
 	}
 }

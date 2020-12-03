@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:47:25 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/01 23:33:52 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/03 20:36:02 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void        loadTexture(t_wolf_3d *w)
 	w->sdl.cur = IMG_Load(PNG);
 	w->sdl.wall = IMG_Load(MOSSY);
 	w->sdl.wall2 = IMG_Load(WOOD);
-	w->sdl.wall3 = IMG_Load(REDBRICK);
+	w->sdl.wall3 = IMG_Load(EAGLE);
 	w->sdl.wall4 = IMG_Load(MOSSY);
 	w->sdl.wall1 = IMG_Load(GRAYSTONE);
-	 w->sdl.wall5 = IMG_Load(BLUESTONE);
+	w->sdl.wall5 = IMG_Load(BLUESTONE);
 	w->sdl.ceiling_texture = IMG_Load(REDBRICK);
  	w->sdl.roof_texture = IMG_Load(PURPLESTONE);
 	w->sdl.new_text = malloc(sizeof(unsigned int*) * 6);

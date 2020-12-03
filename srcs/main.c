@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/11/30 23:27:36 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/03 20:13:40 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void update(t_wolf_3d *w)
 
 void		imga_copy(t_wolf_3d *w)
 {
-	 SDL_UpdateTexture(w->sdl.texture, NULL, w->data, WIDTH * sizeof(int));
-	 SDL_RenderCopy(w->sdl.renderer, w->sdl.texture, NULL, NULL);
+	SDL_UpdateTexture(w->sdl.texture, NULL, w->data, WIDTH * sizeof(int));
+	SDL_RenderCopy(w->sdl.renderer, w->sdl.texture, NULL, NULL);
 }
 
 void render(t_wolf_3d *w)
@@ -99,6 +99,11 @@ int main(int ac, char **av)
 		init_perso(w);
 		game_engine(w);
 		sdl_quit(w);
+		free_map2(w->player.world_map, 24);
+		free(w->data);
+		free(w->sdl.new_text);
+		free(w);
+		w = NULL;
 	}
 	else if (ac == 1)
 		show_error3();

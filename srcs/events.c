@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:28:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/02 18:01:01 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/03 19:42:37 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void mouse_limitation(t_wolf_3d *w)
 	else if (w->event.newmouse.y >= HEIGHT - 5)
 		SDL_WarpMouseInWindow(w->sdl.win, w->event.oldmouse.x, HEIGHT - 6);
 }
+
+/*
+**	The first time put the mouse in th middle of the screan
+**	after that update it on the last new known position
+*/
 
 void track_mouse(t_wolf_3d *w, Uint32 *mousestates)
 {
@@ -68,34 +73,24 @@ void mouse_motion_input(t_wolf_3d *w, Uint32 *mousestates)
 		w->event.up_mouve = -(w->event.newmouse.y - w->event.oldmouse.y);
 		w->event.down_mouve = -(w->event.newmouse.y - w->event.oldmouse.y);
 	}
-	if ((w->event.oldmouse.x != w->event.newmouse.x) && (w->event.newmouse.x > 0 || w->event.oldmouse.x > 0))
+	if ((w->event.oldmouse.x != w->event.newmouse.x))
 		w->event.oldmouse.x = w->event.newmouse.x;
 }
 
 void key_down_input(t_wolf_3d *w, const Uint8 *keystates, int **world_map)
 {
-	int x_minus;
-	int x_plus;
-	int y_plus;
-	int y_minus;
-
-	x_minus = (w->player.pos.x - (w->player.dir.y * w->fps.movespeed));
-	x_plus = (w->player.pos.x + (w->player.dir.y * w->fps.movespeed));
-	y_minus = (w->player.pos.y - (w->player.dir.x * w->fps.movespeed));
-	y_plus = (w->player.pos.y + (w->player.dir.x * w->fps.movespeed));
-
 	if (keystates[SDL_SCANCODE_A])
 	{
-		if (world_map[x_minus][(int)w->player.pos.y] == 0)
+		if (world_map[(int)(w->player.pos.x - (w->player.dir.y * w->fps.movespeed))][(int)w->player.pos.y] == 0)
 			w->player.pos.x -= w->player.dir.y * w->fps.movespeed;
-		if (world_map[(int)w->player.pos.x][y_plus] == 0)
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.x * w->fps.movespeed))] == 0)
 			w->player.pos.y += w->player.dir.x * w->fps.movespeed;
 	}
 	if (keystates[SDL_SCANCODE_D])
 	{
-		if (world_map[x_plus][(int)w->player.pos.y] == 0)
+		if (world_map[(int)(w->player.pos.x + (w->player.dir.y * w->fps.movespeed))][(int)w->player.pos.y] == 0)
 			w->player.pos.x += w->player.dir.y * w->fps.movespeed;
-		if (world_map[(int)w->player.pos.x][y_minus] == 0)
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - (w->player.dir.x * w->fps.movespeed))] == 0)
 			w->player.pos.y -= w->player.dir.x * w->fps.movespeed;
 	}
 	if (keystates[SDL_SCANCODE_W])

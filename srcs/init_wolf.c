@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/11/30 23:19:05 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/02 19:57:16 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void init_perso(t_wolf_3d *w)
 	player_start(w);
 	load_img(w, PNG);
 	
-	// SDL_ShowCursor(0);
 	w->player.dir.x = -1;
 	w->player.dir.y = 0;
 	w->player.with = 20;
@@ -61,8 +60,8 @@ void init_perso(t_wolf_3d *w)
 	w->player.plane.y = 0.57;
 	w->fps.fps = 30;
 	w->fps.frame_target = 1000 / w->fps.fps;
-	w->dst.w = 100;
 	w->fps.last_frame_time = 0;
+	w->dst.w = 100;
 	w->dst.h = 100;
 	SDL_WarpMouseInWindow(w->sdl.win, (WIDTH / 2), (HEIGHT / 2));
 	w->dst.x = (WIDTH / 2) - (w->dst.w / 2);

@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/02 18:25:31 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/03 20:35:45 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <stdio.h>
+# define PNG "./pics/1.png"
+# define MOSSY "./pics/mossy.png"
+# define WOOD "./pics/wood.png"
 # define BROWNMOULD "./pics/brownmould1.bmp"
 # define GRAYSTONE "./pics/greystone.png"
-# define PURPLESTONE "./pics/purplestone.png"
 # define REDBRICK "./pics/redbrick.png"
-# define WOOD "./pics/wood.png"
-# define MOSSY "./pics/mossy.png"
+# define PURPLESTONE "./pics/purplestone.png"
 # define COLORSTONE "./pics/colorstone.png"
 # define BLUESTONE "./pics/bluestone.png"
+# define EAGLE "./pics/eagle.png"
 # include "../SDL/SDL2.framework/Headers/SDL.h"
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
 # define WIDTH 900
@@ -36,7 +38,6 @@
 # define TEXT_H 64
 # define mapWidth 24
 # define mapHeight 24
-# define PNG "/img/2.png"
 # define TRUE 1
 # define FALSE 0
 # define  MAP_NUM_ROWS  24
@@ -72,22 +73,12 @@ typedef struct			t_fps
 	double				rotspeed;
 }						t_fps;
 
-// typedef struct			s_texture
-// {
-// 	SDL_Surface			*texture_surf;
-// 	SDL_Texture			*texture;
-// 	int					*tmp;
-// 	int					w;
-// 	int					h;
-// }						t_texture;
-
 typedef struct			s_sdl
 {
 	SDL_Window			*win;
 	SDL_Renderer		*renderer;
 	SDL_Texture			*texture;
 	SDL_Event			event;
-	// TTF_Font			*sans;
 	SDL_Surface			*cur;
 	SDL_Texture			*message;
 	SDL_Rect			*rect_msg;
@@ -161,11 +152,8 @@ typedef struct			s_wolf_3d
 	t_fps				fps;
 	Uint32				mousestates;
 	t_coord				texture[8]; 
-	SDL_Texture 		*texturei;
- 	SDL_Surface			*wall_texture;
 	SDL_Rect			dst;
 	int					wallnbr;
-	unsigned int        *wall_image;
 	int					texture_index;
 	double				wallx;
 	int					texx2;
@@ -233,4 +221,6 @@ void					show_error3();
 void		drawCube(t_wolf_3d *w, int x_begin, int y_begin, double scaler, int color);
 void		drawMap(t_wolf_3d *w);
 void		mini_player(t_wolf_3d *w);
+void    free_map(char **map, int n);
+void    free_map2(int **map, int n);
 #endif
