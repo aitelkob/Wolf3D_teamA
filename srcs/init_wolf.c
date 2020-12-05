@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/05 01:03:28 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/05 18:29:38 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void init_perso(t_wolf_3d *w)
 	player_start(w);
 	load_img(w, PNG);
 
+	w->event.i = 0;
 	w->player.dir.x = -1;
 	w->player.dir.y = 0;
 	w->player.with = 20;

@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/05 14:52:37 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/05 18:59:05 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void dda_algorithm(t_wolf_3d *w)
 			if (w->ray.raydir.y > 0)
 				w->wallnbr = 3;
 			else
-				w->wallnbr = 4; 
+				w->wallnbr = 4;
 		}
 		if (w->player.world_map[w->ray.map.x][w->ray.map.y] > 0)
 			w->ray.hit = 1;
@@ -98,32 +98,20 @@ void dda_algorithm(t_wolf_3d *w)
 							  w->ray.raydir.y;
 }
 
-
-int	darken_wall_color(t_wolf_3d *w, int color)
+int darken_wall_color(t_wolf_3d *w, int color)
 {
 	unsigned char *p;
 	int n;
 
-	p = (unsigned char*)&color;
+	p = (unsigned char *)&color;
 	p[3] = 0;
-	n = (w->ray.perpWallDist * 0.5) + 1;
+	n = (w->ray.perpWallDist * 0.9);
+	if (n == 0)
+		n = 1;
 	p[1] = p[1] / n;
 	p[2] = p[2] / n;
 	p[0] = p[0] / n;
 	return (color);
-}
-
-void	darken_color_floor_ceiling(t_wolf_3d *w, int *color)
-{
-	unsigned char *p;
-	int n;
-
-	p = (unsigned char*)color;
-	p[3] = 0;
-	n = (w->rowDistance * 0.5) + 1;
-	p[1] = p[1] / n;
-	p[2] = p[2] / n;
-	p[0] = p[0] / n;
 }
 
 /*
@@ -137,9 +125,9 @@ void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 	int color;
 
 	// * multiple texture
-	 //wolf->wallnbr = wolf->player.world_map[wolf->ray.map.x][wolf->ray.map.y];
-	 if (wolf->wallnbr <= 1 || wolf->wallnbr >= 5)
-		 wolf->wallnbr = 1;
+	//wolf->wallnbr = wolf->player.world_map[wolf->ray.map.x][wolf->ray.map.y];
+	if (wolf->wallnbr <= 1 || wolf->wallnbr >= 5)
+		wolf->wallnbr = 1;
 	// printf("lnbr %d \n",wallnbr);
 	if (wolf->ray.side == 1)
 		wolf->wallx = wolf->player.pos.x + wolf->ray.perpWallDist * wolf->ray.raydir.x;
@@ -159,7 +147,7 @@ void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 		wolf->texy = ((start - wolf->event.down_mouve) * 2 - HEIGHT +
 					  wolf->ray.lineHeight) *
 					 (TEXT_H / 2) / wolf->ray.lineHeight;
-		color = darken_wall_color(wolf, wolf->sdl.new_text[wolf->wallnbr][wolf->texy * TEXT_H + wolf->texx]);
+		color = light_input(wolf, wolf->sdl.new_text[wolf->wallnbr][wolf->texy * TEXT_H + wolf->texx]);
 		if (start < HEIGHT && start >= 0)
 			wolf->data[start * WIDTH + x] = color;
 		start++;
@@ -207,7 +195,7 @@ void Texture_Floor(t_wolf_3d *w)
 			w->floorX += w->floorStepX;
 			w->floorY += w->floorStepY;
 			color = (w->sdl.new_text[0][TEXT_W * w->texx2 + w->texy2] >> 1) & 8355711;
-			darken_color_floor_ceiling(w, &color);
+			// darken_color_floor_ceiling(w, &color);
 			//floor
 			if ((y) >= 0 && (y) < HEIGHT)
 				w->data[WIDTH * y + x] = color;

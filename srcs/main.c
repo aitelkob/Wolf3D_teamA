@@ -6,11 +6,13 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/05 11:35:02 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/05 20:44:39 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/wolf_3d.h"
+
+extern int noname[24][24];
 
 /*
  **	Game loop
@@ -49,6 +51,7 @@ int		main(int ac, char **av)
 	if (ac == 2)
 	{
 		w = malloc(sizeof(t_wolf_3d));
+		w->player.world_map = (int**)noname;
 		load_map(w, av);
 		w->game_running = sdl_init_win(w);
 		init_perso(w);

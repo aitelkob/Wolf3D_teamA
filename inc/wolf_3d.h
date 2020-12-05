@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/05 04:04:38 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/05 18:29:10 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define  MAP_NUM_COLS  24
 # define  TILE_SIZE  64
 # define  MAP_SACLER  0.15
+# define TRUE 1
+# define FALSE 0
 
 typedef struct			s_point
 {
@@ -122,6 +124,8 @@ typedef struct			s_event
 	t_coord				oldmouse;
 	int					up_mouve;
 	int					down_mouve;
+	const Uint8			*keystates;
+	int					i;
 }						t_event;
 
 typedef	struct			s_ray
@@ -230,4 +234,7 @@ int line_numb(char *argv);
 int ft_strlen_2_dim(char **tab);
 size_t check(int n, int i);
 int *values(char **tab, size_t len);
+int	darken_wall_color(t_wolf_3d *w, int color);
+int	normal_color(t_wolf_3d *w, int color);
+int	light_input(t_wolf_3d *w, int color);
 #endif

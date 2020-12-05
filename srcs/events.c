@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:28:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/03 19:42:37 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/05 18:59:48 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,6 @@ void key_down_input(t_wolf_3d *w, const Uint8 *keystates, int **world_map)
 	}
 }
 
-/*
-**
-**	the arrow keys are still fucked up
-**
-*/
-
 void arrow_move_input(t_wolf_3d *w, const Uint8 *keystates)
 {
 	if (keystates[SDL_SCANCODE_LEFT])
@@ -128,19 +122,30 @@ void arrow_move_input(t_wolf_3d *w, const Uint8 *keystates)
 		calculate_plane_dir_x(w, -20 * (3.14 * w->fps.rotspeed) / 180.0);
 }
 
+int light_input(t_wolf_3d *w, int color)
+{
+	if (w->event.keystates[SDL_SCANCODE_L])
+		w->event.i = 0;
+	if (w->event.keystates[SDL_SCANCODE_P])
+		w->event.i = 1;
+	if (w->event.i)
+		color = darken_wall_color(w, color);
+
+	return (color);
+}
+
 void process_input(t_wolf_3d *w, int **world_map)
 {
-	const Uint8 *keystates;
 	SDL_ShowCursor(0);
-	keystates = SDL_GetKeyboardState(NULL);
+	w->event.keystates = SDL_GetKeyboardState(NULL);
 	track_mouse(w, &w->mousestates);
 	SDL_PollEvent(&w->sdl.event);
 	if (w->sdl.event.type == SDL_QUIT)
 		w->game_running = 1;
-	if (keystates[SDL_SCANCODE_ESCAPE])
+	if (w->event.keystates[SDL_SCANCODE_ESCAPE])
 		w->game_running = 1;
-	arrow_move_input(w, keystates);
-	key_down_input(w, keystates, world_map);
+	arrow_move_input(w, w->event.keystates);
+	key_down_input(w, w->event.keystates, world_map);
 	mouse_motion_input(w, &w->mousestates);
 	clear_data_tab(w->data);
 }
