@@ -7,3 +7,7 @@ forgot something --> freeing the map when an error in parcing
 ////////////////////youssef
 Makefile ---> done
 diffrent textures --> done
+
+  9ad hadir multiple texture raha ba9i mkhwra
+  o zid les texture mn ghir hado li hnaya
+   o chouf wach momkin tzid b7al lpartiya li drt l L o P dyal input f lfloor o ceiling mais tkoun cercle 
