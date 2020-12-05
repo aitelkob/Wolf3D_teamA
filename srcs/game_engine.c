@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/03 16:35:42 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/05 14:52:37 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,34 @@ void dda_algorithm(t_wolf_3d *w)
 							  w->ray.raydir.y;
 }
 
+
+int	darken_wall_color(t_wolf_3d *w, int color)
+{
+	unsigned char *p;
+	int n;
+
+	p = (unsigned char*)&color;
+	p[3] = 0;
+	n = (w->ray.perpWallDist * 0.5) + 1;
+	p[1] = p[1] / n;
+	p[2] = p[2] / n;
+	p[0] = p[0] / n;
+	return (color);
+}
+
+void	darken_color_floor_ceiling(t_wolf_3d *w, int *color)
+{
+	unsigned char *p;
+	int n;
+
+	p = (unsigned char*)color;
+	p[3] = 0;
+	n = (w->rowDistance * 0.5) + 1;
+	p[1] = p[1] / n;
+	p[2] = p[2] / n;
+	p[0] = p[0] / n;
+}
+
 /*
 **  Draw sky
 **  Draw flor
@@ -106,7 +134,7 @@ void dda_algorithm(t_wolf_3d *w)
 
 void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 {
-	// int i;
+	int color;
 
 	// * multiple texture
 	 //wolf->wallnbr = wolf->player.world_map[wolf->ray.map.x][wolf->ray.map.y];
@@ -131,23 +159,18 @@ void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 		wolf->texy = ((start - wolf->event.down_mouve) * 2 - HEIGHT +
 					  wolf->ray.lineHeight) *
 					 (TEXT_H / 2) / wolf->ray.lineHeight;
+		color = darken_wall_color(wolf, wolf->sdl.new_text[wolf->wallnbr][wolf->texy * TEXT_H + wolf->texx]);
 		if (start < HEIGHT && start >= 0)
-			wolf->data[start * WIDTH + x] =  wolf->sdl.new_text[wolf->wallnbr][wolf->texy * TEXT_H + wolf->texx];
+			wolf->data[start * WIDTH + x] = color;
 		start++;
 	}
 }
-
-/*
-**	The problem is that you loop 2 times on x 
-**	the first is here and the second time is when the fill_data_tab Fucntion
-**	is called for the the draw_3d_map
-**	change this function to work like this, Texture_Floor(t_wolf_3d *w, int x)
-*/
 
 void Texture_Floor(t_wolf_3d *w)
 {
 	int y;
 	int x;
+	int color;
 
 	// rayDir for leftmost ray (x = 0) and rightmost ray (x = w)
 	w->ray.ray0.x = w->player.dir.x - w->player.plane.x;
@@ -183,9 +206,11 @@ void Texture_Floor(t_wolf_3d *w)
 			w->texy2 = (int)(TEXT_H * (w->floorY - w->cellY)) & (TEXT_H - 1);
 			w->floorX += w->floorStepX;
 			w->floorY += w->floorStepY;
+			color = (w->sdl.new_text[0][TEXT_W * w->texx2 + w->texy2] >> 1) & 8355711;
+			darken_color_floor_ceiling(w, &color);
 			//floor
 			if ((y) >= 0 && (y) < HEIGHT)
-				w->data[WIDTH * y + x] = w->sdl.new_text[0][TEXT_W * w->texx2 + w->texy2];
+				w->data[WIDTH * y + x] = color;
 			x++;
 		}
 		y++;
@@ -196,6 +221,7 @@ void Texture_cling(t_wolf_3d *w)
 {
 	int y;
 	int x;
+	int color;
 
 	// rayDir for leftmost ray (x = 0) and rightmost ray (x = w)
 	w->ray.ray0.x = w->player.dir.x - w->player.plane.x;
@@ -231,9 +257,10 @@ void Texture_cling(t_wolf_3d *w)
 			w->texy2 = (int)(TEXT_H * (w->floorY - w->cellY)) & (TEXT_H - 1);
 			w->floorX += w->floorStepX;
 			w->floorY += w->floorStepY;
+			color = (w->sdl.wall_data_floor[TEXT_W * w->texy2 + w->texx2] >> 1) & 8355711;
 			//floor
 			if (y < HEIGHT)
-				w->data[WIDTH * y + x] = w->sdl.wall_data_floor[TEXT_W * w->texy2 + w->texx2];
+				w->data[WIDTH * y + x] = color;
 			x++;
 		}
 		y++;

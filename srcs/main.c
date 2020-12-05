@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/05 02:45:13 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/05 11:35:02 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		main(int ac, char **av)
 {
 	t_wolf_3d *w;
 
+	w = NULL;
 	if (ac == 2)
 	{
 		w = malloc(sizeof(t_wolf_3d));
@@ -53,13 +54,8 @@ int		main(int ac, char **av)
 		init_perso(w);
 		game_engine(w);
 		sdl_quit(w);
-		free_map2(w->player.world_map, 24);
-		free(w->data);
-		free(w->sdl.new_text);
-		free(w);
-		w = NULL;
 	}
-	else if (ac == 1)
+	else
 		show_error3();
 	return (0);
 }

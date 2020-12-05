@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_wolf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yait-el- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 01:41:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/05 04:07:03 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/05 11:33:20 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void		sdl_quit(t_wolf_3d *w)
 {
 	SDL_DestroyRenderer(w->sdl.renderer);
 	SDL_DestroyWindow(w->sdl.win);
+	free_map2(w->player.world_map, 24);
+	free(w->data);
 	free(w);
 	SDL_Quit();
 }
