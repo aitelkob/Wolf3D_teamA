@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/02 19:57:16 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/05 01:03:28 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  *check for the fisrt  0 spot
  *
  */
- 
+
 void player_start(t_wolf_3d *w)
 {
 	int i, j;
@@ -39,19 +39,19 @@ void player_start(t_wolf_3d *w)
 	}
 }
 /*
-**  init player position x
-**  init player position y
-**  init direction vector x
-**  init direction vector y
-**  the 2d raycaster version of camera plane x
-**  the 2d raycaster version of camera plane y
-*/
+ **  init player position x
+ **  init player position y
+ **  init direction vector x
+ **  init direction vector y
+ **  the 2d raycaster version of camera plane x
+ **  the 2d raycaster version of camera plane y
+ */
 
 void init_perso(t_wolf_3d *w)
 {
 	player_start(w);
 	load_img(w, PNG);
-	
+
 	w->player.dir.x = -1;
 	w->player.dir.y = 0;
 	w->player.with = 20;
@@ -73,8 +73,28 @@ void load_img(t_wolf_3d *w, const char *file)
 {
 	w->sdl.cur = IMG_Load(file);
 	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer,
-												  w->sdl.cur);
-	texture_img(w);
+			w->sdl.cur);
+	w->sdl.cur = IMG_Load(PNG);
+	w->sdl.wall = IMG_Load(MOSSY);
+	w->sdl.wall2 = IMG_Load(WOOD);
+	w->sdl.wall3 = IMG_Load(EAGLE);
+	w->sdl.wall4 = IMG_Load(MOSSY);
+	w->sdl.wall1 = IMG_Load(GRAYSTONE);
+	w->sdl.wall5 = IMG_Load(BLUESTONE);
+	w->sdl.ceiling_texture = IMG_Load(REDBRICK);
+	w->sdl.roof_texture = IMG_Load(PURPLESTONE);
+	w->sdl.new_text = malloc(sizeof(unsigned int*) * 6);
+	w->sdl.new_text[0] = (unsigned int*)w->sdl.roof_texture->pixels;
+	w->sdl.new_text[1] = (unsigned int*)w->sdl.wall1->pixels;
+	w->sdl.new_text[2] = (unsigned int*)w->sdl.wall3->pixels;
+	w->sdl.new_text[3] = (unsigned int*)w->sdl.wall4->pixels;
+	w->sdl.new_text[4] = (unsigned int*)w->sdl.wall5->pixels;
+	w->sdl.new_text[5] = (unsigned int*)w->sdl.wall->pixels;
+
+	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall3->pixels;
+
+	w->sdl.wall_data_floor = (unsigned int*)w->sdl.wall2->pixels;
+
 	if (!w->sdl.cur_tex)
 		return;
 }
