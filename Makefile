@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/12/05 20:09:37 by ayagoumi         ###   ########.fr        #
+#    Updated: 2020/12/05 22:23:09 by yait-el-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ LIGHTPURPLE  	:= $(shell tput -Txterm setaf 4)
 PURPLE       	:= $(shell tput -Txterm setaf 5)
 BLUE         	:= $(shell tput -Txterm setaf 6)
 WHITE        	:= $(shell tput -Txterm setaf 7)
-RESET         	= \033[0m
+RESET         	:= $(shell tput -Txterm setaf 9)
 ############################
 INCSDIR 		:= inc
 INCSDIR 		+= $(LFTDIR)

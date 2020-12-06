@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/05 18:59:05 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/05 23:02:41 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ void Texture_Floor(t_wolf_3d *w)
 			w->texy2 = (int)(TEXT_H * (w->floorY - w->cellY)) & (TEXT_H - 1);
 			w->floorX += w->floorStepX;
 			w->floorY += w->floorStepY;
-			color = (w->sdl.new_text[0][TEXT_W * w->texx2 + w->texy2] >> 1) & 8355711;
+			color = light_input(w,w->sdl.new_text[0][TEXT_W * w->texx2 + w->texy2]) ;
 			// darken_color_floor_ceiling(w, &color);
 			//floor
 			if ((y) >= 0 && (y) < HEIGHT)
@@ -245,7 +245,7 @@ void Texture_cling(t_wolf_3d *w)
 			w->texy2 = (int)(TEXT_H * (w->floorY - w->cellY)) & (TEXT_H - 1);
 			w->floorX += w->floorStepX;
 			w->floorY += w->floorStepY;
-			color = (w->sdl.wall_data_floor[TEXT_W * w->texy2 + w->texx2] >> 1) & 8355711;
+			color = light_input(w,w->sdl.wall_data_floor[TEXT_W * w->texx2 + w->texy2]) ;
 			//floor
 			if (y < HEIGHT)
 				w->data[WIDTH * y + x] = color;

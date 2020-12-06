@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/05 18:29:38 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/06 00:40:21 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,23 @@ void init_perso(t_wolf_3d *w)
 	w->dst.x = (WIDTH / 2) - (w->dst.w / 2);
 	w->dst.y = (HEIGHT / 2) - (w->dst.h / 2);
 	w->data = malloc(sizeof(int) * (WIDTH * HEIGHT));
+	w->sdl.font = TTF_OpenFont(LAZZY, 25);
+	w->sdl.color.r = 255;
+	w->sdl.color.g = 255;
+	w->sdl.color.b = 0;
+}
+
+void	load_font(t_wolf_3d *w)
+{
+	w->sdl.Font = TTF_RenderText_Solid(w->sdl.font,ft_strjoin("FPS: ",ft_itoa(1 / w->fps.delta_time)),w->sdl.color);
+	printf("this is %f \n", round(1/w->fps.delta_time ));
+	w->sdl.msg = SDL_CreateTextureFromSurface(w->sdl.renderer,w->sdl.Font);
+
+	int i = 0;
+	int j = 0;
+	SDL_QueryTexture(w->sdl.msg, NULL, NULL, &i, &j);
+	SDL_Rect dstrect = {WIDTH - 100, 10, i, j};
+	SDL_RenderCopy(w->sdl.renderer, w->sdl.msg, NULL, &dstrect);
 }
 
 void load_img(t_wolf_3d *w, const char *file)

@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/05 18:29:10 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/05 23:49:53 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <stdio.h>
+# define LAZZY "./pics/lazy.ttf"
 # define PNG "./pics/1.png"
 # define MOSSY "./pics/mossy.png"
 # define WOOD "./pics/wood.png"
@@ -31,6 +32,7 @@
 # define BLUESTONE "./pics/bluestone.png"
 # define EAGLE "./pics/eagle.png"
 # include "../SDL/SDL2.framework/Headers/SDL.h"
+# include "../SDL/SDL2_ttf.framework/Headers/SDL_ttf.h"
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
 # define WIDTH 900
 # define HEIGHT 900
@@ -78,11 +80,13 @@ typedef struct			t_fps
 typedef struct			s_sdl
 {
 	SDL_Window			*win;
+	SDL_Color			color;
 	SDL_Renderer		*renderer;
 	SDL_Texture			*texture;
 	SDL_Event			event;
 	SDL_Surface			*cur;
-	SDL_Texture			*message;
+	TTF_Font			*font;
+	SDL_Texture			*msg;
 	SDL_Rect			*rect_msg;
 	SDL_Texture			*cur_tex;
 	SDL_Surface			*Font;
@@ -237,4 +241,5 @@ int *values(char **tab, size_t len);
 int	darken_wall_color(t_wolf_3d *w, int color);
 int	normal_color(t_wolf_3d *w, int color);
 int	light_input(t_wolf_3d *w, int color);
+void    load_font(t_wolf_3d *w);
 #endif

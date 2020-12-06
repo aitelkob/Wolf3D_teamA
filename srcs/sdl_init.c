@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 15:02:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/05 03:14:00 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/06 02:32:03 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ int			sdl_init_texture(t_wolf_3d *w)
 			, WIDTH, HEIGHT);
 	if (!w->sdl.texture)
 		return (1);
+	if(TTF_Init()==-1) 
+	{
+		printf("TTF_Init: %s\n", TTF_GetError());
+		return(1);
+	}
 	return (0);
 }
 
