@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:28:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/06 14:37:44 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/06 20:15:15 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,22 +124,56 @@ void arrow_move_input(t_wolf_3d *w, const Uint8 *keystates)
 
 void wall_light_input(t_wolf_3d *w, int *color)
 {
-	if (w->event.keystates[SDL_SCANCODE_L])
+	if (w->event.keystates[SDL_SCANCODE_K])
 		w->event.light1 = 0;
-	else if (w->event.keystates[SDL_SCANCODE_P])
+	else if (w->event.keystates[SDL_SCANCODE_L])
 		w->event.light1 = 1;
 	if (w->event.light1)
+	{
 		darken_wall_color(w, color);
+		if (w->event.keystates[SDL_SCANCODE_KP_PLUS])
+			w->event.darken_value = 3.5;
+		if (w->event.keystates[SDL_SCANCODE_KP_MINUS])
+			w->event.darken_value = 0.9;
+	}
 }
 
 void light_input(t_wolf_3d *w, int *color)
 {
-	if (w->event.keystates[SDL_SCANCODE_L])
+	if (w->event.keystates[SDL_SCANCODE_K])
 		w->event.light2 = 0;
-	else if (w->event.keystates[SDL_SCANCODE_P])
+	else if (w->event.keystates[SDL_SCANCODE_L])
 		w->event.light2 = 1;
 	if (w->event.light2)
+	{
 		darken_fall_color(w, color);
+		if (w->event.keystates[SDL_SCANCODE_KP_PLUS])
+			w->event.darken_value = 3.5;
+		if (w->event.keystates[SDL_SCANCODE_KP_MINUS])
+			w->event.darken_value = 0.9;
+	}
+}
+
+void tex_input(t_wolf_3d *w)
+{
+	if (w->event.keystates[SDL_SCANCODE_KP_1])
+	{
+		w->sdl.new_text[0] = (unsigned int *)w->sdl.wall1->pixels;
+		w->sdl.new_text[1] = (unsigned int *)w->sdl.wall2->pixels;
+		w->sdl.new_text[2] = (unsigned int *)w->sdl.wall3->pixels;
+		w->sdl.new_text[3] = (unsigned int *)w->sdl.wall4->pixels;
+		w->sdl.wall_data_ceiling = (unsigned int *)w->sdl.roof_texture1->pixels;
+		w->sdl.wall_data_floor = (unsigned int *)w->sdl.floor_texture1->pixels;
+	}
+	if (w->event.keystates[SDL_SCANCODE_KP_2])
+	{
+		w->sdl.new_text[0] = (unsigned int *)w->sdl.wall5->pixels;
+		w->sdl.new_text[1] = (unsigned int *)w->sdl.wall6->pixels;
+		w->sdl.new_text[2] = (unsigned int *)w->sdl.wall7->pixels;
+		w->sdl.new_text[3] = (unsigned int *)w->sdl.wall8->pixels;
+		w->sdl.wall_data_ceiling = (unsigned int *)w->sdl.roof_texture2->pixels;
+		w->sdl.wall_data_floor = (unsigned int *)w->sdl.floor_texture2->pixels;
+	}
 }
 
 void process_input(t_wolf_3d *w, int **world_map)
@@ -152,6 +186,7 @@ void process_input(t_wolf_3d *w, int **world_map)
 		w->game_running = 1;
 	if (w->event.keystates[SDL_SCANCODE_ESCAPE])
 		w->game_running = 1;
+	tex_input(w);
 	arrow_move_input(w, w->event.keystates);
 	key_down_input(w, w->event.keystates, world_map);
 	mouse_motion_input(w, &w->mousestates);

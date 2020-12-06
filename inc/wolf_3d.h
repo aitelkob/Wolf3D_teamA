@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/06 14:27:18 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/06 20:18:23 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,47 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <stdio.h>
-# define LAZZY "./pics/lazy.ttf"
+# define LAZZY "./fonts/lazy.ttf"
 # define PNG "./pics/2.png"
-# define MOSSY "./pics/mossy.png"
+
+# define MOLDYSTONE "./pics/moldystone.png"
+# define MOLDSTONE "./pics/moldstone.png"
+# define BLUECEILING "./pics/blueceiling.png"
+# define BLUEFLOOR "./pics/bluefloor.png"
+# define HITLERGREYSTONE "./pics/hitler_greystone.png"
 # define WOOD "./pics/wood.png"
-# define BROWNMOULD "./pics/brownmould1.bmp"
-# define GRAYSTONE "./pics/greystone.png"
+
+# define GREYBRICK "./pics/greybrick.png"
+# define GREYSTONE "./pics/greystone.png"
+# define GOLD_CUP "./pics/gold_cup.png"
+# define FLAG "./pics/flag.png"
+
+#define BLUEDEVIL "./pics/bluedevil.png"
+#define CAGEWALL "./pics/cagewall.png"
+#define BLUESTONE "./pics/bluestone.png"
+#define BLUELINE "./pics/blueline.png"
+
+# define BLUELINE "./pics/blueline.png"
 # define REDBRICK "./pics/redbrick.png"
 # define PURPLESTONE "./pics/purplestone.png"
 # define COLORSTONE "./pics/colorstone.png"
-# define BLUESTONE "./pics/bluestone.png"
 # define EAGLE "./pics/eagle.png"
+# define CUP "./pics/cup.png"
+
 # include "../SDL/SDL2.framework/Headers/SDL.h"
 # include "../SDL/SDL2_ttf.framework/Headers/SDL_ttf.h"
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
+
 # define WIDTH 900
 # define HEIGHT 900
 # define TEXT_W 64
 # define TEXT_H 64
 # define mapWidth 24
 # define mapHeight 24
-# define TRUE 1
-# define FALSE 0
 # define  MAP_NUM_ROWS  24
 # define  MAP_NUM_COLS  24
 # define  TILE_SIZE  64
 # define  MAP_SACLER  0.15
-# define TRUE 1
-# define FALSE 0
 
 typedef struct			s_point
 {
@@ -72,7 +85,7 @@ typedef struct			t_fps
 	float				delta_time;
 	int					last_frame_time;
 	double				frame_target;
-	int					fps;
+	// int					fps;
 	double				movespeed;
 	double				rotspeed;
 }						t_fps;
@@ -96,17 +109,23 @@ typedef struct			s_sdl
 	SDL_Surface         *wall3;
 	SDL_Surface         *wall4;
 	SDL_Surface         *wall5;
+	SDL_Surface         *wall6;
+	SDL_Surface         *wall7;
+	SDL_Surface         *wall8;
 	unsigned int		**new_text;
 	int					*wall_h;
 	SDL_Surface         *ceiling_texture;
-	SDL_Surface         *roof_texture;
-	SDL_Surface         *floor_texture;
-	unsigned int        *wall_data1;
-	unsigned int        *wall_data2;
-	unsigned int        *wall_data3;
-	unsigned int        *wall_data4;
+	SDL_Surface         *roof_texture1;
+	SDL_Surface         *floor_texture1;
+	SDL_Surface         *roof_texture2;
+	SDL_Surface         *floor_texture2;
+	// unsigned int        *wall_data1;
+	// unsigned int        *wall_data2;
+	// unsigned int        *wall_data3;
+	// unsigned int        *wall_data4;
 	unsigned int        *wall_data_tmp;
 	unsigned int		*wall_data_floor;
+	unsigned int		*wall_data_ceiling;
 	SDL_Surface			*txt_fps;
 	SDL_Rect			map;
 	SDL_Rect 			player;
@@ -131,6 +150,7 @@ typedef struct			s_event
 	const Uint8			*keystates;
 	int					light1;
 	int					light2;
+	double					darken_value;
 }						t_event;
 
 typedef	struct			s_ray
@@ -235,4 +255,5 @@ void	darken_fall_color(t_wolf_3d *w, int *color);
 void	wall_light_input(t_wolf_3d *w, int *color);
 void	light_input(t_wolf_3d *w, int *color);
 void	load_font(t_wolf_3d *w);
+void tex_input(t_wolf_3d *w);
 #endif
