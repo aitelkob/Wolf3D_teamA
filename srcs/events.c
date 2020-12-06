@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:28:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/06 14:28:33 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/06 14:37:44 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,30 +81,30 @@ void key_down_input(t_wolf_3d *w, const Uint8 *keystates, int **world_map)
 {
 	if (keystates[SDL_SCANCODE_A])
 	{
-		if (world_map[(int)(w->player.pos.x - (w->player.dir.y * w->fps.movespeed))][(int)w->player.pos.y] == 0)
+		if (world_map[(int)(w->player.pos.x - (w->player.dir.y * 8 * w->fps.movespeed))][(int)w->player.pos.y] == 0)
 			w->player.pos.x -= w->player.dir.y * w->fps.movespeed;
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.x * w->fps.movespeed))] == 0)
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.x * 8 * w->fps.movespeed))] == 0)
 			w->player.pos.y += w->player.dir.x * w->fps.movespeed;
 	}
 	if (keystates[SDL_SCANCODE_D])
 	{
-		if (world_map[(int)(w->player.pos.x + (w->player.dir.y * w->fps.movespeed))][(int)w->player.pos.y] == 0)
+		if (world_map[(int)(w->player.pos.x + (w->player.dir.y * 8 * w->fps.movespeed))][(int)w->player.pos.y] == 0)
 			w->player.pos.x += w->player.dir.y * w->fps.movespeed;
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - (w->player.dir.x * w->fps.movespeed))] == 0)
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - (w->player.dir.x * 8 * w->fps.movespeed))] == 0)
 			w->player.pos.y -= w->player.dir.x * w->fps.movespeed;
 	}
 	if (keystates[SDL_SCANCODE_W] || keystates[SDL_SCANCODE_UP])
 	{
-		if (world_map[(int)(w->player.pos.x + (w->player.dir.x * w->fps.movespeed))][(int)w->player.pos.y] == 0)
+		if (world_map[(int)(w->player.pos.x + (w->player.dir.x * 8 * w->fps.movespeed))][(int)w->player.pos.y] == 0)
 			w->player.pos.x += w->player.dir.x * w->fps.movespeed;
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.y * w->fps.movespeed))] == 0)
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.y * 8 * w->fps.movespeed))] == 0)
 			w->player.pos.y += w->player.dir.y * w->fps.movespeed;
 	}
 	if (keystates[SDL_SCANCODE_S] || keystates[SDL_SCANCODE_DOWN])
 	{
-		if (world_map[(int)(w->player.pos.x - w->player.dir.x * w->fps.movespeed)][(int)w->player.pos.y] == 0)
+		if (world_map[(int)(w->player.pos.x - w->player.dir.x * 8 * w->fps.movespeed)][(int)w->player.pos.y] == 0)
 			w->player.pos.x -= w->player.dir.x * w->fps.movespeed;
-		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - w->player.dir.y * w->fps.movespeed)] == 0)
+		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - w->player.dir.y * 8 * w->fps.movespeed)] == 0)
 			w->player.pos.y -= w->player.dir.y * w->fps.movespeed;
 	}
 	if (keystates[SDL_SCANCODE_R])
@@ -126,11 +126,8 @@ void wall_light_input(t_wolf_3d *w, int *color)
 {
 	if (w->event.keystates[SDL_SCANCODE_L])
 		w->event.light1 = 0;
-
-	if (w->event.keystates[SDL_SCANCODE_P])
-
+	else if (w->event.keystates[SDL_SCANCODE_P])
 		w->event.light1 = 1;
-
 	if (w->event.light1)
 		darken_wall_color(w, color);
 }
@@ -138,11 +135,8 @@ void wall_light_input(t_wolf_3d *w, int *color)
 void light_input(t_wolf_3d *w, int *color)
 {
 	if (w->event.keystates[SDL_SCANCODE_L])
-
 		w->event.light2 = 0;
-
-	if (w->event.keystates[SDL_SCANCODE_P])
-
+	else if (w->event.keystates[SDL_SCANCODE_P])
 		w->event.light2 = 1;
 	if (w->event.light2)
 		darken_fall_color(w, color);
