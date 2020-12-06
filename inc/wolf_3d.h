@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/05 23:49:53 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/06 14:27:18 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <pthread.h>
 # include <stdio.h>
 # define LAZZY "./pics/lazy.ttf"
-# define PNG "./pics/1.png"
+# define PNG "./pics/2.png"
 # define MOSSY "./pics/mossy.png"
 # define WOOD "./pics/wood.png"
 # define BROWNMOULD "./pics/brownmould1.bmp"
@@ -129,7 +129,8 @@ typedef struct			s_event
 	int					up_mouve;
 	int					down_mouve;
 	const Uint8			*keystates;
-	int					i;
+	int					light1;
+	int					light2;
 }						t_event;
 
 typedef	struct			s_ray
@@ -183,63 +184,55 @@ typedef struct			s_wolf_3d
 	int					texy;
 }						t_wolf_3d;
 /*
- *
- *
-*/
-/*
 	**	Outils
 */
-void					clear_data_tab(int    *tab);
-
-int						sdl_init_texture(t_wolf_3d	*w);
-int         			sdl_init_render(t_wolf_3d   *w);
-int						sdl_init_win(t_wolf_3d	*w);
-void					sdl_text_init(t_wolf_3d *w);
-void        font_fps(t_wolf_3d *w);
-/*
-	**	Main
-*/
-void        free_surface(t_wolf_3d *w);
-void					load_img(t_wolf_3d *w, const char *file);
-void					draw_cube(t_wolf_3d *w, int x_begin, int y_begin, int color);
-void					draw_map(t_wolf_3d *w);
-void					draw_map_3d(t_wolf_3d *w);
-void					game_engine(t_wolf_3d *w);
-void					calculate_plane_dir_x(t_wolf_3d *w, double rotation_speed);
-void					mouse_motion_input(t_wolf_3d *w, Uint32	*mousestates);
-void					step_taken(t_wolf_3d *w);
-void					key_down_input(t_wolf_3d *w, const Uint8 *keystates, int	**world_map);
-void					process_input(t_wolf_3d *w, int	**world_map);
-void					mouse_limitation(t_wolf_3d *w);
-void					fill_data_tab(t_wolf_3d *w, int x);
-void					detect_start_end(t_wolf_3d *w);
-void					dda_algorithm(t_wolf_3d *w);
-int         			**get_map(int **map, int fd, char    **av);
-void        mini_map(t_wolf_3d *w);
-void        image_clear(t_wolf_3d *wolf);
-void		player_inMini(t_wolf_3d *w);
-void        loadTexture(t_wolf_3d *wolf);
-void					process_input(t_wolf_3d *w, int	**world_map);
-void					init_perso(t_wolf_3d *w);
-void					show_error1();
-void					how_error2(char *str);
-void					show_error3();
-void show_error1();
-void					sdl_quit(t_wolf_3d *w);
-void		drawCube(t_wolf_3d *w, int x_begin, int y_begin, double scaler, int color);
-void		drawMap(t_wolf_3d *w);
-void		mini_player(t_wolf_3d *w);
-void    free_map(char **map, int n);
-void    free_map2(int **map, int n);
-void render(t_wolf_3d *w);
-void update(t_wolf_3d *w);
-void    clear_data_tab(int    *tab);
-int line_numb(char *argv);
-int ft_strlen_2_dim(char **tab);
-size_t check(int n, int i);
-int *values(char **tab, size_t len);
-int	darken_wall_color(t_wolf_3d *w, int color);
-int	normal_color(t_wolf_3d *w, int color);
-int	light_input(t_wolf_3d *w, int color);
-void    load_font(t_wolf_3d *w);
+void	clear_data_tab(int    *tab);
+int		sdl_init_texture(t_wolf_3d	*w);
+int		sdl_init_render(t_wolf_3d   *w);
+int		sdl_init_win(t_wolf_3d	*w);
+void	sdl_text_init(t_wolf_3d *w);
+void	font_fps(t_wolf_3d *w);
+void	free_surface(t_wolf_3d *w);
+void	load_img(t_wolf_3d *w, const char *file);
+void	draw_cube(t_wolf_3d *w, int x_begin, int y_begin, int color);
+void	draw_map(t_wolf_3d *w);
+void	draw_map_3d(t_wolf_3d *w);
+void	game_engine(t_wolf_3d *w);
+void	calculate_plane_dir_x(t_wolf_3d *w, double rotation_speed);
+void	mouse_motion_input(t_wolf_3d *w, Uint32	*mousestates);
+void	step_taken(t_wolf_3d *w);
+void	key_down_input(t_wolf_3d *w, const Uint8 *keystates, int	**world_map);
+void	process_input(t_wolf_3d *w, int	**world_map);
+void	mouse_limitation(t_wolf_3d *w);
+void	fill_data_tab(t_wolf_3d *w, int x);
+void	detect_start_end(t_wolf_3d *w);
+void	dda_algorithm(t_wolf_3d *w);
+int		**get_map(int **map, int fd, char    **av);
+void	mini_map(t_wolf_3d *w);
+void	image_clear(t_wolf_3d *wolf);
+void	player_inMini(t_wolf_3d *w);
+void	loadTexture(t_wolf_3d *wolf);
+void	process_input(t_wolf_3d *w, int	**world_map);
+void	init_perso(t_wolf_3d *w);
+void	show_error1();
+void	how_error2(char *str);
+void	show_error3();
+void	show_error1();
+void	sdl_quit(t_wolf_3d *w);
+void	drawCube(t_wolf_3d *w, int x_begin, int y_begin, double scaler, int color);
+void	drawMap(t_wolf_3d *w);
+void	mini_player(t_wolf_3d *w);
+void	free_map(char **map, int n);
+void	free_map2(int **map, int n);
+void	render(t_wolf_3d *w);
+void	update(t_wolf_3d *w);
+int 	line_numb(char *argv);
+int 	ft_strlen_2_dim(char **tab);
+size_t 	check(int n, int i);
+int 	*values(char **tab, size_t len);
+void	darken_wall_color(t_wolf_3d *w, int *color);
+void	darken_fall_color(t_wolf_3d *w, int *color);
+void	wall_light_input(t_wolf_3d *w, int *color);
+void	light_input(t_wolf_3d *w, int *color);
+void	load_font(t_wolf_3d *w);
 #endif

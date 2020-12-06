@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/12/05 22:23:09 by yait-el-         ###   ########.fr        #
+#    Updated: 2020/12/06 14:31:05 by ayagoumi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,6 @@ SRC 			+= sdl_init.c
 SRC				+= error.c
 SRC				+= free_wolf.c
 SRC				+= render.c
-SRC				+= maps.c
 #############################################
 LSDLDIR     = $(HOME)/.brew/Cellar/sdl2/2.0.12_1/lib
 LTTFDIR     = $(HOME)/.brew/Cellar/sdl2_ttf/2.0.15/lib

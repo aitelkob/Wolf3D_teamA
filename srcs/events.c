@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:28:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/05 18:59:48 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/06 14:28:33 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void mouse_limitation(t_wolf_3d *w)
 		w->event.newmouse.x = WIDTH / 2;
 		w->event.oldmouse.x = WIDTH / 2;
 	}
-	else if (w->event.newmouse.y >= HEIGHT - 5)
-		SDL_WarpMouseInWindow(w->sdl.win, w->event.oldmouse.x, HEIGHT - 6);
+	else if (w->event.newmouse.y >= HEIGHT - 50)
+		SDL_WarpMouseInWindow(w->sdl.win, w->event.oldmouse.x, HEIGHT - 60);
 }
 
 /*
@@ -93,14 +93,14 @@ void key_down_input(t_wolf_3d *w, const Uint8 *keystates, int **world_map)
 		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y - (w->player.dir.x * w->fps.movespeed))] == 0)
 			w->player.pos.y -= w->player.dir.x * w->fps.movespeed;
 	}
-	if (keystates[SDL_SCANCODE_W])
+	if (keystates[SDL_SCANCODE_W] || keystates[SDL_SCANCODE_UP])
 	{
 		if (world_map[(int)(w->player.pos.x + (w->player.dir.x * w->fps.movespeed))][(int)w->player.pos.y] == 0)
 			w->player.pos.x += w->player.dir.x * w->fps.movespeed;
 		if (world_map[(int)w->player.pos.x][(int)(w->player.pos.y + (w->player.dir.y * w->fps.movespeed))] == 0)
 			w->player.pos.y += w->player.dir.y * w->fps.movespeed;
 	}
-	if (keystates[SDL_SCANCODE_S])
+	if (keystates[SDL_SCANCODE_S] || keystates[SDL_SCANCODE_DOWN])
 	{
 		if (world_map[(int)(w->player.pos.x - w->player.dir.x * w->fps.movespeed)][(int)w->player.pos.y] == 0)
 			w->player.pos.x -= w->player.dir.x * w->fps.movespeed;
@@ -117,21 +117,35 @@ void key_down_input(t_wolf_3d *w, const Uint8 *keystates, int **world_map)
 void arrow_move_input(t_wolf_3d *w, const Uint8 *keystates)
 {
 	if (keystates[SDL_SCANCODE_LEFT])
-		calculate_plane_dir_x(w, 20 * (3.14 * w->fps.rotspeed) / 180.0);
+		calculate_plane_dir_x(w, 30 * (3.14 * w->fps.rotspeed) / 180.0);
 	if (keystates[SDL_SCANCODE_RIGHT])
-		calculate_plane_dir_x(w, -20 * (3.14 * w->fps.rotspeed) / 180.0);
+		calculate_plane_dir_x(w, -30 * (3.14 * w->fps.rotspeed) / 180.0);
 }
 
-int light_input(t_wolf_3d *w, int color)
+void wall_light_input(t_wolf_3d *w, int *color)
 {
 	if (w->event.keystates[SDL_SCANCODE_L])
-		w->event.i = 0;
-	if (w->event.keystates[SDL_SCANCODE_P])
-		w->event.i = 1;
-	if (w->event.i)
-		color = darken_wall_color(w, color);
+		w->event.light1 = 0;
 
-	return (color);
+	if (w->event.keystates[SDL_SCANCODE_P])
+
+		w->event.light1 = 1;
+
+	if (w->event.light1)
+		darken_wall_color(w, color);
+}
+
+void light_input(t_wolf_3d *w, int *color)
+{
+	if (w->event.keystates[SDL_SCANCODE_L])
+
+		w->event.light2 = 0;
+
+	if (w->event.keystates[SDL_SCANCODE_P])
+
+		w->event.light2 = 1;
+	if (w->event.light2)
+		darken_fall_color(w, color);
 }
 
 void process_input(t_wolf_3d *w, int **world_map)

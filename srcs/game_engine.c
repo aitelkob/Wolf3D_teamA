@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/05 23:02:41 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/06 14:26:24 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,12 @@ void dda_algorithm(t_wolf_3d *w)
 							  w->ray.raydir.y;
 }
 
-int darken_wall_color(t_wolf_3d *w, int color)
+void darken_wall_color(t_wolf_3d *w, int *color)
 {
 	unsigned char *p;
 	int n;
 
-	p = (unsigned char *)&color;
+	p = (unsigned char *)color;
 	p[3] = 0;
 	n = (w->ray.perpWallDist * 0.9);
 	if (n == 0)
@@ -111,7 +111,6 @@ int darken_wall_color(t_wolf_3d *w, int color)
 	p[1] = p[1] / n;
 	p[2] = p[2] / n;
 	p[0] = p[0] / n;
-	return (color);
 }
 
 /*
@@ -147,11 +146,27 @@ void wall_texture(t_wolf_3d *wolf, int x, int start, int end)
 		wolf->texy = ((start - wolf->event.down_mouve) * 2 - HEIGHT +
 					  wolf->ray.lineHeight) *
 					 (TEXT_H / 2) / wolf->ray.lineHeight;
-		color = light_input(wolf, wolf->sdl.new_text[wolf->wallnbr][wolf->texy * TEXT_H + wolf->texx]);
+		color = wolf->sdl.new_text[wolf->wallnbr][wolf->texy * TEXT_H + wolf->texx];
+		wall_light_input(wolf, &color);
 		if (start < HEIGHT && start >= 0)
 			wolf->data[start * WIDTH + x] = color;
 		start++;
 	}
+}
+
+void darken_fall_color(t_wolf_3d *w, int *color)
+{
+	unsigned char *p;
+	int n;
+
+	p = (unsigned char *)color;
+	p[3] = 0;
+	n = (w->rowDistance * 0.9);
+	if (n == 0)
+		n = 1;
+	p[1] = p[1] / n;
+	p[2] = p[2] / n;
+	p[0] = p[0] / n;
 }
 
 void Texture_Floor(t_wolf_3d *w)
@@ -194,7 +209,8 @@ void Texture_Floor(t_wolf_3d *w)
 			w->texy2 = (int)(TEXT_H * (w->floorY - w->cellY)) & (TEXT_H - 1);
 			w->floorX += w->floorStepX;
 			w->floorY += w->floorStepY;
-			color = light_input(w,w->sdl.new_text[0][TEXT_W * w->texx2 + w->texy2]) ;
+			color = w->sdl.new_text[0][TEXT_W * w->texx2 + w->texy2];
+			light_input(w,&color);
 			// darken_color_floor_ceiling(w, &color);
 			//floor
 			if ((y) >= 0 && (y) < HEIGHT)
@@ -245,7 +261,8 @@ void Texture_cling(t_wolf_3d *w)
 			w->texy2 = (int)(TEXT_H * (w->floorY - w->cellY)) & (TEXT_H - 1);
 			w->floorX += w->floorStepX;
 			w->floorY += w->floorStepY;
-			color = light_input(w,w->sdl.wall_data_floor[TEXT_W * w->texx2 + w->texy2]) ;
+			color = w->sdl.wall_data_floor[TEXT_W * w->texx2 + w->texy2];
+			light_input(w, &color);
 			//floor
 			if (y < HEIGHT)
 				w->data[WIDTH * y + x] = color;

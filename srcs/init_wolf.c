@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/06 00:40:21 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/06 14:25:52 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,11 @@ void init_perso(t_wolf_3d *w)
 {
 	player_start(w);
 	load_img(w, PNG);
-
-	w->event.i = 0;
+	SDL_WarpMouseInWindow(w->sdl.win, (WIDTH / 2), (HEIGHT / 2));
+	w->data = malloc(sizeof(int) * (WIDTH * HEIGHT));
+	w->sdl.font = TTF_OpenFont(LAZZY, 25);
+	w->event.light1 = 0;
+	w->event.light2 = 0;
 	w->player.dir.x = -1;
 	w->player.dir.y = 0;
 	w->player.with = 20;
@@ -60,15 +63,10 @@ void init_perso(t_wolf_3d *w)
 	w->player.plane.x = 0;
 	w->player.plane.y = 0.57;
 	w->fps.fps = 30;
-	w->fps.frame_target = 1000 / w->fps.fps;
-	w->fps.last_frame_time = 0;
 	w->dst.w = 100;
 	w->dst.h = 100;
-	SDL_WarpMouseInWindow(w->sdl.win, (WIDTH / 2), (HEIGHT / 2));
 	w->dst.x = (WIDTH / 2) - (w->dst.w / 2);
 	w->dst.y = (HEIGHT / 2) - (w->dst.h / 2);
-	w->data = malloc(sizeof(int) * (WIDTH * HEIGHT));
-	w->sdl.font = TTF_OpenFont(LAZZY, 25);
 	w->sdl.color.r = 255;
 	w->sdl.color.g = 255;
 	w->sdl.color.b = 0;
@@ -108,11 +106,8 @@ void load_img(t_wolf_3d *w, const char *file)
 	w->sdl.new_text[3] = (unsigned int*)w->sdl.wall4->pixels;
 	w->sdl.new_text[4] = (unsigned int*)w->sdl.wall5->pixels;
 	w->sdl.new_text[5] = (unsigned int*)w->sdl.wall->pixels;
-
 	w->sdl.wall_data_tmp = (unsigned int*)w->sdl.wall3->pixels;
-
 	w->sdl.wall_data_floor = (unsigned int*)w->sdl.wall2->pixels;
-
 	if (!w->sdl.cur_tex)
 		return;
 }

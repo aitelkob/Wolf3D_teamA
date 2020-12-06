@@ -6,13 +6,13 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:47:25 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/04 23:49:53 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/06 14:30:34 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../inc/wolf_3d.h"
 
-void		image_clear(t_wolf_3d *wolf)
+void		image_clear(t_wolf_3d *w)
 {
 	int x;
 	int j;
@@ -23,7 +23,7 @@ void		image_clear(t_wolf_3d *wolf)
 		j = 0;
 		while (j < HEIGHT)
 		{
-			wolf->data[(WIDTH * j) + x] = 0;
+			w->data[(WIDTH * j) + x] = 0;
 			j++;
 		}
 		x++;

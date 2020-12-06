@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yait-el- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 02:19:41 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/06 00:36:44 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/06 14:29:00 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,8 @@ void update(t_wolf_3d *w)
     while (!SDL_TICKS_PASSED(SDL_GetTicks(), (w->fps.last_frame_time + w->fps.frame_target)));
     w->fps.delta_time = (SDL_GetTicks() - w->fps.last_frame_time) / 1000.0f;
     w->fps.last_frame_time = SDL_GetTicks();
-    w->fps.movespeed = 3 * w->fps.delta_time;
+    w->fps.movespeed = 2 * w->fps.delta_time;
     w->fps.rotspeed = 2 * w->fps.delta_time;
-}
-
-void        imga_copy(t_wolf_3d *w)
-{
-    SDL_UpdateTexture(w->sdl.texture, NULL, w->data, WIDTH * sizeof(int));
-    SDL_RenderCopy(w->sdl.renderer, w->sdl.texture, NULL, NULL);
 }
 
 void render(t_wolf_3d *w)
@@ -33,11 +27,12 @@ void render(t_wolf_3d *w)
     SDL_RenderClear(w->sdl.renderer);
 
     draw_map_3d(w);
-    imga_copy(w);
+    SDL_UpdateTexture(w->sdl.texture, NULL, w->data, WIDTH * sizeof(int));
+    SDL_RenderCopy(w->sdl.renderer, w->sdl.texture, NULL, NULL);
     image_clear(w);
     mini_map(w);
     mini_player(w);
-	 load_font(w);
+	load_font(w);
+    SDL_RenderCopy(w->sdl.renderer, w->sdl.cur_tex, NULL, &w->dst);
     SDL_RenderPresent(w->sdl.renderer);
 }
-
