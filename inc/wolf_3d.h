@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/06 20:18:23 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/07 20:37:04 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,26 @@
 # include <pthread.h>
 # include <stdio.h>
 # define LAZZY "./fonts/lazy.ttf"
-# define PNG "./pics/2.png"
+# define CUR "./resources/cursor.png"
 
-# define MOLDYSTONE "./pics/moldystone.png"
-# define MOLDSTONE "./pics/moldstone.png"
-# define BLUECEILING "./pics/blueceiling.png"
-# define BLUEFLOOR "./pics/bluefloor.png"
-# define HITLERGREYSTONE "./pics/hitler_greystone.png"
-# define WOOD "./pics/wood.png"
-
-# define GREYBRICK "./pics/greybrick.png"
-# define GREYSTONE "./pics/greystone.png"
-# define GOLD_CUP "./pics/gold_cup.png"
-# define FLAG "./pics/flag.png"
-
-#define BLUEDEVIL "./pics/bluedevil.png"
-#define CAGEWALL "./pics/cagewall.png"
-#define BLUESTONE "./pics/bluestone.png"
-#define BLUELINE "./pics/blueline.png"
-
-# define BLUELINE "./pics/blueline.png"
-# define REDBRICK "./pics/redbrick.png"
-# define PURPLESTONE "./pics/purplestone.png"
-# define COLORSTONE "./pics/colorstone.png"
-# define EAGLE "./pics/eagle.png"
-# define CUP "./pics/cup.png"
-
+# define SKY "./resources/Track#1/sky1.png"
+# define BARK "./resources/Track#1/bark.png"
+# define FRAME1 "./resources/Track#1/frame.png"
+# define FRAME2 "./resources/Track#1/frame2.png"
+# define FRAME3 "./resources/Track#1/frame3.png"
+# define FRAME4 "./resources/Track#1/frame4.png"
+# define SKY2 "./resources/Track#2/sky2.png"
+# define MOLDSTONE "./resources/Track#2/moldstone.png"
+# define HITLERGREYSTONE "./resources/Track#2/hitler_greystone.png"
+# define GREYSTONE "./resources/Track#2/greystone.png"
+# define GOLD_CUP "./resources/Track#2/gold_cup.png"
+# define FLAG "./resources/Track#2/flag.png"
+# define SKY3 "./resources/Track#3/sky3.png"
+# define BLUEFLOOR "./resources/Track#3/bluefloor.png"
+#define BLUEDEVIL "./resources/Track#3/bluedevil.png"
+#define CAGEWALL "./resources/Track#3/cagewall.png"
+#define BLUESTONE "./resources/Track#3/bluestone.png"
+#define BLUELINE "./resources/Track#3/blueline.png"
 # include "../SDL/SDL2.framework/Headers/SDL.h"
 # include "../SDL/SDL2_ttf.framework/Headers/SDL_ttf.h"
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
@@ -112,17 +106,20 @@ typedef struct			s_sdl
 	SDL_Surface         *wall6;
 	SDL_Surface         *wall7;
 	SDL_Surface         *wall8;
+	SDL_Surface         *wall9;
+	SDL_Surface         *wall10;
+	SDL_Surface         *wall11;
+	SDL_Surface         *wall12;
+	int					ceiling_tex;
 	unsigned int		**new_text;
-	int					*wall_h;
-	SDL_Surface         *ceiling_texture;
 	SDL_Surface         *roof_texture1;
-	SDL_Surface         *floor_texture1;
 	SDL_Surface         *roof_texture2;
+	SDL_Surface         *roof_texture3;
+	SDL_Surface         *floor_texture1;
 	SDL_Surface         *floor_texture2;
-	// unsigned int        *wall_data1;
-	// unsigned int        *wall_data2;
-	// unsigned int        *wall_data3;
-	// unsigned int        *wall_data4;
+	SDL_Surface         *floor_texture3;
+	SDL_Surface         *ceiling_texture;
+	int					*wall_h;
 	unsigned int        *wall_data_tmp;
 	unsigned int		*wall_data_floor;
 	unsigned int		*wall_data_ceiling;
@@ -213,7 +210,7 @@ int		sdl_init_win(t_wolf_3d	*w);
 void	sdl_text_init(t_wolf_3d *w);
 void	font_fps(t_wolf_3d *w);
 void	free_surface(t_wolf_3d *w);
-void	load_img(t_wolf_3d *w, const char *file);
+void	load_img(t_wolf_3d *w);
 void	draw_cube(t_wolf_3d *w, int x_begin, int y_begin, int color);
 void	draw_map(t_wolf_3d *w);
 void	draw_map_3d(t_wolf_3d *w);

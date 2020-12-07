@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:28:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/06 20:15:15 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/07 16:56:39 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void mouse_motion_input(t_wolf_3d *w, Uint32 *mousestates)
 		w->event.up_mouve = -(w->event.newmouse.y - w->event.oldmouse.y);
 		w->event.down_mouve = -(w->event.newmouse.y - w->event.oldmouse.y);
 	}
-	if ((w->event.oldmouse.x != w->event.newmouse.x))
+	if (w->event.oldmouse.x != w->event.newmouse.x)
 		w->event.oldmouse.x = w->event.newmouse.x;
 }
 
@@ -140,9 +140,9 @@ void wall_light_input(t_wolf_3d *w, int *color)
 
 void light_input(t_wolf_3d *w, int *color)
 {
-	if (w->event.keystates[SDL_SCANCODE_K])
+	if (w->event.keystates[SDL_SCANCODE_K] && w->sdl.ceiling_tex != 1)
 		w->event.light2 = 0;
-	else if (w->event.keystates[SDL_SCANCODE_L])
+	else if (w->event.keystates[SDL_SCANCODE_L] && w->sdl.ceiling_tex != 1)
 		w->event.light2 = 1;
 	if (w->event.light2)
 	{
@@ -156,8 +156,10 @@ void light_input(t_wolf_3d *w, int *color)
 
 void tex_input(t_wolf_3d *w)
 {
+
 	if (w->event.keystates[SDL_SCANCODE_KP_1])
 	{
+		w->sdl.ceiling_tex = 1;
 		w->sdl.new_text[0] = (unsigned int *)w->sdl.wall1->pixels;
 		w->sdl.new_text[1] = (unsigned int *)w->sdl.wall2->pixels;
 		w->sdl.new_text[2] = (unsigned int *)w->sdl.wall3->pixels;
@@ -167,12 +169,23 @@ void tex_input(t_wolf_3d *w)
 	}
 	if (w->event.keystates[SDL_SCANCODE_KP_2])
 	{
+		w->sdl.ceiling_tex = 2;
 		w->sdl.new_text[0] = (unsigned int *)w->sdl.wall5->pixels;
 		w->sdl.new_text[1] = (unsigned int *)w->sdl.wall6->pixels;
 		w->sdl.new_text[2] = (unsigned int *)w->sdl.wall7->pixels;
 		w->sdl.new_text[3] = (unsigned int *)w->sdl.wall8->pixels;
 		w->sdl.wall_data_ceiling = (unsigned int *)w->sdl.roof_texture2->pixels;
 		w->sdl.wall_data_floor = (unsigned int *)w->sdl.floor_texture2->pixels;
+	}
+	if (w->event.keystates[SDL_SCANCODE_KP_3])
+	{
+		w->sdl.ceiling_tex = 3;
+		w->sdl.new_text[0] = (unsigned int *)w->sdl.wall9->pixels;
+		w->sdl.new_text[1] = (unsigned int *)w->sdl.wall10->pixels;
+		w->sdl.new_text[2] = (unsigned int *)w->sdl.wall11->pixels;
+		w->sdl.new_text[3] = (unsigned int *)w->sdl.wall12->pixels;
+		w->sdl.wall_data_ceiling = (unsigned int *)w->sdl.roof_texture3->pixels;
+		w->sdl.wall_data_floor = (unsigned int *)w->sdl.floor_texture3->pixels;
 	}
 }
 

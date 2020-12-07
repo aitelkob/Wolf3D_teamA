@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/06 18:51:09 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/07 19:26:33 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,4 +326,7 @@ void draw_map_3d(t_wolf_3d *w)
 		wall_texture(w, x, w->ray.draw.start, w->ray.draw.end);
 		x++;
 	}
+	w->sdl.cur = IMG_Load(CUR);
+	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer,
+												  w->sdl.cur);
 }

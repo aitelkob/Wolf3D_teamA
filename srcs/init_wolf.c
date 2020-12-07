@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/06 20:52:01 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/07 19:52:51 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,31 +102,31 @@ void init_perso(t_wolf_3d *w)
 // 	fps_show = NULL;
 // }
 
-void load_img(t_wolf_3d *w, const char *file)
+void load_img(t_wolf_3d *w)
 {
-	w->sdl.cur = IMG_Load(file);
-	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer,
-												  w->sdl.cur);
-	w->sdl.cur = IMG_Load(PNG);
-	w->sdl.roof_texture1 = IMG_Load(MOLDYSTONE);
-	w->sdl.floor_texture1 = IMG_Load(MOLDSTONE);
-	w->sdl.roof_texture2 = IMG_Load(BLUECEILING);
-	w->sdl.floor_texture2 = IMG_Load(BLUEFLOOR);
-	w->sdl.wall1 = IMG_Load(GREYSTONE);
-	w->sdl.wall2 = IMG_Load(GOLD_CUP);
-	w->sdl.wall3 = IMG_Load(FLAG);
-	w->sdl.wall4 = IMG_Load(HITLERGREYSTONE);
-	w->sdl.wall5 = IMG_Load(BLUEDEVIL);
-	w->sdl.wall6 = IMG_Load(CAGEWALL);
-	w->sdl.wall7 = IMG_Load(BLUESTONE);
-	w->sdl.wall8 = IMG_Load(BLUELINE);
-	w->sdl.new_text = malloc(sizeof(unsigned int *) * 5);
+	w->sdl.roof_texture1 = IMG_Load(SKY);
+	w->sdl.floor_texture1 = IMG_Load(BARK);
+	w->sdl.wall1 = IMG_Load(FRAME1);
+	w->sdl.wall2 = IMG_Load(FRAME2);
+	w->sdl.wall3 = IMG_Load(FRAME3);
+	w->sdl.wall4 = IMG_Load(FRAME4);
+	w->sdl.roof_texture2 = IMG_Load(SKY2);
+	w->sdl.floor_texture2 = IMG_Load(MOLDSTONE);
+	w->sdl.wall5 = IMG_Load(GREYSTONE);
+	w->sdl.wall6 = IMG_Load(GOLD_CUP);
+	w->sdl.wall7 = IMG_Load(FLAG);
+	w->sdl.wall8 = IMG_Load(HITLERGREYSTONE);
+	w->sdl.floor_texture3 = IMG_Load(BLUEFLOOR);
+	w->sdl.roof_texture3 = IMG_Load(SKY3);
+	w->sdl.wall9 = IMG_Load(BLUEDEVIL);
+	w->sdl.wall10 = IMG_Load(CAGEWALL);
+	w->sdl.wall11 = IMG_Load(BLUESTONE);
+	w->sdl.wall12 = IMG_Load(BLUELINE);
+	w->sdl.new_text = malloc(sizeof(unsigned int *) * 4);
 	w->sdl.new_text[0] = (unsigned int *)w->sdl.wall1->pixels;
 	w->sdl.new_text[1] = (unsigned int *)w->sdl.wall2->pixels;
 	w->sdl.new_text[2] = (unsigned int *)w->sdl.wall3->pixels;
 	w->sdl.new_text[3] = (unsigned int *)w->sdl.wall4->pixels;
 	w->sdl.wall_data_ceiling = (unsigned int *)w->sdl.roof_texture1->pixels;
 	w->sdl.wall_data_floor = (unsigned int *)w->sdl.floor_texture1->pixels;
-	if (!w->sdl.cur_tex)
-		return;
 }

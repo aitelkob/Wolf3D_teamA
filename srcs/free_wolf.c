@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 01:41:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/06 20:16:45 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/07 16:23:32 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,16 @@ void		free_surface(t_wolf_3d *w)
 	SDL_FreeSurface(w->sdl.wall6);
 	SDL_FreeSurface(w->sdl.wall7);
 	SDL_FreeSurface(w->sdl.wall8);
+	SDL_FreeSurface(w->sdl.wall9);
+	SDL_FreeSurface(w->sdl.wall10);
+	SDL_FreeSurface(w->sdl.wall11);
+	SDL_FreeSurface(w->sdl.wall12);
 	SDL_FreeSurface(w->sdl.roof_texture1);
 	SDL_FreeSurface(w->sdl.floor_texture1);
 	SDL_FreeSurface(w->sdl.roof_texture2);
 	SDL_FreeSurface(w->sdl.floor_texture2);
+	SDL_FreeSurface(w->sdl.roof_texture3);
+	SDL_FreeSurface(w->sdl.floor_texture3);
 }
 
 void		sdl_quit(t_wolf_3d *w)

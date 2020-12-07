@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/06 20:31:49 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/07 19:25:35 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		main(int ac, char **av)
 	if (ac == 2)
 	{
 		w = malloc(sizeof(t_wolf_3d));
-		load_img(w, PNG);
+		load_img(w);
 		load_map(w, av);
 		w->game_running = sdl_init_win(w);
 		init_perso(w);
