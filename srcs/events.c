@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:28:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/07 16:56:39 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/07 20:51:44 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,9 +140,9 @@ void wall_light_input(t_wolf_3d *w, int *color)
 
 void light_input(t_wolf_3d *w, int *color)
 {
-	if (w->event.keystates[SDL_SCANCODE_K] && w->sdl.ceiling_tex != 1)
+	if (w->event.keystates[SDL_SCANCODE_K])
 		w->event.light2 = 0;
-	else if (w->event.keystates[SDL_SCANCODE_L] && w->sdl.ceiling_tex != 1)
+	else if (w->event.keystates[SDL_SCANCODE_L])
 		w->event.light2 = 1;
 	if (w->event.light2)
 	{
@@ -159,7 +159,6 @@ void tex_input(t_wolf_3d *w)
 
 	if (w->event.keystates[SDL_SCANCODE_KP_1])
 	{
-		w->sdl.ceiling_tex = 1;
 		w->sdl.new_text[0] = (unsigned int *)w->sdl.wall1->pixels;
 		w->sdl.new_text[1] = (unsigned int *)w->sdl.wall2->pixels;
 		w->sdl.new_text[2] = (unsigned int *)w->sdl.wall3->pixels;
@@ -169,7 +168,6 @@ void tex_input(t_wolf_3d *w)
 	}
 	if (w->event.keystates[SDL_SCANCODE_KP_2])
 	{
-		w->sdl.ceiling_tex = 2;
 		w->sdl.new_text[0] = (unsigned int *)w->sdl.wall5->pixels;
 		w->sdl.new_text[1] = (unsigned int *)w->sdl.wall6->pixels;
 		w->sdl.new_text[2] = (unsigned int *)w->sdl.wall7->pixels;
@@ -179,7 +177,6 @@ void tex_input(t_wolf_3d *w)
 	}
 	if (w->event.keystates[SDL_SCANCODE_KP_3])
 	{
-		w->sdl.ceiling_tex = 3;
 		w->sdl.new_text[0] = (unsigned int *)w->sdl.wall9->pixels;
 		w->sdl.new_text[1] = (unsigned int *)w->sdl.wall10->pixels;
 		w->sdl.new_text[2] = (unsigned int *)w->sdl.wall11->pixels;
