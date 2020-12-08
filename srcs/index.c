@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:23:04 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/08 20:46:04 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/08 20:48:30 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void main_page(t_wolf_3d *w, int *i)
                     w->sdl.new_text[2] = (unsigned int *)w->sdl.wall11->pixels;
                     w->sdl.new_text[3] = (unsigned int *)w->sdl.wall12->pixels;
                 }
-                else if (((w->event.newmouse.x >= 344 && w->event.newmouse.y >= 742) && (w->event.newmouse.x <= 558 && w->event.newmouse.y <= 806)) && w->sdl.page == 2)
+                else if (((w->event.newmouse.x >= 344 && w->event.newmouse.y >= 742) && (w->event.newmouse.x <= 558 && w->event.newmouse.y <= 806)) && w->sdl.page == 3)
                     w->game_running = 1;
             }
         }
