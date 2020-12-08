@@ -20,4 +20,4 @@ norminette
 **********>>>Norminette :   srcs/tex_input.c ✔️
 **********>>>Norminette :   srcs/key_down_input.c ✔️
 **********>>>Norminette :   srcs/mouse.c ✔️ 
-**********>>>Norminette :   int/wolf_3d.h ❌  -----> beeeeazzf deyal unixcase (7iyd magiscule)
+**********>>>Norminette :   int/wolf_3d.h ❌  -----> beeeeazzf deyal unixcase (7iyd upper case)
