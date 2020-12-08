@@ -6,16 +6,16 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:47:25 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/07 19:19:42 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/08 04:51:57 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/wolf_3d.h"
+#include "../inc/wolf_3d.h"
 
 void		image_clear(t_wolf_3d *w)
 {
-	int x;
-	int j;
+	int		x;
+	int		j;
 
 	x = 0;
 	while (x < WIDTH)

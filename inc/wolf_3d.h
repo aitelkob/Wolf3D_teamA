@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/07 20:51:58 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/08 04:13:32 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@
 # define FLAG "./resources/Track#2/flag.png"
 # define SKY3 "./resources/Track#3/sky3.png"
 # define BLUEFLOOR "./resources/Track#3/bluefloor.png"
-#define BLUEDEVIL "./resources/Track#3/bluedevil.png"
-#define CAGEWALL "./resources/Track#3/cagewall.png"
-#define BLUESTONE "./resources/Track#3/bluestone.png"
-#define BLUELINE "./resources/Track#3/blueline.png"
+# define BLUEDEVIL "./resources/Track#3/bluedevil.png"
+# define CAGEWALL "./resources/Track#3/cagewall.png"
+# define BLUESTONE "./resources/Track#3/bluestone.png"
+# define BLUELINE "./resources/Track#3/blueline.png"
 # include "../SDL/SDL2.framework/Headers/SDL.h"
 # include "../SDL/SDL2_ttf.framework/Headers/SDL_ttf.h"
 # include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
@@ -51,10 +51,10 @@
 # define TEXT_H 64
 # define mapWidth 24
 # define mapHeight 24
-# define  MAP_NUM_ROWS  24
-# define  MAP_NUM_COLS  24
-# define  TILE_SIZE  64
-# define  MAP_SACLER  0.15
+# define MAP_NUM_ROWS  24
+# define MAP_NUM_COLS  24
+# define TILE_SIZE  64
+# define MAP_SACLER  0.15
 
 typedef struct			s_point
 {
@@ -74,7 +74,7 @@ typedef struct			s_walls
 	int					end;
 }						t_walls;
 
-typedef struct			t_fps
+typedef struct			s_fps
 {
 	float				delta_time;
 	int					last_frame_time;
@@ -96,36 +96,37 @@ typedef struct			s_sdl
 	SDL_Texture			*msg;
 	SDL_Rect			*rect_msg;
 	SDL_Texture			*cur_tex;
-	SDL_Surface			*Font;
+	SDL_Surface			*font1;
 	SDL_Surface			*wall;
-	SDL_Surface         *wall1;
-	SDL_Surface         *wall2;
-	SDL_Surface         *wall3;
-	SDL_Surface         *wall4;
-	SDL_Surface         *wall5;
-	SDL_Surface         *wall6;
-	SDL_Surface         *wall7;
-	SDL_Surface         *wall8;
-	SDL_Surface         *wall9;
-	SDL_Surface         *wall10;
-	SDL_Surface         *wall11;
-	SDL_Surface         *wall12;
+	SDL_Surface			*wall1;
+	SDL_Surface			*wall2;
+	SDL_Surface			*wall3;
+	SDL_Surface			*wall4;
+	SDL_Surface			*wall5;
+	SDL_Surface			*wall6;
+	SDL_Surface			*wall7;
+	SDL_Surface			*wall8;
+	SDL_Surface			*wall9;
+	SDL_Surface			*wall10;
+	SDL_Surface			*wall11;
+	SDL_Surface			*wall12;
 	int					ceiling_tex;
 	unsigned int		**new_text;
-	SDL_Surface         *roof_texture1;
-	SDL_Surface         *roof_texture2;
-	SDL_Surface         *roof_texture3;
-	SDL_Surface         *floor_texture1;
-	SDL_Surface         *floor_texture2;
-	SDL_Surface         *floor_texture3;
-	SDL_Surface         *ceiling_texture;
+	SDL_Surface			*roof_texture1;
+	SDL_Surface			*roof_texture2;
+	SDL_Surface			*roof_texture3;
+	SDL_Surface			*floor_texture1;
+	SDL_Surface			*floor_texture2;
+	SDL_Surface			*floor_texture3;
+	SDL_Surface			*ceiling_texture;
 	int					*wall_h;
-	unsigned int        *wall_data_tmp;
+	unsigned int		*wall_data_tmp;
 	unsigned int		*wall_data_floor;
 	unsigned int		*wall_data_ceiling;
 	SDL_Surface			*txt_fps;
 	SDL_Rect			map;
-	SDL_Rect 			player;
+	SDL_Rect			player;
+	SDL_Rect			dstrect;
 }						t_sdl;
 
 typedef struct			s_player
@@ -147,13 +148,13 @@ typedef struct			s_event
 	const Uint8			*keystates;
 	int					light1;
 	int					light2;
-	double					darken_value;
+	double				darken_value;
 }						t_event;
 
 typedef	struct			s_ray
 {
-    int         		color;
-	double      		cameraX;
+	int					color;
+	double				cameraX;
 	double				perpWallDist;
 	int					hit;
 	int					side;
@@ -177,17 +178,16 @@ typedef struct			s_wolf_3d
 	t_event				event;
 	t_fps				fps;
 	Uint32				mousestates;
-	t_coord				texture[8]; 
+	t_coord				texture[8];
 	SDL_Rect			dst;
 	int					wallnbr;
 	int					texture_index;
 	double				wallx;
 	int					texx2;
 	int					texy2;
-    int					*data;
+	int					*data;
 	double				oldDirX;
 	double				oldplaneX;
-	////////// flor texture
 	int					p;
 	double				posZ;
 	double				rowDistance;
@@ -203,54 +203,59 @@ typedef struct			s_wolf_3d
 /*
 	**	Outils
 */
-void	clear_data_tab(int    *tab);
-int		sdl_init_texture(t_wolf_3d	*w);
-int		sdl_init_render(t_wolf_3d   *w);
-int		sdl_init_win(t_wolf_3d	*w);
-void	sdl_text_init(t_wolf_3d *w);
-void	font_fps(t_wolf_3d *w);
-void	free_surface(t_wolf_3d *w);
-void	load_img(t_wolf_3d *w);
-void	draw_cube(t_wolf_3d *w, int x_begin, int y_begin, int color);
-void	draw_map(t_wolf_3d *w);
-void	draw_map_3d(t_wolf_3d *w);
-void	game_engine(t_wolf_3d *w);
-void	calculate_plane_dir_x(t_wolf_3d *w, double rotation_speed);
-void	mouse_motion_input(t_wolf_3d *w, Uint32	*mousestates);
-void	step_taken(t_wolf_3d *w);
-void	key_down_input(t_wolf_3d *w, const Uint8 *keystates, int	**world_map);
-void	process_input(t_wolf_3d *w, int	**world_map);
-void	mouse_limitation(t_wolf_3d *w);
-void	fill_data_tab(t_wolf_3d *w, int x);
-void	detect_start_end(t_wolf_3d *w);
-void	dda_algorithm(t_wolf_3d *w);
-int		**get_map(int **map, int fd, char    **av);
-void	mini_map(t_wolf_3d *w);
-void	image_clear(t_wolf_3d *wolf);
-void	player_inMini(t_wolf_3d *w);
-void	loadTexture(t_wolf_3d *wolf);
-void	process_input(t_wolf_3d *w, int	**world_map);
-void	init_perso(t_wolf_3d *w);
-void	show_error1();
-void	how_error2(char *str);
-void	show_error3();
-void	show_error1();
-void	sdl_quit(t_wolf_3d *w);
-void	drawCube(t_wolf_3d *w, int x_begin, int y_begin, double scaler, int color);
-void	drawMap(t_wolf_3d *w);
-void	mini_player(t_wolf_3d *w);
-void	free_map(char **map, int n);
-void	free_map2(int **map, int n);
-void	render(t_wolf_3d *w);
-void	update(t_wolf_3d *w);
-int 	line_numb(char *argv);
-int 	ft_strlen_2_dim(char **tab);
-size_t 	check(int n, int i);
-int 	*values(char **tab, size_t len);
-void	darken_wall_color(t_wolf_3d *w, int *color);
-void	darken_fall_color(t_wolf_3d *w, int *color);
-void	wall_light_input(t_wolf_3d *w, int *color);
-void	light_input(t_wolf_3d *w, int *color);
-void	load_font(t_wolf_3d *w);
-void tex_input(t_wolf_3d *w);
+void					clear_data_tab(int *tab);
+int						sdl_init_texture(t_wolf_3d *w);
+int						sdl_init_render(t_wolf_3d *w);
+int						sdl_init_win(t_wolf_3d *w);
+void					sdl_text_init(t_wolf_3d *w);
+void					font_fps(t_wolf_3d *w);
+void					free_surface(t_wolf_3d *w);
+void					load_img(t_wolf_3d *w);
+void					draw_cube(t_wolf_3d *w, int x_begin,
+		int y_begin, int color);
+void					draw_map(t_wolf_3d *w);
+void					draw_map_3d(t_wolf_3d *w);
+void					game_engine(t_wolf_3d *w);
+void					calculate_plane_dir_x(t_wolf_3d *w,
+		double rotation_speed);
+void					mouse_motion_input(t_wolf_3d *w, Uint32	*mousestates);
+void					step_taken(t_wolf_3d *w);
+void					key_down_input(t_wolf_3d *w,
+		const Uint8 *keystates, int	**world_map);
+void					process_input(t_wolf_3d *w, int	**world_map);
+void					mouse_limitation(t_wolf_3d *w);
+void					fill_data_tab(t_wolf_3d *w, int x);
+void					detect_start_end(t_wolf_3d *w);
+void					dda_algorithm(t_wolf_3d *w);
+int						**get_map(int **map, int fd, char **av);
+void					mini_map(t_wolf_3d *w);
+void					image_clear(t_wolf_3d *wolf);
+void					player_inMini(t_wolf_3d *w);
+void					loadTexture(t_wolf_3d *wolf);
+void					process_input(t_wolf_3d *w, int	**world_map);
+void					init_perso(t_wolf_3d *w);
+void					show_error1();
+void					how_error2(char *str);
+void					show_error3();
+void					show_error1();
+void					sdl_quit(t_wolf_3d *w);
+void					drawCube(t_wolf_3d *w, int x_begin,
+		int y_begin, double scaler, int color);
+void					drawMap(t_wolf_3d *w);
+void					mini_player(t_wolf_3d *w);
+void					free_map(char **map, int n);
+void					free_map2(int **map, int n);
+void					render(t_wolf_3d *w);
+void					update(t_wolf_3d *w);
+int						line_numb(char *argv);
+int						ft_strlen_2_dim(char **tab);
+size_t					check(int n, int i);
+int						*values(char **tab, size_t len);
+void					darken_wall_color(t_wolf_3d *w, int *color);
+void					darken_fall_color(t_wolf_3d *w, int *color);
+void					wall_light_input(t_wolf_3d *w, int *color);
+void					light_input(t_wolf_3d *w, int *color);
+void					load_font(t_wolf_3d *w);
+void					tex_input(t_wolf_3d *w);
+void					track_mouse(t_wolf_3d *w, Uint32 *mousestates);
 #endif

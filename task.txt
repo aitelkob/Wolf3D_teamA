@@ -1,13 +1,23 @@
-//////////////////ayoub
-file -->srcs/game_engine.c
-Texture  ---> on progress =>  the floor and ceiling drive me crazy debug if you like sinon do something else
-Multi Texture=> Didn't finish the multitexture thing.
-forgot something --> freeing the map when an error in parcing
+///////////////////////////=====>>>DEADLINE 11/12 <<<==========/////////////
+----------Lib9aa 
 
-////////////////////youssef
-Makefile ---> done
-diffrent textures --> done
+------>free map if any error finr = srcs/stock_map.c
 
-  9ad hadir multiple texture raha ba9i mkhwra
-  o zid les texture mn ghir hado li hnaya
-   o chouf wach momkin tzid b7al lpartiya li drt l L o P dyal input f lfloor o ceiling mais tkoun cercle 
+norminette 
+--------->srcs/game_engine.c 
+**********>>>Norminette :   srcs/main.c  ✔️
+**********>>>Norminette :   srcs/stock_map.c ❌ ------> wait for free
+**********>>>Norminette :   srcs/texture.c ✔️
+**********>>>Norminette :   srcs/events.c ✔️
+**********>>>Norminette :   srcs/wolf_miniMap.c ❌ ----> unixcase
+**********>>>Norminette :   srcs/init_wolf.c ✔️
+**********>>>Norminette :   srcs/game_engine.c ❌ ----> all
+**********>>>Norminette :   srcs/outils.c ✔️
+**********>>>Norminette :   srcs/sdl_init.c ✔️
+**********>>>Norminette :   srcs/error.c ✔️
+**********>>>Norminette :   srcs/free_wolf.c ✔️
+**********>>>Norminette :   srcs/render.c ✔️
+**********>>>Norminette :   srcs/tex_input.c ✔️
+**********>>>Norminette :   srcs/key_down_input.c ✔️
+**********>>>Norminette :   srcs/mouse.c ✔️ 
+**********>>>Norminette :   int/wolf_3d.h ❌  -----> beeeeazzf deyal unixcase

@@ -6,22 +6,21 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/07 19:52:51 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/08 01:00:21 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/wolf_3d.h"
 
 /*
- *check for the fisrt  0 spot
- *
- */
+ ** check for the fisrt  0 spot
+*/
 
-void player_start(t_wolf_3d *w)
+void		player_start(t_wolf_3d *w)
 {
-	int i;
-	int j;
-	int second;
+	int		i;
+	int		j;
+	int		second;
 
 	second = 0;
 	i = MAP_NUM_COLS - 1;
@@ -37,7 +36,7 @@ void player_start(t_wolf_3d *w)
 				{
 					w->player.pos.x = i + 0.35;
 					w->player.pos.y = j + 0.35;
-					return;
+					return ;
 				}
 			}
 			j--;
@@ -45,16 +44,8 @@ void player_start(t_wolf_3d *w)
 		i--;
 	}
 }
-/*
- **  init player position x
- **  init player position y
- **  init direction vector x
- **  init direction vector y
- **  the 2d raycaster version of camera plane x
- **  the 2d raycaster version of camera plane y
- */
 
-void init_perso(t_wolf_3d *w)
+void		init_perso(t_wolf_3d *w)
 {
 	player_start(w);
 	SDL_WarpMouseInWindow(w->sdl.win, (WIDTH / 2), (HEIGHT / 2));
@@ -78,31 +69,32 @@ void init_perso(t_wolf_3d *w)
 	w->sdl.color.b = 0;
 }
 
-// void load_font(t_wolf_3d *w)
-// {
-// 	int i;
-// 	int j;
-// 	char *fps_count;
-// 	char *fps_show;
+void		load_font(t_wolf_3d *w)
+{
+	int			i;
+	int			j;
+	char		*fps_count;
+	char		*fps_show;
 
-// 	i = 0;
-// 	j = 0;
-// 	fps_count = ft_itoa(1 / w->fps.delta_time);
-// 	fps_show = ft_strjoin("FPS: ", fps_count);
-// 	w->sdl.Font = TTF_RenderText_Solid(w->sdl.font, fps_show, w->sdl.color);
-// 	// printf("this is %f \n", round(1/w->fps.delta_time ));
-// 	w->sdl.msg = SDL_CreateTextureFromSurface(w->sdl.renderer, w->sdl.Font);
+	i = 0;
+	j = 0;
+	fps_count = ft_itoa(1 / w->fps.delta_time);
+	fps_show = ft_strjoin("FPS: ", fps_count);
+	w->sdl.font1 = TTF_RenderText_Solid(w->sdl.font, fps_show, w->sdl.color);
+	w->sdl.msg = SDL_CreateTextureFromSurface(w->sdl.renderer, w->sdl.font1);
+	SDL_QueryTexture(w->sdl.msg, NULL, NULL, &i, &j);
+	w->sdl.dstrect.x = WIDTH - 100;
+	w->sdl.dstrect.y = 10;
+	w->sdl.dstrect.w = i;
+	w->sdl.dstrect.h = j;
+	SDL_RenderCopy(w->sdl.renderer, w->sdl.msg, NULL, &w->sdl.dstrect);
+	free(fps_count);
+	free(fps_show);
+	fps_count = NULL;
+	fps_show = NULL;
+}
 
-// 	SDL_QueryTexture(w->sdl.msg, NULL, NULL, &i, &j);
-// 	SDL_Rect dstrect = {WIDTH - 100, 10, i, j};
-// 	SDL_RenderCopy(w->sdl.renderer, w->sdl.msg, NULL, &dstrect);
-// 	free(fps_count);
-// 	free(fps_show);
-// 	fps_count = NULL;
-// 	fps_show = NULL;
-// }
-
-void load_img(t_wolf_3d *w)
+void		load_img(t_wolf_3d *w)
 {
 	w->sdl.roof_texture1 = IMG_Load(SKY);
 	w->sdl.floor_texture1 = IMG_Load(BARK);
