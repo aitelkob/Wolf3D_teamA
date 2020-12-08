@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/12/08 17:29:06 by ayagoumi         ###   ########.fr        #
+#    Updated: 2020/12/08 20:51:25 by ayagoumi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ SRC 			:= main.c
 SRC 			+= stock_map.c
 SRC 			+= texture.c
 SRC 			+= events.c
-SRC 			+= wolf_miniMap.c
+SRC 			+= wolf_minimap.c
 SRC 			+= init_wolf.c
 SRC 			+= game_engine.c
 SRC 			+= outils.c

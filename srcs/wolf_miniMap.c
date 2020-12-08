@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 02:20:51 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/08 01:31:06 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/08 20:52:27 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 **	ana mrdni hadchi  wach momkin tchouf lproblem fin kain?
 */
 
-void		player_inMini(t_wolf_3d *w)
+void		player_inmini(t_wolf_3d *w)
 {
 	double	x;
 	double	y;
@@ -75,7 +75,7 @@ void		mini_player(t_wolf_3d *w)
 		while (j < MAP_NUM_COLS)
 		{
 			if (i == (int)w->player.pos.x && j == (int)w->player.pos.y)
-				player_inMini(w);
+				player_inmini(w);
 			j++;
 		}
 		i++;

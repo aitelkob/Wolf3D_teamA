@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/08 20:29:19 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/08 20:50:37 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ void					dda_algorithm(t_wolf_3d *w);
 int						**get_map(int **map, int fd, char **av);
 void					mini_map(t_wolf_3d *w);
 void					image_clear(t_wolf_3d *wolf);
-void					player_inMini(t_wolf_3d *w);
+void					player_inmini(t_wolf_3d *w);
 void					loadTexture(t_wolf_3d *wolf);
 void					process_input(t_wolf_3d *w, int	**world_map);
 void					init_perso(t_wolf_3d *w);
