@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/12/08 04:11:53 by yait-el-         ###   ########.fr        #
+#    Updated: 2020/12/08 17:29:06 by ayagoumi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRC				+= render.c
 SRC				+= tex_input.c
 SRC				+= key_down_input.c
 SRC				+= mouse.c
+SRC				+= index.c
 #############################################
 LSDLDIR     = $(HOME)/.brew/Cellar/sdl2/2.0.12_1/lib
 LTTFDIR     = $(HOME)/.brew/Cellar/sdl2_ttf/2.0.15/lib

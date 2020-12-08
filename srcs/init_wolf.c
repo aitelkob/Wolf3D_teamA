@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/08 01:00:21 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/08 16:35:41 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ void		init_perso(t_wolf_3d *w)
 	w->sdl.color.b = 0;
 }
 
+/*
+** hadi rah 3amra leak
+*/
+
 void		load_font(t_wolf_3d *w)
 {
 	int			i;
@@ -88,6 +92,8 @@ void		load_font(t_wolf_3d *w)
 	w->sdl.dstrect.w = i;
 	w->sdl.dstrect.h = j;
 	SDL_RenderCopy(w->sdl.renderer, w->sdl.msg, NULL, &w->sdl.dstrect);
+	SDL_FreeSurface(w->sdl.font1);
+	SDL_DestroyTexture(w->sdl.msg);
 	free(fps_count);
 	free(fps_show);
 	fps_count = NULL;

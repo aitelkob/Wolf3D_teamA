@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/08 04:13:32 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/08 20:29:19 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <stdio.h>
 # define LAZZY "./fonts/lazy.ttf"
 # define CUR "./resources/cursor.png"
+# define INDEX "./resources/index/index.png"
+# define INDEX2 "./resources/index/index1.png"
+# define INDEX3 "./resources/index/tex.png"
 
 # define SKY "./resources/Track#1/sky1.png"
 # define BARK "./resources/Track#1/bark.png"
@@ -127,6 +130,11 @@ typedef struct			s_sdl
 	SDL_Rect			map;
 	SDL_Rect			player;
 	SDL_Rect			dstrect;
+	SDL_Surface			*index;
+	SDL_Texture			*index_tex;
+	int					index_i;
+	int					index_i_tex;
+	int					page;
 }						t_sdl;
 
 typedef struct			s_player
@@ -258,4 +266,7 @@ void					light_input(t_wolf_3d *w, int *color);
 void					load_font(t_wolf_3d *w);
 void					tex_input(t_wolf_3d *w);
 void					track_mouse(t_wolf_3d *w, Uint32 *mousestates);
+void					index_page(t_wolf_3d *w, int *i);
+void start_index_page(t_wolf_3d *w, int *i);
+void        main_page(t_wolf_3d *w, int *i);
 #endif

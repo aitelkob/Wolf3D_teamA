@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:28:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/08 04:24:38 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/08 19:01:02 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		light_input(t_wolf_3d *w, int *color)
 
 void		process_input(t_wolf_3d *w, int **world_map)
 {
-	SDL_ShowCursor(0);
+	// SDL_ShowCursor(0);
 	w->event.keystates = SDL_GetKeyboardState(NULL);
 	track_mouse(w, &w->mousestates);
 	SDL_PollEvent(&w->sdl.event);

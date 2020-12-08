@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 10:27:40 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/07 19:25:35 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/08 18:32:28 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 void	game_engine(t_wolf_3d *w)
 {
+
+
 	while (w->game_running == 0)
 	{
 		process_input(w, w->player.world_map);
