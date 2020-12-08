@@ -9,7 +9,7 @@ norminette
 **********>>>Norminette :   srcs/stock_map.c ❌ ------> wait for free
 **********>>>Norminette :   srcs/texture.c ✔️
 **********>>>Norminette :   srcs/events.c ✔️
-**********>>>Norminette :   srcs/wolf_miniMap.c ❌ ----> unixcase
+**********>>>Norminette :   srcs/wolf_miniMap.c
 **********>>>Norminette :   srcs/init_wolf.c ✔️
 **********>>>Norminette :   srcs/game_engine.c ❌ ----> all
 **********>>>Norminette :   srcs/outils.c ✔️
