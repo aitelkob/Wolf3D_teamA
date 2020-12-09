@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/08 20:50:37 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/09 03:12:36 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <stdio.h>
-# define LAZZY "./fonts/lazy.ttf"
+# define LAZZY "./fonts/Halo3.ttf"
 # define CUR "./resources/cursor.png"
 # define INDEX "./resources/index/index.png"
 # define INDEX2 "./resources/index/index1.png"
@@ -52,8 +52,6 @@
 # define HEIGHT 900
 # define TEXT_W 64
 # define TEXT_H 64
-# define mapWidth 24
-# define mapHeight 24
 # define MAP_NUM_ROWS  24
 # define MAP_NUM_COLS  24
 # define TILE_SIZE  64
@@ -82,7 +80,6 @@ typedef struct			s_fps
 	float				delta_time;
 	int					last_frame_time;
 	double				frame_target;
-	// int					fps;
 	double				movespeed;
 	double				rotspeed;
 }						t_fps;
@@ -162,11 +159,11 @@ typedef struct			s_event
 typedef	struct			s_ray
 {
 	int					color;
-	double				cameraX;
-	double				perpWallDist;
+	double				camerax;
+	double				perpwalldist;
 	int					hit;
 	int					side;
-	int					lineHeight;
+	int					lineheight;
 	t_point				raydir;
 	t_point				sidedist;
 	t_point				deltadist;
@@ -194,17 +191,17 @@ typedef struct			s_wolf_3d
 	int					texx2;
 	int					texy2;
 	int					*data;
-	double				oldDirX;
-	double				oldplaneX;
+	double				olddirx;
+	double				oldplanex;
 	int					p;
-	double				posZ;
-	double				rowDistance;
-	double				floorStepX;
-	double				floorStepY;
-	double				floorX;
-	double				floorY;
-	int					cellX;
-	int					cellY;
+	double				posz;
+	double				rowdistance;
+	double				floorstepx;
+	double				floorstepy;
+	double				floorx;
+	double				floory;
+	int					cellx;
+	int					celly;
 	int					texx;
 	int					texy;
 }						t_wolf_3d;
@@ -239,7 +236,7 @@ int						**get_map(int **map, int fd, char **av);
 void					mini_map(t_wolf_3d *w);
 void					image_clear(t_wolf_3d *wolf);
 void					player_inmini(t_wolf_3d *w);
-void					loadTexture(t_wolf_3d *wolf);
+void					loadtexture(t_wolf_3d *wolf);
 void					process_input(t_wolf_3d *w, int	**world_map);
 void					init_perso(t_wolf_3d *w);
 void					show_error1();
@@ -247,9 +244,9 @@ void					how_error2(char *str);
 void					show_error3();
 void					show_error1();
 void					sdl_quit(t_wolf_3d *w);
-void					drawCube(t_wolf_3d *w, int x_begin,
+void					drawcube(t_wolf_3d *w, int x_begin,
 		int y_begin, double scaler, int color);
-void					drawMap(t_wolf_3d *w);
+void					drawmap(t_wolf_3d *w);
 void					mini_player(t_wolf_3d *w);
 void					free_map(char **map, int n);
 void					free_map2(int **map, int n);
@@ -267,6 +264,14 @@ void					load_font(t_wolf_3d *w);
 void					tex_input(t_wolf_3d *w);
 void					track_mouse(t_wolf_3d *w, Uint32 *mousestates);
 void					index_page(t_wolf_3d *w, int *i);
-void start_index_page(t_wolf_3d *w, int *i);
-void        main_page(t_wolf_3d *w, int *i);
+void					texture_cling(t_wolf_3d *w);
+void					texture_floor(t_wolf_3d *w);
+void					wall_texture(t_wolf_3d *wolf,
+		int x, int start, int end);
+void					start_index_page(t_wolf_3d *w, int *i);
+void					main_page(t_wolf_3d *w, int *i);
+void					calc_floor(t_wolf_3d *w, int y, int check);
+void					load_kp1(t_wolf_3d *w);
+void					load_kp2(t_wolf_3d *w);
+void					load_kp3(t_wolf_3d *w);
 #endif

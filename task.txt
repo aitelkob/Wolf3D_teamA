@@ -3,6 +3,12 @@
 
 ------>free map if any error finr = srcs/stock_map.c
 
+
+--------------------->>> plz stop 5alina nesliwe projct mazide walo
+
+------->>> check for free
+
+
 norminette 
 --------->srcs/game_engine.c 
 **********>>>Norminette :   srcs/main.c  ✔️
@@ -11,7 +17,7 @@ norminette
 **********>>>Norminette :   srcs/events.c ✔️
 **********>>>Norminette :   srcs/wolf_miniMap.c
 **********>>>Norminette :   srcs/init_wolf.c ✔️
-**********>>>Norminette :   srcs/game_engine.c ❌ ----> all
+**********>>>Norminette :   srcs/game_engine.c ✔️
 **********>>>Norminette :   srcs/outils.c ✔️
 **********>>>Norminette :   srcs/sdl_init.c ✔️
 **********>>>Norminette :   srcs/error.c ✔️
@@ -20,4 +26,7 @@ norminette
 **********>>>Norminette :   srcs/tex_input.c ✔️
 **********>>>Norminette :   srcs/key_down_input.c ✔️
 **********>>>Norminette :   srcs/mouse.c ✔️ 
-**********>>>Norminette :   int/wolf_3d.h ❌  -----> beeeeazzf deyal unixcase (7iyd upper case)
+**********>>>Norminette :   srcs/index.c ❌ -------> for you ayoub
+**********>>>Norminette :   srcs/calcul.c ✔️ 
+**********>>>Norminette :   srcs/wall_texture.c ✔️ 
+**********>>>Norminette :   int/wolf_3d.h ✔️  

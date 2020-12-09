@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/08 16:35:41 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/08 23:11:27 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void		load_font(t_wolf_3d *w)
 	w->sdl.font1 = TTF_RenderText_Solid(w->sdl.font, fps_show, w->sdl.color);
 	w->sdl.msg = SDL_CreateTextureFromSurface(w->sdl.renderer, w->sdl.font1);
 	SDL_QueryTexture(w->sdl.msg, NULL, NULL, &i, &j);
-	w->sdl.dstrect.x = WIDTH - 100;
-	w->sdl.dstrect.y = 10;
+	w->sdl.dstrect.x = WIDTH - 130;
+	w->sdl.dstrect.y = 8;
 	w->sdl.dstrect.w = i;
 	w->sdl.dstrect.h = j;
 	SDL_RenderCopy(w->sdl.renderer, w->sdl.msg, NULL, &w->sdl.dstrect);

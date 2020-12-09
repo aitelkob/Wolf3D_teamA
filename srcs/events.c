@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 18:28:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/08 20:48:06 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/08 22:53:43 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void		process_input(t_wolf_3d *w, int **world_map)
 		w->game_running = 1;
 	if (w->event.keystates[SDL_SCANCODE_ESCAPE])
 		w->game_running = 1;
-	// tex_input(w);
 	arrow_move_input(w, w->event.keystates);
 	key_down_input(w, w->event.keystates, world_map);
 	mouse_motion_input(w, &w->mousestates);
