@@ -6,25 +6,18 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:22:33 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/08 04:41:21 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:17:22 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/wolf_3d.h"
 
-void		correction(int **map, int n, int m)
+void		inner_correction(int **map, int n, int m)
 {
 	int i;
 	int j;
 
 	i = 0;
-	j = 0;
-	if (n != m)
-	{
-		ft_putstr("EROOR: Map should be 24 x 24\n");
-		//free here
-		exit(1);
-	}
 	while (i < n)
 	{
 		j = 0;
@@ -33,19 +26,30 @@ void		correction(int **map, int n, int m)
 			if (map[i][j] == 0 && (i == 0 || j == 0))
 			{
 				ft_putstr("EROOR: Something wrong with the maps walls\n");
-				//free here
+				free_map2(map, n);
 				exit(1);
 			}
 			else if (map[i][j] == 0 && (i == 23 || j == 23))
 			{
 				ft_putstr("EROOR: Something wrong with the maps walls\n");
-				//free here
+				free_map2(map, n);
 				exit(1);
 			}
 			j++;
 		}
 		i++;
 	}
+}
+
+void		correction(int **map, int n, int m)
+{
+	if (n != m)
+	{
+		free_map2(map, n);
+		ft_putstr("EROOR: Map should be 24 x 24\n");
+		exit(1);
+	}
+	inner_correction(map, n, m);
 }
 
 void		show_error2(char *str)

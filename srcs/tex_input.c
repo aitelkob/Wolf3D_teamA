@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 03:45:01 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/09 02:23:04 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:07:46 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,3 @@ void			load_kp3(t_wolf_3d *w)
 	w->sdl.wall_data_ceiling = (unsigned int *)w->sdl.roof_texture3->pixels;
 	w->sdl.wall_data_floor = (unsigned int *)w->sdl.floor_texture3->pixels;
 }
-
-// void				tex_input(t_wolf_3d *w)
-// {
-// 	if (w->event.keystates[SDL_SCANCODE_KP_1])
-// 		load_kp1(w);
-// 	if (w->event.keystates[SDL_SCANCODE_KP_2])
-// 		load_kp2(w);
-// 	if (w->event.keystates[SDL_SCANCODE_KP_3])
-// 		load_kp3(w);
-// }

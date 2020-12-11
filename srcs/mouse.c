@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yait-el- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 04:06:04 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/08 04:26:11 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:11:25 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,50 @@ void		mouse_motion_input(t_wolf_3d *w, Uint32 *mousestates)
 	}
 	if (w->event.oldmouse.x != w->event.newmouse.x)
 		w->event.oldmouse.x = w->event.newmouse.x;
+}
+
+void		main_page_events2(t_wolf_3d *w)
+{
+	if (w->sdl.event.type == SDL_MOUSEBUTTONDOWN &&\
+			w->sdl.event.button.button == SDL_BUTTON_LEFT)
+	{
+		if (((w->event.newmouse.x >= 641 && w->event.newmouse.y >= 361) &&\
+				(w->event.newmouse.x <= 792 && w->event.newmouse.y <= 542)) &&\
+				w->sdl.page == 3)
+		{
+			w->sdl.page = 3;
+			w->sdl.index_i_tex = 1;
+			load_kp3(w);
+		}
+		else if (((w->event.newmouse.x >= 344 && w->event.newmouse.y >= 742) &&\
+				(w->event.newmouse.x <= 558 && w->event.newmouse.y <= 806)) &&\
+				w->sdl.page == 3)
+			w->game_running = 1;
+	}
+}
+
+void		main_page_events(t_wolf_3d *w)
+{
+	if (w->sdl.event.type == SDL_MOUSEBUTTONDOWN &&\
+			w->sdl.event.button.button == SDL_BUTTON_LEFT)
+	{
+		SDL_GetMouseState(&w->event.newmouse.x, &w->event.newmouse.y);
+		if (((w->event.newmouse.x >= 108 && w->event.newmouse.y >= 361) &&\
+			(w->event.newmouse.x <= 287 && w->event.newmouse.y <= 542)) &&\
+				w->sdl.page == 3)
+		{
+			w->sdl.page = 3;
+			w->sdl.index_i_tex = 1;
+			load_kp1(w);
+		}
+		else if (((w->event.newmouse.x >= 361 && w->event.newmouse.y >= 361) &&\
+				(w->event.newmouse.x <= 540 && w->event.newmouse.y <= 542)) &&\
+				w->sdl.page == 3)
+		{
+			w->sdl.page = 3;
+			w->sdl.index_i_tex = 1;
+			load_kp2(w);
+		}
+		main_page_events2(w);
+	}
 }

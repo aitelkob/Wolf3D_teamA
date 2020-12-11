@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/09 03:04:15 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:19:39 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void		draw_map_3d(t_wolf_3d *w)
 	int x;
 
 	x = 0;
+	SDL_ShowCursor(0);
 	texture_cling(w);
 	texture_floor(w);
 	while (x < WIDTH)
