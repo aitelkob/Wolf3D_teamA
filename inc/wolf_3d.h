@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/11 17:05:02 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/11 17:21:44 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,9 +205,7 @@ typedef struct			s_wolf_3d
 	int					texx;
 	int					texy;
 }						t_wolf_3d;
-/*
-	**	Outils
-*/
+
 void					clear_data_tab(int *tab);
 int						sdl_init_texture(t_wolf_3d *w);
 int						sdl_init_render(t_wolf_3d *w);
@@ -274,6 +272,6 @@ void					calc_floor(t_wolf_3d *w, int y, int check);
 void					load_kp1(t_wolf_3d *w);
 void					load_kp2(t_wolf_3d *w);
 void					load_kp3(t_wolf_3d *w);
-void	main_page_events2(t_wolf_3d *w);
-void	main_page_events(t_wolf_3d *w);
+void					main_page_events2(t_wolf_3d *w);
+void					main_page_events(t_wolf_3d *w);
 #endif
