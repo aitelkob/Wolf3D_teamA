@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:23:04 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/11 17:19:26 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/12 14:43:14 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	index_page(t_wolf_3d *w, int *i)
 		w->sdl.index_tex = SDL_CreateTextureFromSurface(w->sdl.renderer,
 				w->sdl.index);
 		SDL_RenderCopy(w->sdl.renderer, w->sdl.index_tex, NULL, NULL);
+		SDL_FreeSurface(w->sdl.index);
 		(*i)++;
 	}
 }
@@ -32,6 +33,7 @@ void	index_page2(t_wolf_3d *w)
 	w->sdl.index_tex = SDL_CreateTextureFromSurface(w->sdl.renderer,
 			w->sdl.index);
 	SDL_RenderCopy(w->sdl.renderer, w->sdl.index_tex, NULL, NULL);
+	SDL_FreeSurface(w->sdl.index);
 }
 
 void	index_page3(t_wolf_3d *w, int *i)
@@ -41,7 +43,7 @@ void	index_page3(t_wolf_3d *w, int *i)
 	w->sdl.index_tex = SDL_CreateTextureFromSurface(w->sdl.renderer,
 			w->sdl.index);
 	SDL_RenderCopy(w->sdl.renderer, w->sdl.index_tex, NULL, NULL);
-	SDL_RenderPresent(w->sdl.renderer);
+	SDL_FreeSurface(w->sdl.index);
 	(*i)++;
 }
 
@@ -85,7 +87,7 @@ void	main_page(t_wolf_3d *w, int *i)
 	}
 	else if (w->sdl.page == 2)
 		start_index_page(w, i);
-	else if (w->sdl.page == 3)
+	else if (w->sdl.page == 3 || w->sdl.page == 4)
 	{
 		main_page_events(w);
 		if (w->sdl.index_i_tex)

@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 04:06:04 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/11 17:11:25 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/12 14:43:03 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void		main_page_events2(t_wolf_3d *w)
 				(w->event.newmouse.x <= 792 && w->event.newmouse.y <= 542)) &&\
 				w->sdl.page == 3)
 		{
-			w->sdl.page = 3;
+			w->sdl.page = 4;
 			w->sdl.index_i_tex = 1;
 			load_kp3(w);
 		}
@@ -102,7 +102,7 @@ void		main_page_events(t_wolf_3d *w)
 			(w->event.newmouse.x <= 287 && w->event.newmouse.y <= 542)) &&\
 				w->sdl.page == 3)
 		{
-			w->sdl.page = 3;
+			w->sdl.page = 4;
 			w->sdl.index_i_tex = 1;
 			load_kp1(w);
 		}
@@ -110,7 +110,7 @@ void		main_page_events(t_wolf_3d *w)
 				(w->event.newmouse.x <= 540 && w->event.newmouse.y <= 542)) &&\
 				w->sdl.page == 3)
 		{
-			w->sdl.page = 3;
+			w->sdl.page = 4;
 			w->sdl.index_i_tex = 1;
 			load_kp2(w);
 		}

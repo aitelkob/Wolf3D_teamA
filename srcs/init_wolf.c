@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/08 23:11:27 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/12 14:40:33 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void		init_perso(t_wolf_3d *w)
 
 void		load_font(t_wolf_3d *w)
 {
+	(void)w;
 	int			i;
 	int			j;
 	char		*fps_count;
