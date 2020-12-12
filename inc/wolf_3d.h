@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/12 14:40:21 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/12 18:49:46 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,7 +252,7 @@ void					render(t_wolf_3d *w);
 void					update(t_wolf_3d *w);
 int						line_numb(char *argv);
 int						ft_strlen_2_dim(char **tab);
-size_t					check(int n, int i);
+size_t					check(int **map, int n, int i);
 int						*values(char **tab, size_t len);
 void					darken_wall_color(t_wolf_3d *w, int *color);
 void					darken_fall_color(t_wolf_3d *w, int *color);
@@ -274,4 +274,6 @@ void					load_kp2(t_wolf_3d *w);
 void					load_kp3(t_wolf_3d *w);
 void					main_page_events2(t_wolf_3d *w);
 void					main_page_events(t_wolf_3d *w);
+void					show_error_map(void);
+void					load_font(t_wolf_3d *w);
 #endif

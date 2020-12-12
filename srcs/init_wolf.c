@@ -6,42 +6,41 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/12 14:40:33 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/12 18:46:53 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/wolf_3d.h"
 
 /*
- ** check for the fisrt  0 spot
+** check for the fisrt  0 spot
 */
 
 void		player_start(t_wolf_3d *w)
 {
-	int		i;
-	int		j;
-	int		second;
+	int				i;
+	int				j;
+	static int		second;
 
-	second = 0;
-	i = MAP_NUM_COLS - 1;
-	while (i >= 0)
+	i = MAP_NUM_COLS;
+	while (--i >= 0)
 	{
-		j = MAP_NUM_ROWS - 1;
-		while (j >= 0)
+		j = MAP_NUM_ROWS;
+		while (--j >= 0)
 		{
-			if (w->player.world_map[i][j] == 0)
+			if (w->player.world_map[i][j] == 0 && second++)
 			{
-				second++;
-				if (second == 2)
-				{
-					w->player.pos.x = i + 0.35;
-					w->player.pos.y = j + 0.35;
-					return ;
-				}
+				w->player.pos.x = i + 0.35;
+				w->player.pos.y = j + 0.35;
+				return ;
 			}
-			j--;
 		}
-		i--;
+	}
+	if (second == 0)
+	{
+		show_error_map();
+		free_map2(w->player.world_map, MAP_NUM_COLS);
+		exit(0);
 	}
 }
 
@@ -60,10 +59,6 @@ void		init_perso(t_wolf_3d *w)
 	w->player.height = 20;
 	w->player.plane.x = 0;
 	w->player.plane.y = 0.57;
-	w->dst.w = 100;
-	w->dst.h = 100;
-	w->dst.x = (WIDTH / 2) - (w->dst.w / 2);
-	w->dst.y = (HEIGHT / 2) - (w->dst.h / 2);
 	w->sdl.color.r = 255;
 	w->sdl.color.g = 255;
 	w->sdl.color.b = 0;
@@ -75,7 +70,6 @@ void		init_perso(t_wolf_3d *w)
 
 void		load_font(t_wolf_3d *w)
 {
-	(void)w;
 	int			i;
 	int			j;
 	char		*fps_count;

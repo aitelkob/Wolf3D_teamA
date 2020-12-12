@@ -6,13 +6,13 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 11:22:33 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/11 17:17:22 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/12 18:48:35 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/wolf_3d.h"
 
-void		inner_correction(int **map, int n, int m)
+void	inner_correction(int **map, int n, int m)
 {
 	int i;
 	int j;
@@ -24,35 +24,28 @@ void		inner_correction(int **map, int n, int m)
 		while (j < m)
 		{
 			if (map[i][j] == 0 && (i == 0 || j == 0))
-			{
-				ft_putstr("EROOR: Something wrong with the maps walls\n");
-				free_map2(map, n);
-				exit(1);
-			}
+				map[i][j] = 1;
 			else if (map[i][j] == 0 && (i == 23 || j == 23))
-			{
-				ft_putstr("EROOR: Something wrong with the maps walls\n");
-				free_map2(map, n);
-				exit(1);
-			}
+				map[i][j] = 1;
+			else if (map[i][j] < 0 || map[i][j] > 5)
+				map[i][j] = 0;
 			j++;
 		}
 		i++;
 	}
 }
 
-void		correction(int **map, int n, int m)
+void	correction(int **map, int n, int m)
 {
 	if (n != m)
 	{
-		free_map2(map, n);
-		ft_putstr("EROOR: Map should be 24 x 24\n");
+		ft_putstr("ヽ(｀⌒´メ)ノEROOR: Map should be 24 x 24ヽ(｀⌒´メ)ノ\n");
 		exit(1);
 	}
 	inner_correction(map, n, m);
 }
 
-void		show_error2(char *str)
+void	show_error2(char *str)
 {
 	ft_putstr("\033[1;31m                ERROR                    \033[0m\n");
 	ft_putstr("                  ");
@@ -66,7 +59,7 @@ void		show_error2(char *str)
 	exit(1);
 }
 
-int			**get_map(int **map, int fd, char **av)
+int		**get_map(int **map, int fd, char **av)
 {
 	char	*line;
 	char	**tab;
@@ -84,7 +77,7 @@ int			**get_map(int **map, int fd, char **av)
 	{
 		tab = ft_split_whitespaces(line);
 		n = ft_strlen_2_dim(tab);
-		n = check(n, i);
+		n = check(map, n, i);
 		map[i] = values(tab, n);
 		free(line);
 		free_map(tab, n);

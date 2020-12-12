@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   outils.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yait-el- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 01:36:11 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/08 01:38:10 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/12 18:38:04 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			ft_strlen_2_dim(char **tab)
 	return (i);
 }
 
-size_t		check(int n, int i)
+size_t		check(int **map, int n, int i)
 {
 	static int nb;
 
@@ -63,6 +63,12 @@ size_t		check(int n, int i)
 	}
 	else if (n >= nb)
 		return (nb);
+	else if (n < nb)
+	{
+		ft_putstr("ヽ(｀⌒´メ)ノ EROOR: Something wrong with the maps ヽ(｀⌒´メ)ノ\n");
+		free_map2(map, i);
+		exit(1);
+	}
 	else
 		return (n);
 }
