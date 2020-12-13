@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 17:23:04 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/12 14:43:14 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/13 14:56:41 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,7 @@ void	start_index_page(t_wolf_3d *w, int *i)
 void	main_page(t_wolf_3d *w, int *i)
 {
 	if (w->sdl.page == 0)
-	{
-		if (*i <= 30)
-			index_page(w, i);
-		else
-			w->sdl.page = 2;
-	}
+		(*i <= 30) ? index_page(w, i) : (w->sdl.page = 2);
 	else if (w->sdl.page == 2)
 		start_index_page(w, i);
 	else if (w->sdl.page == 3 || w->sdl.page == 4)
@@ -96,11 +91,12 @@ void	main_page(t_wolf_3d *w, int *i)
 			SDL_UpdateTexture(w->sdl.texture, NULL, w->data,\
 					WIDTH * sizeof(int));
 			SDL_RenderCopy(w->sdl.renderer, w->sdl.texture, NULL, NULL);
+			SDL_RenderCopy(w->sdl.renderer, w->sdl.cur_tex, NULL, &w->dst);
+			SDL_FreeSurface(w->sdl.cur);
 			image_clear(w);
 			mini_map(w);
 			mini_player(w);
 			load_font(w);
-			SDL_RenderCopy(w->sdl.renderer, w->sdl.cur_tex, NULL, &w->dst);
 		}
 	}
 }

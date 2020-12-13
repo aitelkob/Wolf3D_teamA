@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/12 18:46:53 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/13 14:00:02 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		player_start(t_wolf_3d *w)
 			}
 		}
 	}
-	if (second == 0)
+	if (second == 0 || second == 1)
 	{
 		show_error_map();
 		free_map2(w->player.world_map, MAP_NUM_COLS);
@@ -62,6 +62,10 @@ void		init_perso(t_wolf_3d *w)
 	w->sdl.color.r = 255;
 	w->sdl.color.g = 255;
 	w->sdl.color.b = 0;
+	w->dst.w = 100;
+	w->dst.h = 100;
+	w->dst.x = (WIDTH / 2) - (w->dst.w / 2);
+	w->dst.y = (HEIGHT / 2) - (w->dst.h / 2);
 }
 
 /*

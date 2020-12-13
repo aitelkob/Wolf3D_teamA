@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/12/09 01:28:38 by yait-el-         ###   ########.fr        #
+#    Updated: 2020/12/13 11:59:56 by ayagoumi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,21 @@ $(NAME): $(LFT)  $(LSDL) $(LIMG) $(LTTF)  $(C_OBJS)
 	@echo "$(RED)\n**********>>>Building : $(RESET)$(NAME) $(YELLOW)...\n$(RESET)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(C_OBJS) $(LIBS)
 	@echo "$(GREEN)***   successfully compiled   ***\n$(RESET)"
+	@echo " ----------------------------------------------------"
+	@echo "|                        Wolf-3D                     |"
+	@echo "|----------------------------------------------------|"
+	@echo "| Options:                                           |"
+	@echo "|                                                    |"
+	@echo "| L:Show Light              | K:Dim Light            |"
+	@echo "|                                                    |"
+	@echo "| +: Up The darkness        |-: Dim darkness         |"
+	@echo "|                                                    |"
+	@echo "| w,d,s,a: Mouvement                                 |"
+	@echo "|                                                    |"
+	@echo "| ->: <-: Up key: Down Key:                          |"
+	@echo "|                                                    |"
+	@echo "| ESC: Quit                                          |"
+	@echo " ----------------------------------------------------"
 
 print-%  : ; @echo $* = $($*)
 

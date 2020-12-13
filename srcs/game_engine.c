@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 05:14:13 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/12 14:34:14 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/13 14:52:37 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,4 @@ void		draw_map_3d(t_wolf_3d *w)
 	w->sdl.cur = IMG_Load(CUR);
 	w->sdl.cur_tex = SDL_CreateTextureFromSurface(w->sdl.renderer,
 			w->sdl.cur);
-	SDL_FreeSurface(w->sdl.cur);
 }
