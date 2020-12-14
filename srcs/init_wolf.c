@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 00:13:22 by yait-el-          #+#    #+#             */
-/*   Updated: 2020/12/13 14:00:02 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/14 01:06:27 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		init_perso(t_wolf_3d *w)
 	w->player.plane.y = 0.57;
 	w->sdl.color.r = 255;
 	w->sdl.color.g = 255;
-	w->sdl.color.b = 0;
+	w->sdl.color.b = 102;
 	w->dst.w = 100;
 	w->dst.h = 100;
 	w->dst.x = (WIDTH / 2) - (w->dst.w / 2);

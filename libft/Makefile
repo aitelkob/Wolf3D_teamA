@@ -6,11 +6,21 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/01 06:06:14 by mzaboub           #+#    #+#              #
-#    Updated: 2019/11/18 01:19:47 by ayagoumi         ###   ########.fr        #
+#    Updated: 2020/12/14 00:38:29 by yait-el-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME= libft.a
+
+BLACK           := $(shell tput -Txterm setaf 0)
+RED             := $(shell tput -Txterm setaf 1)
+GREEN           := $(shell tput -Txterm setaf 2)
+YELLOW          := $(shell tput -Txterm setaf 3)
+LIGHTPURPLE     := $(shell tput -Txterm setaf 4)
+PURPLE          := $(shell tput -Txterm setaf 5)
+BLUE            := $(shell tput -Txterm setaf 6)
+WHITE           := $(shell tput -Txterm setaf 7)
+RESET           := $(shell tput -Txterm setaf 9)
 
 SRC_PATH= .
 SRC_NAME= ft_atoi.c  	ft_bzero.c		ft_charinword.c	ft_isalnum.c	\
@@ -49,7 +59,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "libft: library compilled"
+	@echo "$(PURPLE)*************>>>>libft :   $(LIGHTPURPLE)library compilled$(RESET)"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
@@ -59,11 +69,11 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 clean:
 	@rm -fr $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	@echo "libft: object files deleted"
+	@echo "$(RED)*************>>>>libft :   files deleted$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "libft: library deleted"
+	@echo "$(RED)*************>>>>libft :   library deleted"$(RESET)
 
 re: fclean all
 	

@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/12 20:11:18 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/14 00:50:24 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <stdio.h>
-# define LAZZY "./fonts/lazy.ttf"
+# define LAZZY "./fonts/Halo3.ttf"
 # define CUR "./resources/cursor.png"
 # define INDEX "./resources/index/index.png"
 # define INDEX2 "./resources/index/index1.png"

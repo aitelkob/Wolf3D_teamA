@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/12/13 11:59:56 by ayagoumi         ###   ########.fr        #
+#    Updated: 2020/12/14 01:06:25 by yait-el-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,10 @@ IMG				= libSDL2_image.a
 FT              = libft.a
 LFTDIR			= libft
 NAME            = Wolf 
-###########################color code 
+###########################shell 
+WITH 			= $(shell tput cols)
+HEIGHT			= $(shell tput lines)
+
 BLACK        	:= $(shell tput -Txterm setaf 0)
 RED          	:= $(shell tput -Txterm setaf 1)
 GREEN        	:= $(shell tput -Txterm setaf 2)
@@ -30,6 +33,7 @@ PURPLE       	:= $(shell tput -Txterm setaf 5)
 BLUE         	:= $(shell tput -Txterm setaf 6)
 WHITE        	:= $(shell tput -Txterm setaf 7)
 RESET         	:= $(shell tput -Txterm setaf 9)
+SPACE			:= $(shell tput -Txterm cup 20  50)
 ############################
 INCSDIR 		:= inc
 INCSDIR 		+= $(LFTDIR)
@@ -97,23 +101,23 @@ all:$(OBJSDIR) $(C_OBJS) $(NAME)
 
 
 $(NAME): $(LFT)  $(LSDL) $(LIMG) $(LTTF)  $(C_OBJS)
-	@echo "$(RED)\n**********>>>Building : $(RESET)$(NAME) $(YELLOW)...\n$(RESET)"
+	@echo "$(RED)\n***********>>>Building : $(RESET)$(NAME) $(YELLOW)...\n$(RESET)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(C_OBJS) $(LIBS)
 	@echo "$(GREEN)***   successfully compiled   ***\n$(RESET)"
 	@echo " ----------------------------------------------------"
-	@echo "|                        Wolf-3D                     |"
+	@echo "|$(RED)                       Wolf-3D                 $(RESET)     |"
 	@echo "|----------------------------------------------------|"
-	@echo "| Options:                                           |"
+	@echo "| $(LIGHTPURPLE)Options:$(RESET)                                           |"
 	@echo "|                                                    |"
-	@echo "| L:Show Light              | K:Dim Light            |"
+	@echo "| L:$(YELLOW)Show Light$(RESET)              | K:$(YELLOW)Dim Light$(RESET)            |"
 	@echo "|                                                    |"
-	@echo "| +: Up The darkness        |-: Dim darkness         |"
+	@echo "| +:$(YELLOW)Up The darkness$(RESET)         |-:$(YELLOW)Dim darkness$(RESET)          |"
 	@echo "|                                                    |"
-	@echo "| w,d,s,a: Mouvement                                 |"
+	@echo "| w,d,s,a: $(YELLOW)Mouvement$(RESET)                                 |"
 	@echo "|                                                    |"
-	@echo "| ->: <-: Up key: Down Key:                          |"
+	@echo "| ->: <-: $(YELLOW)Up key: Down Key:$(RESET)                          |"
 	@echo "|                                                    |"
-	@echo "| ESC: Quit                                          |"
+	@echo "| ESC: $(YELLOW)Quit$(RESET)                                          |"
 	@echo " ----------------------------------------------------"
 
 print-%  : ; @echo $* = $($*)
@@ -124,10 +128,13 @@ $(LFT):
 	@make -sC $(LFTDIR)
 
 ### creating files for object.o
-
+$(LIBSDL):
+	brew install sdl2 > /dev/null 2>&1;
+	brew install sdl2_ttf > /dev/null 2>&1;
+	brew install sdl2_image > /dev/null 2>&1;
 $(OBJSDIR):
 	@mkdir -p $(OBJSDIR)
-
+##### creating space
 # Deleting all .o files.
 
 clean:
