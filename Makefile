@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/12/14 01:06:25 by yait-el-         ###   ########.fr        #
+#    Updated: 2020/12/14 02:25:18 by yait-el-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,7 @@ $(D_OBJS)%.o: $(D_SRCS)%.c $(INCS)
 all:$(OBJSDIR) $(C_OBJS) $(NAME)
 
 
-$(NAME): $(LFT)  $(LSDL) $(LIMG) $(LTTF)  $(C_OBJS)
+$(NAME):  $(LFT)  $(LSDL) $(LIMG) $(LTTF)  $(C_OBJS)
 	@echo "$(RED)\n***********>>>Building : $(RESET)$(NAME) $(YELLOW)...\n$(RESET)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(C_OBJS) $(LIBS)
 	@echo "$(GREEN)***   successfully compiled   ***\n$(RESET)"
@@ -128,10 +128,17 @@ $(LFT):
 	@make -sC $(LFTDIR)
 
 ### creating files for object.o
-$(LIBSDL):
-	brew install sdl2 > /dev/null 2>&1;
-	brew install sdl2_ttf > /dev/null 2>&1;
-	brew install sdl2_image > /dev/null 2>&1;
+$(LSDL):
+	@echo "$(GREEN)***   Installing library sdl2   ...  ***\n$(RESET)"
+	@brew install sdl2 > /dev/null 2>&1;
+
+$(LTTF):
+	@echo "$(GREEN)***   Installing library sdl2_ttf   ...  ***\n$(RESET)"
+	@brew install sdl2_ttf > /dev/null 2>&1;
+
+$(LIMG):
+	@echo "$(GREEN)***   Installing library sdl2_image    ...  ***\n$(RESET)"
+	@brew install sdl2_image > /dev/null 2>&1;
 $(OBJSDIR):
 	@mkdir -p $(OBJSDIR)
 ##### creating space
