@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/14 00:50:24 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/26 08:57:22 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@
 # define CAGEWALL "./resources/Track#3/cagewall.png"
 # define BLUESTONE "./resources/Track#3/bluestone.png"
 # define BLUELINE "./resources/Track#3/blueline.png"
-# include "../SDL/SDL2.framework/Headers/SDL.h"
-# include "../SDL/SDL2_ttf.framework/Headers/SDL_ttf.h"
-# include "../SDL/SDL2_image.framework/Headers/SDL_image.h"
+# include "SDL.h"
+# include "SDL_ttf.h"
+# include "SDL_image.h"
 
 # define WIDTH 900
 # define HEIGHT 900

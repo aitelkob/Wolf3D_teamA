@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/12/14 02:25:18 by yait-el-         ###   ########.fr        #
+#    Updated: 2020/12/26 17:04:57 by yait-el-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,17 +63,34 @@ SRC				+= index.c
 SRC				+= wall_texture.c
 SRC				+= calcul.c
 #############################################
-LSDLDIR     = $(HOME)/.brew/Cellar/sdl2/2.0.12_1/lib
-LTTFDIR     = $(HOME)/.brew/Cellar/sdl2_ttf/2.0.15/lib
-LIMGDIR 	= $(HOME)/.brew/Cellar/sdl2_image/2.0.5/lib
-INCSDIR     += $(HOME)/.brew/Cellar/sdl2/2.0.12_1/include/SDL2
-INCSDIR     += $(HOME)/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2
-INCSDIR		+= $(HOME)/.brew/Cellar/sdl2_image/2.0.5/include/SDL2
+UNAME := $(shell uname -s)
+
+ifeq ($(UNAME), Darwin)
+	LSDLDIR     = $(HOME)/.brew/Cellar/sdl2/2.0.12_1/lib
+	LTTFDIR     = $(HOME)/.brew/Cellar/sdl2_ttf/2.0.15/lib
+	LIMGDIR 	= $(HOME)/.brew/Cellar/sdl2_image/2.0.5/lib
+	INCSDIR     += $(HOME)/.brew/Cellar/sdl2/2.0.12_1/include/SDL2
+	INCSDIR     += $(HOME)/.brew/Cellar/sdl2_ttf/2.0.15/include/SDL2
+	INCSDIR		+= $(HOME)/.brew/Cellar/sdl2_image/2.0.5/include/SDL2
+else
+	SDL       = libSDL2.a
+	TTF       = libSDL2_ttf.a
+	IMG       = libSDL2_image.a
+	LULIBS    = /usr/lib/x86_64-linux-gnu/
+	LUINCS    = /usr/include/
+	LTTFDIR	  = $(LULIBS)
+	LSDLDIR	  = $(LULIBS)
+	LIMGDIR	  = $(LULIBS)
+	INCSDIR	  = $(LUINCS)/SDL2 
+endif
 ########################################3Linked libraries at compile time.
-LIBS            := -framework SDL2 -F ./SDL/ 
-LIBS            += -framework SDL2_image -F ./SDL/
-LIBS			+= -framework SDL2_ttf -F ./SDL/
-LIBS			+= -rpath @loader_path/SDL
+#LIBS            := -framework SDL2 -F ./SDL/ 
+#LIBS            += -framework SDL2_image -F ./SDL/
+#LIBS			+= -framework SDL2_ttf -F ./SDL/
+#LIBS			+= -rpath @loader_path/SDL
+LIBS            := -L$(LSDLDIR) -lSDL2
+LIBS            += -L$(LTTFDIR) -lSDL2_ttf
+LIBS			+= -L$(LIMGDIR) -lSDL2_image
 LIBS            += -L$(LFTDIR) -lft
 LIBS            += -lm
 LIBS			+= -lz
@@ -85,8 +102,8 @@ LIMG			 = $(LIMGDIR)/$(IMG)
 D_SRCS           = $(addsuffix /, $(SRCSDIR))
 D_OBJS           = $(addsuffix /, $(OBJSDIR))
 C_OBJS           = $(addprefix $(D_OBJS),  $(SRC:.c=.o))
-C_INCS           = $(foreach include, $(INCSDIR), -I$(include))
-CC              = gcc
+	C_INCS           = $(foreach include, $(INCSDIR), -I$(include))
+	CC              = gcc
 
 # Compilation flags.
 
@@ -141,8 +158,8 @@ $(LIMG):
 	@brew install sdl2_image > /dev/null 2>&1;
 $(OBJSDIR):
 	@mkdir -p $(OBJSDIR)
-##### creating space
-# Deleting all .o files.
+	##### creating space
+	# Deleting all .o files.
 
 clean:
 	@make -sC $(LFTDIR) clean
