@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 15:02:13 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/12 14:40:25 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2020/12/29 08:52:31 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			sdl_init_texture(t_wolf_3d *w)
 {
 	sdl_init_render(w);
 	w->sdl.texture = SDL_CreateTexture(w->sdl.renderer
-			, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING
+			,SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING
 			, WIDTH, HEIGHT);
 	if (!w->sdl.texture)
 		return (1);

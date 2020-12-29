@@ -6,7 +6,7 @@
 #    By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/25 10:38:14 by ayagoumi          #+#    #+#              #
-#    Updated: 2020/12/26 17:04:57 by yait-el-         ###   ########.fr        #
+#    Updated: 2020/12/29 10:42:40 by yait-el-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,7 +147,12 @@ $(LFT):
 ### creating files for object.o
 $(LSDL):
 	@echo "$(GREEN)***   Installing library sdl2   ...  ***\n$(RESET)"
-	@brew install sdl2 > /dev/null 2>&1;
+	@if [$(UNAME) = Darwin]; then
+		brew install sdl2 > /dev/null 2>&1;
+	elif [! -d "$(SDL)"]; then
+		sudo apt install libsdl2-dev libsdl2-2.0-0 -y;
+	fi
+
 
 $(LTTF):
 	@echo "$(GREEN)***   Installing library sdl2_ttf   ...  ***\n$(RESET)"
@@ -158,8 +163,6 @@ $(LIMG):
 	@brew install sdl2_image > /dev/null 2>&1;
 $(OBJSDIR):
 	@mkdir -p $(OBJSDIR)
-	##### creating space
-	# Deleting all .o files.
 
 clean:
 	@make -sC $(LFTDIR) clean

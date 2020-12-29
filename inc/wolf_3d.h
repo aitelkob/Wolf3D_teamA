@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:21:28 by ayagoumi          #+#    #+#             */
-/*   Updated: 2020/12/26 08:57:22 by yait-el-         ###   ########.fr       */
+/*   Updated: 2020/12/29 09:25:41 by yait-el-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,30 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <stdio.h>
-# define LAZZY "./fonts/Halo3.ttf"
-# define CUR "./resources/cursor.png"
-# define INDEX "./resources/index/index.png"
-# define INDEX2 "./resources/index/index1.png"
-# define INDEX3 "./resources/index/tex.png"
+# define LAZZY "fonts/Halo3.ttf"
+# define CUR "resources/cursor.png"
+# define INDEX "resources/index/index.png"
+# define INDEX2 "resources/index/index1.png"
+# define INDEX3 "resources/index/tex.png"
 
-# define SKY "./resources/Track#1/sky1.png"
-# define BARK "./resources/Track#1/bark.png"
-# define FRAME1 "./resources/Track#1/frame.png"
-# define FRAME2 "./resources/Track#1/frame2.png"
-# define FRAME3 "./resources/Track#1/frame3.png"
-# define FRAME4 "./resources/Track#1/frame4.png"
-# define SKY2 "./resources/Track#2/sky2.png"
-# define MOLDSTONE "./resources/Track#2/moldstone.png"
-# define HITLERGREYSTONE "./resources/Track#2/hitler_greystone.png"
-# define GREYSTONE "./resources/Track#2/greystone.png"
-# define GOLD_CUP "./resources/Track#2/gold_cup.png"
-# define FLAG "./resources/Track#2/flag.png"
-# define SKY3 "./resources/Track#3/sky3.png"
-# define BLUEFLOOR "./resources/Track#3/bluefloor.png"
-# define BLUEDEVIL "./resources/Track#3/bluedevil.png"
-# define CAGEWALL "./resources/Track#3/cagewall.png"
-# define BLUESTONE "./resources/Track#3/bluestone.png"
-# define BLUELINE "./resources/Track#3/blueline.png"
+# define SKY "resources/Track#1/sky1.png"
+# define BARK "resources/Track#1/bark.png"
+# define FRAME1 "resources/Track#1/frame.png"
+# define FRAME2 "resources/Track#1/frame2.png"
+# define FRAME3 "resources/Track#1/frame3.png"
+# define FRAME4 "resources/Track#1/frame4.png"
+# define SKY2 "resources/Track#2/sky2.png"
+# define MOLDSTONE "resources/Track#2/moldstone.png"
+# define HITLERGREYSTONE "resources/Track#2/hitler_greystone.png"
+# define GREYSTONE "resources/Track#2/greystone.png"
+# define GOLD_CUP "resources/Track#2/gold_cup.png"
+# define FLAG "resources/Track#2/flag.png"
+# define SKY3 "resources/Track#3/sky3.png"
+# define BLUEFLOOR "resources/Track#3/bluefloor.png"
+# define BLUEDEVIL "resources/Track#3/bluedevil.png"
+# define CAGEWALL "resources/Track#3/cagewall.png"
+# define BLUESTONE "resources/Track#3/bluestone.png"
+# define BLUELINE "resources/Track#3/blueline.png"
 # include "SDL.h"
 # include "SDL_ttf.h"
 # include "SDL_image.h"
