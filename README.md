@@ -4,13 +4,42 @@ This project is my first step in the game dev universe !
 Entirely made in C with SDL2 using my own standard C library.
 The game is limited to 60 FPS.
 
-## Usage
 
-Compile using make and run with ./wolf3d
 
 ## Preview
 ![](https://github.com/aitelkob/Wolf3D_teamA/blob/master/resources/screenshot.png)
+## Usage
 
+## Installation:
+
+#### *SDL2*
+
+__*Ubuntu:*__
+
+```bash
+sudo apt-get install libsdl2-dev libsdl2-mixer-dev libsdl2-ttf-dev
+```
+
+__*Fedora:*__
+
+```bash
+sudo dnf install SDL2-devel SDL2_mixer-devel SDL2_ttf-devel
+```
+
+__*MacOS:*__
+
+All ready for use. Just type **make**.
+
+## Compiling
+
+Use [make](https://en.wikipedia.org/wiki/Makefile) for compiling all files.
+
+When you have already installed SDL2 library you can use this simple rules:
+- **make**: Compile all.
+- **make clean**: Delete temporary files.
+- **make del**: Delete temporary Wolf3D files only(if you changed code use `make del && make` for re-compile only Wolf3D executable without libft).
+- **make fclean**: Delete executable Wolf3D file & libft.
+- **make re**: It's rules - **make fclean** & **make** in one.
 ## Keyboard shortcuts
 
 <table width="100%">
