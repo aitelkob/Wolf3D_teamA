@@ -85,3 +85,18 @@ Compile using make and run with ./wolf3d
 </tr>
 </tbody>
 </table>
+## Screenshots
+
+**Usage message and controls:**
+
+<img src="resources/12.png" width="400" />
+
+**Program running:**
+
+<img src="resources/fractol1.png" width="550" />
+
+<img src="resources/fractol2.png" width="550" />
+
+<img src="resources/fractol3.png" width="550" />
+
+<img src="resources/fractol4.png" width="550" />
