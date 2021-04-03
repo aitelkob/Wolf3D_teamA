@@ -89,14 +89,14 @@ Compile using make and run with ./wolf3d
 
 **Usage message and controls:**
 
-<img src="resources/12.png" width="400" />
+<img src="resources/control.png" width="400" />
 
 **Program running:**
 
-<img src="resources/fractol1.png" width="550" />
+<img src="resources/wolf1.png" width="550" />
 
-<img src="resources/fractol2.png" width="550" />
+<img src="resources/wolf2.png" width="550" />
 
-<img src="resources/fractol3.png" width="550" />
+<img src="resources/wolf3.png" width="550" />
 
-<img src="resources/fractol4.png" width="550" />
+<img src="resources/wolf4.png" width="550" />
