@@ -30,10 +30,6 @@ Compile using make and run with ./wolf3d
 <td valign="top" align="center"><kbd>&nbsp;esc&nbsp;</kbd></td>
 </tr>
 <tr>
-<td valign="top" height="30px">Run</td>
-<td valign="top" align="center"><kbd>&nbsp;left shift&nbsp;</kbd></td>
-</tr>
-<tr>
 <td valign="top" height="30px">Move Up</td>
 <td valign="top" align="center"><kbd>&nbsp;W or ▲&nbsp;</kbd></td>
 </tr>
@@ -50,8 +46,20 @@ Compile using make and run with ./wolf3d
 <td valign="top" align="center"><kbd>&nbsp;D or ►&nbsp;</kbd></td>
 </tr>
 <tr>
-<td valign="top" height="30px">Use switch to open door</td>
-<td valign="top" align="center"><kbd>&nbsp;E&nbsp;</kbd></td>
+<td valign="top" height="30px">Show Light</td>
+<td valign="top" align="center"><kbd>&nbsp;L&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Dim Light</td>
+<td valign="top" align="center"><kbd>&nbsp;K&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Up The darkness</td>
+<td valign="top" align="center"><kbd>&nbsp;+&nbsp;</kbd></td>
+</tr>
+<tr>
+<td valign="top" height="30px">Dim darkness</td>
+<td valign="top" align="center"><kbd>&nbsp;-&nbsp;</kbd></td>
 </tr>
 
 </tbody>
